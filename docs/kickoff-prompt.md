@@ -15,8 +15,19 @@ START BY READING THESE FILES IN ORDER, in full:
 2. `README.md`
 3. `docs/team-onboarding.md`
 4. `docs/current-state.md`
-5. `tasks/in-progress.md`
-6. `tasks/backlog.md`
+5. `docs/decisions.md`
+6. `tasks/in-progress.md`
+7. `tasks/backlog.md`
+
+IMPORTANT — STACK IS NOT DECIDED YET:
+- The repo currently has NO application code and NO confirmed stack.
+- Do NOT assume Node/React/Supabase or anything else. The stack depends on the
+  final idea.
+- Check `docs/current-state.md` and `tasks/backlog.md` for the latest decision.
+- If the stack is still TBD, say so and ask which task to take on (or propose
+  one). Do not scaffold code that assumes a stack that was never chosen.
+- If you are assigned to define the stack, propose options + tradeoffs in a
+  PR, don't silently pick one.
 
 THEN confirm you are ready by stating:
 - Your name/ID (use the owner name your team gave you).
@@ -29,7 +40,8 @@ RULES YOU MUST FOLLOW (full detail in AGENTS.md):
 - Claim your task in `tasks/in-progress.md` with `[OWNER: your-name]` before
   writing code. No duplicate work.
 - Keep changes small and scoped to your task.
-- Run `npm run lint`, `npm run typecheck`, `npm run build` before pushing.
+- Run whatever checks exist for the chosen stack (lint/typecheck/build) before
+  pushing.
 - `main` is branch-protected: CI must pass and one approval is required to merge.
 - Never commit secrets, `.env`, tokens, or API keys.
 - If you end a session mid-task, write a handoff to `tasks/handoffs/`.

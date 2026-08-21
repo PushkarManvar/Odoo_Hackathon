@@ -15,17 +15,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Guard: no package.json yet (stack TBD) -> skip Node steps, stay green
       - uses: actions/setup-node@v4
+        if: hashFiles('package.json') != ''
         with:
           node-version: 20
           cache: npm
       - name: Install dependencies
+        if: hashFiles('package.json') != ''
         run: npm ci
       - name: Lint
+        if: hashFiles('package.json') != ''
         run: npm run lint
       - name: Typecheck
+        if: hashFiles('package.json') != ''
         run: npm run typecheck
       - name: Test
+        if: hashFiles('package.json') != ''
         run: npm run test
       - name: Build
+        if: hashFiles('package.json') != ''
         run: npm run build
