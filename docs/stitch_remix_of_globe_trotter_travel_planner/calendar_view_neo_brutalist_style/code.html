@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Globe Trotter - Calendar View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            primary: '#e2725b', // Custom color from design system
+            surface: {
+              DEFAULT: '#fff8ef',
+              dim: '#e1d9cb',
+              bright: '#fff8ef',
+              container: {
+                lowest: '#ffffff',
+                low: '#fbf3e4',
+                DEFAULT: '#f3e8d5',
+                high: '#eae2cc',
+                highest: '#e2d9c4'
+              }
+            }
+          },
+          boxShadow: {
+            'neo': '4px 4px 0px 0px rgba(0,0,0,1)',
+            'neo-sm': '2px 2px 0px 0px rgba(0,0,0,1)',
+          },
+          borderWidth: {
+            '4': '4px',
+            '3': '3px',
+          },
+          borderRadius: {
+            'xl': '0.75rem', // ROUND_EIGHT roughly
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-utilities">
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+    body {
+      background-color: theme('colors.surface.DEFAULT');
+      color: #000;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Neo-brutalism utilities */
+    .neo-border {
+      border: 4px solid black;
+    }
+    
+    .neo-border-b {
+      border-bottom: 4px solid black;
+    }
+
+    .neo-shadow {
+      box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+    }
+    
+    .neo-shadow-hover:hover {
+      box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
+      transform: translate(2px, 2px);
+      transition: all 0.1s ease-in-out;
+    }
+
+    /* Calendar Grid Specifics */
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      border: 3px solid black;
+    }
+    .calendar-cell {
+      border-right: 2px solid black;
+      border-bottom: 2px solid black;
+      min-height: 100px;
+      padding: 0.5rem;
+    }
+    .calendar-cell:nth-child(7n) {
+      border-right: none;
+    }
+    /* Remove bottom border from last row */
+    .calendar-cell:nth-last-child(-n+7) {
+      border-bottom: none;
+    }
+    .calendar-header-cell {
+      border-right: 2px solid black;
+      border-bottom: 3px solid black;
+      padding: 0.5rem;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      background-color: theme('colors.surface.container.high');
+    }
+    .calendar-header-cell:last-child {
+      border-right: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col p-4 md:p-8 space-y-8 antialiased">
+<!-- BEGIN: TopNavBar -->
+<header class="neo-border bg-white neo-shadow rounded-xl p-4 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0" data-purpose="main-navigation">
+<div class="flex items-center w-full md:w-auto justify-between">
+<h1 class="text-2xl font-bold tracking-tight">GlobeTrotter</h1>
+<!-- Mobile menu button (placeholder) -->
+<button class="md:hidden block border-2 border-black p-2 rounded-lg neo-shadow-hover">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<div class="flex flex-col md:flex-row w-full md:w-auto items-center space-y-4 md:space-y-0 md:space-x-4">
+<!-- Search Bar -->
+<div class="relative w-full md:w-64">
+<input class="w-full border-3 border-black p-2 pl-10 rounded-lg bg-surface-container-lowest focus:outline-none focus:ring-0 focus:border-black font-medium neo-shadow-hover" placeholder="Search trips..." type="text">
+<svg class="w-5 h-5 absolute left-3 top-3 text-black" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<!-- Action Buttons -->
+<div class="flex space-x-2 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-4 py-2 border-3 border-black rounded-lg bg-white font-bold neo-shadow-hover text-sm">Group by</button>
+<button class="flex-1 md:flex-none px-4 py-2 border-3 border-black rounded-lg bg-white font-bold neo-shadow-hover text-sm">Filter</button>
+<button class="flex-1 md:flex-none px-4 py-2 border-3 border-black rounded-lg bg-white font-bold neo-shadow-hover text-sm">Sort by...</button>
+</div>
+<!-- User Profile Avatar -->
+<div class="hidden md:block w-10 h-10 rounded-full border-3 border-black bg-surface-dim overflow-hidden flex-shrink-0 cursor-pointer neo-shadow-hover">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM2ouH4eUFTGXruKm5HP5regdWJ4CoOy5S4-17JDKLlsDwpNem_r3j-KSjRWArcjeF3OV0Xki0q6AvGJo6aVDb6vBkZVuGkqWcZy2vnm06h6No7KdZCkO6esT0zZftaw0qkif4DJDmUrYRClp2ZV4NlEsbofll1DyZKbuJLbJ0rLzbxTxE6kkkxX5nDwoCa_5YcWrZKOzMu9cbnQL8Atx1AN3-QEURS7qMOdEYRbv9PkFMjuM64kEM">
+</div>
+</div>
+</header>
+<!-- END: TopNavBar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-grow flex flex-col items-center">
+<div class="w-full max-w-6xl">
+<h2 class="text-3xl font-bold mb-6 text-center">Calendar View</h2>
+<!-- Calendar Container -->
+<div class="bg-white neo-border rounded-xl neo-shadow p-6 md:p-8" data-purpose="calendar-container">
+<!-- Calendar Header (Month Navigation) -->
+<div class="flex justify-between items-center mb-6">
+<button class="p-2 border-2 border-transparent hover:border-black rounded-lg hover:bg-surface-container-low transition-colors">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<h3 class="text-2xl font-bold">January 2024</h3>
+<button class="p-2 border-2 border-transparent hover:border-black rounded-lg hover:bg-surface-container-low transition-colors">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- Calendar Grid -->
+<div class="calendar-grid bg-white rounded-lg overflow-hidden">
+<!-- Days of Week Headers -->
+<div class="calendar-header-cell">SUN</div>
+<div class="calendar-header-cell">MON</div>
+<div class="calendar-header-cell">TUE</div>
+<div class="calendar-header-cell">WED</div>
+<div class="calendar-header-cell">THU</div>
+<div class="calendar-header-cell">FRI</div>
+<div class="calendar-header-cell">SAT</div>
+<!-- Week 1 -->
+<div class="calendar-cell bg-surface-dim opacity-50"><span class="font-semibold">31</span></div>
+<div class="calendar-cell"><span class="font-semibold">1</span></div>
+<div class="calendar-cell"><span class="font-semibold">2</span></div>
+<div class="calendar-cell"><span class="font-semibold">3</span></div>
+<div class="calendar-cell"><span class="font-semibold">4</span></div>
+<div class="calendar-cell relative">
+<span class="font-semibold">5</span>
+<!-- Trip Event -->
+<div class="absolute bottom-2 left-1 right-1 bg-primary text-white text-xs font-bold p-1 rounded border-2 border-black truncate neo-shadow-sm">PARIS TRIP</div>
+</div>
+<div class="calendar-cell"><span class="font-semibold">6</span></div>
+<!-- Week 2 -->
+<div class="calendar-cell"><span class="font-semibold">7</span></div>
+<div class="calendar-cell"><span class="font-semibold">8</span></div>
+<div class="calendar-cell bg-surface-dim relative">
+<span class="font-semibold">9</span>
+<!-- Continuing Trip Background indicating span, actual label elsewhere or span via CSS tricky without flex, using simple block -->
+</div>
+<div class="calendar-cell bg-surface-dim"><span class="font-semibold">10</span></div>
+<div class="calendar-cell bg-surface-dim"><span class="font-semibold">11</span></div>
+<div class="calendar-cell bg-surface-dim"><span class="font-semibold">12</span></div>
+<div class="calendar-cell bg-surface-dim relative">
+<span class="font-semibold">13</span>
+<div class="absolute bottom-2 left-1 right-1 bg-surface-dim text-black text-xs font-bold p-1 rounded border-2 border-black truncate z-10 neo-shadow-sm">JAPAN ADVENTURE</div>
+</div>
+<!-- Week 3 -->
+<div class="calendar-cell bg-surface-dim"><span class="font-semibold">14</span></div>
+<div class="calendar-cell bg-surface-dim"><span class="font-semibold">15</span></div>
+<div class="calendar-cell"><span class="font-semibold">16</span></div>
+<div class="calendar-cell"><span class="font-semibold">17</span></div>
+<div class="calendar-cell bg-gray-300 relative">
+<span class="font-semibold">18</span>
+<div class="absolute bottom-2 left-1 right-1 bg-gray-400 text-black text-xs font-bold p-1 rounded border-2 border-black truncate neo-shadow-sm">NYC GETAWAY</div>
+</div>
+<div class="calendar-cell bg-gray-300"><span class="font-semibold">19</span></div>
+<div class="calendar-cell bg-gray-300"><span class="font-semibold">20</span></div>
+<!-- Week 4 -->
+<div class="calendar-cell"><span class="font-semibold">21</span></div>
+<div class="calendar-cell"><span class="font-semibold">22</span></div>
+<div class="calendar-cell"><span class="font-semibold">23</span></div>
+<div class="calendar-cell"><span class="font-semibold">24</span></div>
+<div class="calendar-cell"><span class="font-semibold">25</span></div>
+<div class="calendar-cell"><span class="font-semibold">26</span></div>
+<div class="calendar-cell"><span class="font-semibold">27</span></div>
+<!-- Week 5 -->
+<div class="calendar-cell"><span class="font-semibold">28</span></div>
+<div class="calendar-cell"><span class="font-semibold">29</span></div>
+<div class="calendar-cell"><span class="font-semibold">30</span></div>
+<div class="calendar-cell"><span class="font-semibold">31</span></div>
+<div class="calendar-cell bg-surface-dim opacity-50"><span class="font-semibold">1</span></div>
+<div class="calendar-cell bg-surface-dim opacity-50"><span class="font-semibold">2</span></div>
+<div class="calendar-cell bg-surface-dim opacity-50"><span class="font-semibold">3</span></div>
+</div>
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+</body></html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Registration - Globe Trotter</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#2a6292",
+                        "secondary-fixed": "#d9eaa3",
+                        "secondary": "#56642b",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "surface": "#fff8ef",
+                        "surface-container-high": "#efe7d9",
+                        "inverse-primary": "#ffb4a5",
+                        "surface-dim": "#e1d9cb",
+                        "on-secondary-fixed-variant": "#3e4c16",
+                        "on-background": "#1e1b13",
+                        "on-primary-fixed": "#3e0500",
+                        "on-secondary-fixed": "#161f00",
+                        "on-primary-container": "#5a0d02",
+                        "on-surface-variant": "#56423e",
+                        "tertiary-fixed-dim": "#9acbff",
+                        "surface-tint": "#9f402d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001d34",
+                        "on-tertiary-container": "#002e4e",
+                        "primary": "#9f402d",
+                        "on-secondary-container": "#5a682f",
+                        "on-tertiary-fixed-variant": "#024a78",
+                        "surface-container": "#f5edde",
+                        "outline-variant": "#ddc0ba",
+                        "surface-variant": "#e9e2d3",
+                        "on-primary-fixed-variant": "#802918",
+                        "background": "#fff8ef",
+                        "inverse-on-surface": "#f8f0e1",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#6497ca",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d6e7a1",
+                        "on-surface": "#1e1b13",
+                        "inverse-surface": "#343026",
+                        "primary-fixed-dim": "#ffb4a5",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#ffdad3",
+                        "surface-container-low": "#fbf3e4",
+                        "primary-container": "#e2725b",
+                        "tertiary-fixed": "#cfe5ff",
+                        "surface-container-highest": "#e9e2d3",
+                        "outline": "#89726d",
+                        "surface-bright": "#fff8ef",
+                        "secondary-fixed-dim": "#bdce89"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max-width": "1200px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "section-gap": "80px",
+                        "base": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "display-lg": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface/90 border-b-2 border-black w-full top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max-width mx-auto">
+<a class="font-headline-md text-headline-md font-bold text-primary hover:scale-105 transition-transform duration-200" href="#">
+                Globe Trotter
+            </a>
+</div>
+</header>
+<!-- Main Registration Canvas -->
+<main class="flex-grow w-full max-w-3xl mx-auto px-margin-mobile md:px-margin-desktop py-section-gap relative z-10 flex flex-col items-center">
+<!-- Main Card with Neo-Brutalist styling -->
+<div class="w-full bg-white border-3 border-black rounded-xl p-8 md:p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+<!-- Header Text -->
+<div class="text-center mb-10">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2 font-bold">Create Your Profile</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Join the community of mindful explorers.</p>
+</div>
+<!-- Profile Photo Upload -->
+<div class="flex flex-col items-center mb-12">
+<div class="relative group cursor-pointer">
+<div class="w-32 h-32 rounded-full border-3 border-black bg-surface-container-high flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:bg-primary-fixed">
+<span class="material-symbols-outlined text-4xl text-black transition-colors duration-300" style="font-variation-settings: 'FILL' 0;">
+                            add_a_photo
+                        </span>
+</div>
+<div class="absolute bottom-0 right-0 bg-primary border-2 border-black text-on-primary rounded-full p-2 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transform translate-x-2 translate-y-2 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">
+                            upload
+                        </span>
+</div>
+</div>
+<span class="mt-4 font-label-md text-label-md text-black font-bold">Upload Photo</span>
+</div>
+<!-- Registration Form -->
+<form class="space-y-6">
+<!-- Grid Fields -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- First Name -->
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-black font-bold mb-2 ml-1" for="firstName">First Name</label>
+<input class="w-full bg-surface border-2 border-black rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-black transition-colors duration-200" id="firstName" name="firstName" placeholder="Jane" required="" type="text">
+</div>
+<!-- Last Name -->
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-black font-bold mb-2 ml-1" for="lastName">Last Name</label>
+<input class="w-full bg-surface border-2 border-black rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-black transition-colors duration-200" id="lastName" name="lastName" placeholder="Doe" required="" type="text">
+</div>
+<!-- Email -->
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-black font-bold mb-2 ml-1" for="email">Email Address</label>
+<input class="w-full bg-surface border-2 border-black rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-black transition-colors duration-200" id="email" name="email" placeholder="jane.doe@example.com" required="" type="email">
+</div>
+<!-- Phone Number -->
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-black font-bold mb-2 ml-1" for="phone">Phone Number</label>
+<input class="w-full bg-surface border-2 border-black rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-black transition-colors duration-200" id="phone" name="phone" placeholder="+1 (555) 000-0000" type="tel">
+</div>
+<!-- City -->
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-black font-bold mb-2 ml-1" for="city">City</label>
+<input class="w-full bg-surface border-2 border-black rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-black transition-colors duration-200" id="city" name="city" placeholder="Seattle" type="text">
+</div>
+<!-- Country -->
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-black font-bold mb-2 ml-1" for="country">Country</label>
+<select class="w-full bg-surface border-2 border-black rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-black transition-colors duration-200 appearance-none" id="country" name="country">
+<option disabled="" selected="" value="">Select a country</option>
+<option value="us">United States</option>
+<option value="ca">Canada</option>
+<option value="uk">United Kingdom</option>
+<option value="au">Australia</option>
+<option value="jp">Japan</option>
+</select>
+</div>
+</div>
+<!-- Additional Information -->
+<div class="flex flex-col pt-4">
+<label class="font-label-md text-label-md text-black font-bold mb-2 ml-1" for="additionalInfo">Additional Information</label>
+<textarea class="w-full bg-surface border-2 border-black rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-black transition-colors duration-200 resize-none" id="additionalInfo" name="additionalInfo" placeholder="Tell us about your travel preferences or dietary requirements..." rows="4"></textarea>
+</div>
+<!-- Submit Button -->
+<div class="pt-8 flex justify-center">
+<button class="bg-primary-container hover:bg-primary border-3 border-black text-black font-label-md text-label-md py-4 px-12 rounded-lg min-h-[48px] flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-[0px_0px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 w-full md:w-auto font-bold uppercase tracking-wider" type="submit">
+<span>Register Users</span>
+<span class="material-symbols-outlined text-sm font-bold" style="font-variation-settings: 'FILL' 1;">
+                            arrow_forward
+                        </span>
+</button>
+</div>
+</form>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container border-t-2 border-black w-full py-section-gap px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-gutter relative z-10">
+<div class="font-headline-sm text-headline-sm text-primary font-bold">
+            Globe Trotter
+        </div>
+<nav class="flex gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-black hover:underline font-medium transition-colors" href="#">Support</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-black hover:underline font-medium transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-black hover:underline font-medium transition-colors" href="#">Terms</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-black hover:underline font-medium transition-colors" href="#">Destinations</a>
+</nav>
+<div class="font-caption text-caption text-black font-medium">
+            © 2024 Globe Trotter. Mindful Exploration.
+        </div>
+</footer>
+</body></html>

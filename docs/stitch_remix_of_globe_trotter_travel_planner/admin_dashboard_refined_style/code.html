@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GlobalTrotter Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            surface: '#fff8ef',
+            primary: '#e2725b',
+            secondary: '#a3b18a',
+            accent: '#3d405b',
+            'gt-yellow': '#fcd34d',
+            'gt-pink': '#fecdd3',
+          },
+          boxShadow: {
+            'brutal': '4px 4px 0px 0px rgba(0,0,0,1)',
+            'brutal-sm': '2px 2px 0px 0px rgba(0,0,0,1)',
+            'brutal-lg': '6px 6px 0px 0px rgba(0,0,0,1)',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-utilities">
+    body {
+      background-color: #fff8ef;
+      color: #111;
+    }
+    .brutal-border {
+      border: 3px solid #000;
+    }
+    .brutal-border-sm {
+      border: 2px solid #000;
+    }
+    .chart-container {
+      position: relative;
+      height: 200px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="min-h-screen font-sans flex flex-col">
+<!-- BEGIN: MainHeader -->
+<header class="flex justify-between items-center bg-surface border-b-[6px] border-black px-6 py-4">
+<div class="flex items-center gap-6">
+<h1 class="text-2xl font-extrabold tracking-tight">GlobeTrotter</h1>
+<nav class="hidden md:flex gap-4 text-sm font-semibold text-gray-700">
+<a class="hover:text-black" href="#">Explore</a>
+<a class="hover:text-black" href="#">Trips</a>
+<a class="hover:text-black" href="#">Saved</a>
+<a class="text-black border-b-2 border-black pb-1" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 bg-white brutal-border-sm flex items-center justify-center shadow-brutal-sm hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
+<span class="material-symbols-outlined text-lg">search</span>
+</button>
+<button class="w-10 h-10 bg-gt-yellow brutal-border-sm flex items-center justify-center shadow-brutal-sm hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none transition-all">
+<span class="material-symbols-outlined text-lg">person</span>
+</button>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 p-6 md:p-10 max-w-7xl mx-auto w-full">
+<!-- Page Title -->
+<div class="mb-10 inline-block">
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tight uppercase border-b-[6px] border-black pb-2 mb-2">Admin Dashboard</h2>
+<p class="text-gray-600 font-medium text-lg">System Overview &amp; Analytics</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Column: Dashboard Content -->
+<section class="lg:col-span-2 space-y-8">
+<!-- Navigation Cards -->
+<nav class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<button class="bg-gt-yellow brutal-border p-4 flex flex-col items-center justify-center text-center shadow-brutal hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all min-h-[120px]">
+<span class="material-symbols-outlined text-3xl mb-2">manage_accounts</span>
+<span class="font-bold text-sm uppercase">Manage Users</span>
+</button>
+<button class="bg-white brutal-border p-4 flex flex-col items-center justify-center text-center shadow-brutal hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all min-h-[120px]">
+<span class="material-symbols-outlined text-3xl mb-2">location_city</span>
+<span class="font-bold text-sm uppercase">Popular Cities</span>
+</button>
+<button class="bg-gt-pink brutal-border p-4 flex flex-col items-center justify-center text-center shadow-brutal hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all min-h-[120px]">
+<span class="material-symbols-outlined text-3xl mb-2">local_activity</span>
+<span class="font-bold text-sm uppercase text-[11px] sm:text-xs">Popular Activities</span>
+</button>
+<button class="bg-white brutal-border p-4 flex flex-col items-center justify-center text-center shadow-brutal hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all min-h-[120px]">
+<span class="material-symbols-outlined text-3xl mb-2">trending_up</span>
+<span class="font-bold text-sm uppercase text-xs">User Trends</span>
+</button>
+</nav>
+<!-- Analytics Card -->
+<div class="bg-white brutal-border shadow-brutal-lg p-6">
+<h3 class="text-2xl font-bold mb-6 border-b-2 border-black pb-2">System Analytics</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<!-- Bar Chart Container -->
+<div class="brutal-border p-4 h-64 flex flex-col">
+<h4 class="text-sm font-bold uppercase text-gray-600 mb-auto font-mono tracking-wider">Active Sessions (7D)</h4>
+<div class="flex items-end justify-between h-40 mt-4 border-b-2 border-black pb-1 px-2">
+<div class="w-8 h-16 bg-gt-yellow brutal-border-sm relative"><span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-gray-600">M</span></div>
+<div class="w-8 h-24 bg-gt-yellow brutal-border-sm relative"><span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-gray-600">T</span></div>
+<div class="w-8 h-10 bg-gt-pink brutal-border-sm relative"><span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-gray-600">W</span></div>
+<div class="w-8 h-32 bg-gt-yellow brutal-border-sm relative"><span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-gray-600">T</span></div>
+<div class="w-8 h-20 bg-gt-yellow brutal-border-sm relative"><span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-gray-600">F</span></div>
+<div class="w-8 h-36 bg-gt-yellow brutal-border-sm relative"><span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-gray-600">S</span></div>
+<div class="w-8 h-28 bg-black brutal-border-sm relative"><span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-mono text-gray-600">S</span></div>
+</div>
+</div>
+<!-- Donut Chart Container -->
+<div class="brutal-border p-4 h-64 flex flex-col">
+<h4 class="text-sm font-bold uppercase text-gray-600 mb-auto font-mono tracking-wider">User Demographics</h4>
+<div class="flex-1 flex items-center justify-center relative mt-4">
+<!-- Donut Chart SVG -->
+<svg class="w-36 h-36" viewbox="0 0 100 100">
+<circle class="absolute shadow-brutal rounded-full" cx="50" cy="50" fill="transparent" r="40" stroke="#000" stroke-width="6"></circle>
+<path d="M50,10 A40,40 0 0,1 90,50 A40,40 0 0,1 50,90 A40,40 0 0,1 10,50" fill="none" stroke="#fcd34d" stroke-width="15"></path>
+<path d="M10,50 A40,40 0 0,1 50,10" fill="none" stroke="#fecdd3" stroke-width="15"></path>
+<path d="M90,50 A40,40 0 0,1 70,84" fill="none" stroke="#ffffff" stroke-width="15"></path>
+<circle cx="50" cy="50" fill="transparent" r="42" stroke="#000" stroke-width="4"></circle>
+<circle cx="50" cy="50" fill="#fff" r="25" stroke="#000" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col mt-2">
+<span class="font-bold text-sm">142K</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Stats -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 border-t-2 border-black pt-4">
+<div>
+<h5 class="text-xs font-mono text-gray-500 uppercase tracking-wider mb-1">Total Users</h5>
+<p class="text-2xl font-bold">84,592</p>
+</div>
+<div>
+<h5 class="text-xs font-mono text-gray-500 uppercase tracking-wider mb-1">New (24H)</h5>
+<p class="text-2xl font-bold text-green-700">+1,204</p>
+</div>
+<div>
+<h5 class="text-xs font-mono text-gray-500 uppercase tracking-wider mb-1">Active Trips</h5>
+<p class="text-2xl font-bold">12,450</p>
+</div>
+<div>
+<h5 class="text-xs font-mono text-gray-500 uppercase tracking-wider mb-1">Server Load</h5>
+<p class="text-2xl font-bold">42%</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Info Panel -->
+<aside class="space-y-6">
+<div class="bg-[#e1d9cb] brutal-border p-6 shadow-brutal-lg flex flex-col h-full">
+<h3 class="text-xl font-bold mb-4 flex items-center gap-2 border-b-2 border-black pb-2">
+<span class="material-symbols-outlined">info</span>
+Admin Guide
+</h3>
+<div class="space-y-4 flex-1">
+<div class="bg-white brutal-border-sm p-4">
+<h4 class="font-bold text-sm uppercase mb-2 flex items-center gap-2">
+<span class="w-2 h-2 bg-black inline-block"></span>
+Manage Users
+</h4>
+<p class="text-sm text-gray-600 leading-relaxed">Access detailed user profiles, handle support tickets, and manage role assignments.</p>
+</div>
+<div class="bg-white brutal-border-sm p-4">
+<h4 class="font-bold text-sm uppercase mb-2 flex items-center gap-2">
+<span class="w-2 h-2 bg-gt-yellow inline-block brutal-border-sm"></span>
+Popular Cities
+</h4>
+<p class="text-sm text-gray-600 leading-relaxed">Update destination content, manage local partnerships, and monitor trending locations.</p>
+</div>
+<div class="bg-white brutal-border-sm p-4">
+<h4 class="font-bold text-sm uppercase mb-2 flex items-center gap-2">
+<span class="w-2 h-2 bg-white brutal-border-sm inline-block"></span>
+System Alerts
+</h4>
+<ul class="text-sm space-y-2 mt-2">
+<li class="flex items-start gap-2 text-red-600 font-mono text-xs">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+API Rate Limit near threshold
+</li>
+<li class="flex items-start gap-2 text-gray-700 font-mono text-xs">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+Backup completed successfully
+</li>
+</ul>
+</div>
+</div>
+<button class="mt-6 w-full bg-black text-white font-bold py-4 uppercase tracking-widest hover:bg-gray-800 transition-colors shadow-brutal-sm hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none active:translate-x-1 active:translate-y-1">
+Generate Report
+</button>
+</div>
+</aside>
+</div>
+</main>
+<!-- END: MainContent -->
+</body></html>

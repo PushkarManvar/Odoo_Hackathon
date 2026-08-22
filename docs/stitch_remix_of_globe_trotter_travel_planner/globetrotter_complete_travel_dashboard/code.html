@@ -1,0 +1,439 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Globe Trotter - Mindful Exploration</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#89726d",
+                        "inverse-primary": "#ffb4a5",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#cfe5ff",
+                        "outline-variant": "#ddc0ba",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#343026",
+                        "on-surface-variant": "#56423e",
+                        "secondary-container": "#d6e7a1",
+                        "surface-bright": "#fff8ef",
+                        "secondary-fixed-dim": "#bdce89",
+                        "on-primary-fixed-variant": "#802918",
+                        "on-tertiary-fixed": "#001d34",
+                        "secondary": "#56642b",
+                        "on-tertiary-container": "#002e4e",
+                        "tertiary-fixed-dim": "#9acbff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#1e1b13",
+                        "on-secondary-fixed-variant": "#3e4c16",
+                        "surface-container-high": "#efe7d9",
+                        "secondary-fixed": "#d9eaa3",
+                        "tertiary-container": "#6497ca",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#e9e2d3",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#e2725b",
+                        "surface-variant": "#e9e2d3",
+                        "surface-dim": "#e1d9cb",
+                        "surface": "#fff8ef",
+                        "on-primary-container": "#5a0d02",
+                        "on-secondary-fixed": "#161f00",
+                        "on-surface": "#1e1b13",
+                        "tertiary": "#2a6292",
+                        "primary-fixed": "#ffdad3",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#9f402d",
+                        "primary-fixed-dim": "#ffb4a5",
+                        "surface-container-low": "#fbf3e4",
+                        "on-primary-fixed": "#3e0500",
+                        "on-secondary-container": "#5a682f",
+                        "on-tertiary-fixed-variant": "#024a78",
+                        "background": "#fff8ef",
+                        "inverse-on-surface": "#f8f0e1",
+                        "primary": "#9f402d",
+                        "surface-container": "#f5edde"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "section-gap": "80px",
+                        "container-max-width": "1200px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Neo-Brutalist Utility Classes */
+        .neo-border { border: 3px solid #1e1b13; }
+        .neo-shadow { box-shadow: 6px 6px 0px 0px #1e1b13; }
+        .neo-shadow-hover:hover { box-shadow: 8px 8px 0px 0px #1e1b13; transform: translate(-2px, -2px); }
+        .transition-neo { transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1); }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface/90 backdrop-blur-md sticky top-0 z-50 neo-border border-l-0 border-r-0 border-t-0 shadow-[0_3px_0_0_#1e1b13]">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max-width mx-auto">
+<!-- Brand -->
+<a class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+                Globe Trotter
+            </a>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">My Trips</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Discovery</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="w-10 h-10 rounded-none neo-border bg-surface-variant overflow-hidden hidden md:block">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A minimalist flat vector illustration of a user avatar, featuring a stylized character portrait with warm terracotta and sage green colors against a pale beige background. The design is geometric and clean, suitable for a modern organic minimalist UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBepwypnQXBlsiahuQTN77q0fYlngwroUXwpd3Hfsz7bQpcypJBawWE5pBCmxc_TRF0ULYSCdD6oySmv56tyAGjc487CHA8qZbz_Lt3HL57So4CrRHi75x8TIKD1hSKFmf235box1khfN1sYIth5gmnn1mikz86ipSbGSnDEFKMM6rx0KRAYhTAdRLuA6FdM92vob8ulFFS0HPwuWoC1CnA1t0peMH-iCGN_zHDqXL-ln0Tc3LqpeNX">
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col w-full max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12 gap-section-gap">
+<!-- Hero Section -->
+<section class="flex flex-col gap-8">
+<div class="neo-border bg-surface-container-low relative overflow-hidden rounded-none neo-shadow flex flex-col md:flex-row items-center gap-12"><div class="w-full h-[400px] md:h-[500px] relative">
+<img alt="Mediterranean coastal village" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1US7M4neiocnAZTMJdYNHNW7swlpimtFokBcDrqaneXEizPWreVtznC8Hc-qMVFdboZoFXUJbUqpY1CfujMqL8XcOkFr5Pcc6QDz-Go47Kb1lPsW2VXf8yUE374PVAVWYKuObFj_Z00KFqwAj-3U2DAT4U8mBSy93m6gn1h4FjeWtcxtCAf-avKOhoOsHx865VETE7kyUHf41dOYa6DBBvGpKnTgBRsoj4y4ALUHmpw0uz2ZB3gE79-2jhx">
+<div class="absolute inset-0 flex items-center px-margin-mobile md:px-margin-desktop">
+<div class="bg-background neo-border p-6 md:p-10 neo-shadow max-w-2xl z-10 flex flex-col gap-6">
+<h1 class="text-6xl font-black uppercase tracking-tighter text-on-surface font-display-lg">
+                Discover The Unknown
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                Curated adventures across 50+ regions. Plan your next architectural exploration.
+            </p>
+<div>
+<button class="bg-secondary text-on-secondary px-8 py-4 font-label-md text-label-md neo-border neo-shadow transition-neo neo-shadow-hover flex items-center gap-2">
+<span class="material-symbols-outlined">explore</span>
+                    START PLANNING
+                </button>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<!-- Search & Filter Bar -->
+<section class="w-full flex flex-col gap-4">
+<div class="neo-border bg-surface p-4 flex flex-col md:flex-row gap-4 items-center neo-shadow">
+<div class="flex-1 flex items-center gap-3 px-4 py-3 neo-border bg-surface-container-lowest w-full">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant p-0" placeholder="Where do you want to find peace?" type="text">
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<div class="flex-1 md:w-48 flex items-center gap-3 px-4 py-3 neo-border bg-surface-container-lowest">
+<span class="material-symbols-outlined text-on-surface-variant">calendar_today</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Dates</span>
+</div>
+<button class="bg-secondary text-on-secondary px-8 py-3 font-label-md text-label-md neo-border neo-shadow transition-neo neo-shadow-hover shrink-0">
+                        Search
+                    </button>
+</div>
+</div>
+<!-- Global Exploration Hub Stats & Filters -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-low p-4 neo-border neo-shadow">
+<div class="flex items-center gap-6 font-label-md text-label-md font-bold text-on-surface uppercase tracking-wider">
+<div class="flex items-center gap-2 bg-secondary-container px-3 py-1 neo-border">Destinations: 12</div>
+<div class="flex items-center gap-2 bg-surface-variant px-3 py-1 neo-border">Booked Trips: 8</div>
+<div class="flex items-center gap-2 bg-primary-container text-on-primary-container px-3 py-1 neo-border">Travellers: 4.2k</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-4 py-2 neo-border bg-surface font-label-md text-label-md hover:bg-surface-variant transition-colors">
+            GROUP BY <span class="material-symbols-outlined">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 neo-border bg-surface font-label-md text-label-md hover:bg-surface-variant transition-colors">
+            FILTER <span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 neo-border bg-surface font-label-md text-label-md hover:bg-surface-variant transition-colors">
+            SORT BY <span class="material-symbols-outlined">sort</span>
+</button>
+</div>
+</div>
+</section>
+<!-- User Dashboard Area -->
+<section class="flex flex-col gap-6">
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">Quick Dashboard</h2>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- My Trips -->
+<div class="md:col-span-4 neo-border bg-surface p-6 neo-shadow flex flex-col gap-4">
+<div class="flex justify-between items-center border-b-2 border-on-surface pb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">My Trips</h3>
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">VIEW ALL</a>
+</div>
+<div class="flex flex-col gap-4">
+<div class="neo-border bg-surface-variant p-4 flex justify-between items-center hover:scale-[1.02] transition-transform cursor-pointer">
+<div>
+<div class="font-label-md text-label-md font-bold">Paris Adventure</div>
+<div class="font-caption text-caption text-on-surface-variant">5 Days • 3 Locations</div>
+</div>
+<button class="bg-primary text-on-primary px-3 py-1 font-label-md text-[12px] neo-border">VIEW</button>
+</div>
+<div class="neo-border bg-surface-variant p-4 flex justify-between items-center hover:scale-[1.02] transition-transform cursor-pointer">
+<div>
+<div class="font-label-md text-label-md font-bold">Japan Exploration</div>
+<div class="font-caption text-caption text-on-surface-variant">14 Days • 5 Locations</div>
+</div>
+<button class="bg-primary text-on-primary px-3 py-1 font-label-md text-[12px] neo-border">VIEW</button>
+</div>
+</div>
+</div>
+<!-- Continue Planning -->
+<div class="md:col-span-4 neo-border bg-secondary-container p-6 neo-shadow flex flex-col gap-4 justify-between">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined">map</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Active Itinerary</h3>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant mb-1">UP NEXT</div>
+<div class="font-headline-sm text-2xl font-bold mb-2">Day 4 — Amsterdam</div>
+<div class="font-body-md text-body-md">Canal Cruise &amp; Rijksmuseum</div>
+</div>
+<button class="bg-surface text-on-surface px-4 py-3 font-label-md text-label-md neo-border neo-shadow-hover transition-neo w-full uppercase font-bold tracking-wider">
+                Continue Planning
+            </button>
+</div>
+<!-- Budget Planner -->
+<div class="md:col-span-4 neo-border bg-surface p-6 neo-shadow flex flex-col gap-4">
+<h3 class="font-headline-md text-headline-md text-on-surface border-b-2 border-on-surface pb-2">Budget Planner</h3>
+<div class="flex justify-between items-end">
+<div>
+<div class="font-caption text-caption text-on-surface-variant uppercase">Estimated</div>
+<div class="font-headline-sm text-xl font-bold">₹1,10,000</div>
+</div>
+<div class="text-right">
+<div class="font-caption text-caption text-on-surface-variant uppercase">Spent</div>
+<div class="font-headline-sm text-xl font-bold text-primary">₹85,000</div>
+</div>
+</div>
+<div class="w-full h-4 neo-border bg-surface-variant relative mt-2">
+<div class="absolute top-0 left-0 h-full bg-secondary" style="width: 77%;"></div>
+</div>
+<div class="bg-secondary-container px-3 py-2 neo-border font-label-md text-label-md text-center font-bold mt-2">
+                ON TRACK: ₹25,000 remaining
+            </div>
+</div>
+</div>
+</section>
+<!-- Top Regional Selections (Bento Grid) -->
+<section class="flex flex-col gap-8">
+<div class="flex justify-between items-end">
+<div>
+<span class="font-label-md text-label-md font-bold uppercase tracking-wider text-primary mb-2 block">Curated Picks</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">Top Regional Selections</h2>
+</div>
+<a class="font-label-md text-label-md text-primary hover:underline uppercase font-bold" href="#">View all regions</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+<!-- Large Feature Card -->
+<div class="md:col-span-2 md:row-span-2 neo-border bg-surface-variant relative overflow-hidden group cursor-pointer neo-shadow transition-neo neo-shadow-hover flex flex-col">
+<div class="flex-grow relative border-b-[3px] border-[#1e1b13]">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist architectural shot of a whitewashed Mediterranean villa against a clear blue sky. The image utilizes organic minimalism with stark geometric lines and soft shadows. A single terracotta pot adds a pop of warmth against the cool, calming environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCtNRQ3DZmBKrhisen-leLEZXgNGiTbjuMbKOyM1h_nRKVRhPnvJglPPGvRNGNbYuC8H6OGNLIAUqo2954adTa-bP-nMuIqT4oz-nZkV3GXExZ387ZYUZJvZCgZT1J_xDyJeGCo-UqwB3kFaXr2B_pB4Kg6rcFIDx9rY4QJuZ9qm-HnLq2iLpdOKfctyOVdv9f9o7M8ZWA3qW4Tab_mm_7iE7mbS8-LpaKa67dXRDQP5CQ33j_bMk0">
+</div>
+<div class="bg-surface p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase font-bold">Mediterranean Retreats</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Experience deep relaxation in whitewashed villas overlooking the azure sea.</p>
+</div>
+</div>
+<div class="flex justify-between items-center border-t-2 border-surface-variant pt-4">
+<div class="flex gap-4">
+<span class="font-label-md text-label-md bg-surface-variant px-2 py-1 neo-border">7-14 Days</span>
+<span class="font-label-md text-label-md bg-surface-variant px-2 py-1 neo-border">From $2,400</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 font-label-md text-label-md neo-border hover:bg-on-primary-container transition-colors uppercase">Explore</button>
+</div>
+</div>
+</div>
+<!-- Small Card 1 -->
+<div class="neo-border bg-surface-variant relative overflow-hidden group cursor-pointer neo-shadow transition-neo neo-shadow-hover flex flex-col">
+<div class="flex-grow relative border-b-[3px] border-[#1e1b13]">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of lush, misty pine forests in the Pacific Northwest, embracing a serene, minimalist aesthetic. The cool greens and muted greys create a tranquil, atmospheric vibe, highlighting the texture of the natural world." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZfWCDMqqGa1xGF0DVGZp7F_XPIPuvf-A1SWqWqUcxewVaAHSOZoEn0jp2DuGVFFZYKFJWPT6b3wWykAyn6sllaQNG5zR2RwQ7mmn2WruKTXeU2zuVpSeZgjFLx8kQoq200oq-viW0QgQUR9difsV8q7HG90MlnYQ7Hju9h_wCqN66mKdKRGDjsPoOo2QKqz3o28-uqwImsRY0FQW8OX-PwsJUp_ZJSB7SNhrBAPK_n9hxsvT_G2zk">
+</div>
+<div class="bg-surface p-4 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold text-lg uppercase">Nordic Forests</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-1 line-clamp-2">Immerse yourself in the tranquility of ancient, misty pine woods.</p>
+</div>
+<div class="flex justify-between items-center mt-2">
+<p class="font-caption text-caption font-bold">From $1,200 <span class="font-normal text-on-surface-variant">• 5 Days</span></p>
+<button class="bg-surface-variant px-3 py-1 neo-border text-xs font-bold uppercase hover:bg-secondary hover:text-on-secondary transition-colors">Explore</button>
+</div>
+</div>
+</div>
+<!-- Small Card 2 -->
+<div class="neo-border bg-surface-variant relative overflow-hidden group cursor-pointer neo-shadow transition-neo neo-shadow-hover flex flex-col">
+<div class="flex-grow relative border-b-[3px] border-[#1e1b13]">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An expansive view of rolling sand dunes in a vast desert landscape under a clear sky. The image uses warm terracotta and soft peach tones, embodying organic minimalism with sweeping curves and a profound sense of quiet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKglsT5G5yT7kkvayp8aO_Y1F7DPttSDpuStsjTJ_eIxWGVBOCsu3C7R0iOn8GRiegX6p9Rh_nQW0YoSV5EJq72x4Crp6TOKVquDAl-Is-04NkMW_5ckxfJxoGgwtK4g7Sz-bdQxKarWrj5b5cPlaEQ2Jo0ijVabtDzDdu5qq1wtk3gSuJDfOLrb6Fh7Hl7eWIzs5VblwIjzXsPdHy0OhbViEmv1HoP60W0R2d4-VRDA2U3BnQyIvI">
+</div>
+<div class="bg-surface p-4 flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold text-lg uppercase">Desert Horizons</h3>
+<p class="font-caption text-caption text-on-surface-variant mt-1 line-clamp-2">Vast, silent dunes offering a profound sense of isolation and peace.</p>
+</div>
+<div class="flex justify-between items-center mt-2">
+<p class="font-caption text-caption font-bold">From $850 <span class="font-normal text-on-surface-variant">• 4 Days</span></p>
+<button class="bg-surface-variant px-3 py-1 neo-border text-xs font-bold uppercase hover:bg-secondary hover:text-on-secondary transition-colors">Explore</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Personalized Recommendations -->
+<section class="flex flex-col gap-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">Recommended For You</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="neo-border bg-surface p-4 neo-shadow-hover transition-neo flex flex-col gap-4">
+<div class="h-48 bg-surface-variant neo-border overflow-hidden relative">
+<img alt="Tokyo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo6FyjFWycUr2QAh2Lo7PoQAyHBZVXQmqoPgZgBBNwNt08CPuTP1GQELqMnSGJkz7zTb8nWchMqSitRSL3fs4KHuNrXzcO_kbmo_750G1UCfZp6_swM3vwRaMRKD-EtSnvOfJN3ii7Wa1XiRBQZ1OxZrfdaVLxO1tEKs11hhqiXYKGyjRm5xAZuxqi-n_LukrApxy036LQ8b-fSHKs-V1VhW1j5oTGdLRPcn2i57nf16GcPY6KBTbomw">
+</div>
+<div>
+<h3 class="font-headline-md text-xl font-bold uppercase">Tokyo</h3>
+<div class="flex gap-2 mt-2">
+<span class="font-caption bg-secondary-container px-2 py-1 neo-border">Architecture</span>
+<span class="font-caption bg-surface-variant px-2 py-1 neo-border">Culture</span>
+</div>
+</div>
+<div class="flex justify-between items-center mt-auto border-t-2 border-on-surface pt-4">
+<span class="font-label-md font-bold">Index: $$$</span>
+<button class="bg-primary text-on-primary px-4 py-2 font-label-md neo-border uppercase text-sm">View</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="neo-border bg-surface p-4 neo-shadow-hover transition-neo flex flex-col gap-4">
+<div class="h-48 bg-surface-variant neo-border overflow-hidden relative">
+<img alt="New York" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5VB5j7aQMlFk6wsFaRDkuctRGwKx8jPU0sF1BqfSn3O4SpN6d1lBYeG_1X8TD42jyKQ49IIZEEebB5nq-ukNaIFdHQ8exbCqKToCMUMkGLF0uP1XLhty1JsLlbymXZSGN5TYlfwtA3q6VUpu3BzATHpsFzu2bdT1Z9Q6SMNyIxSClfNfbjFRiumv-JndRKxBnYjqVtuSeD_8VRYfMw3FzqWyIKNE6Yzx7TR_WSnJDyitPmPUSElDkkg">
+</div>
+<div>
+<h3 class="font-headline-md text-xl font-bold uppercase">New York</h3>
+<div class="flex gap-2 mt-2">
+<span class="font-caption bg-secondary-container px-2 py-1 neo-border">Urban</span>
+<span class="font-caption bg-surface-variant px-2 py-1 neo-border">Art</span>
+</div>
+</div>
+<div class="flex justify-between items-center mt-auto border-t-2 border-on-surface pt-4">
+<span class="font-label-md font-bold">Index: $$$$</span>
+<button class="bg-primary text-on-primary px-4 py-2 font-label-md neo-border uppercase text-sm">View</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="neo-border bg-surface p-4 neo-shadow-hover transition-neo flex flex-col gap-4">
+<div class="h-48 bg-surface-variant neo-border overflow-hidden relative">
+<img alt="Bali" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsSio0Q0B1y3nEN7g4ONdzVwxsUMVsrntkttLOH_EhMS9HCeyd8dhrcl23HN5X7NMVkoVsVi4EmTs-4HwROeAt4AeUyK2lv0XvfvvtqIoExW9Rw6BT8FnCvpdANx7h-Z6ygsaexix5VmyHOmaMkll1Q60UmqmmoTMOPHlNsFodz_iaEDxDCT_X286XdZl7LjOC-tsqJY3d-r8gecyipasY3tRNnFvs7XYDGai_5FDgcnQny_xqDMzTfg">
+</div>
+<div>
+<h3 class="font-headline-md text-xl font-bold uppercase">Bali</h3>
+<div class="flex gap-2 mt-2">
+<span class="font-caption bg-secondary-container px-2 py-1 neo-border">Nature</span>
+<span class="font-caption bg-surface-variant px-2 py-1 neo-border">Wellness</span>
+</div>
+</div>
+<div class="flex justify-between items-center mt-auto border-t-2 border-on-surface pt-4">
+<span class="font-label-md font-bold">Index: $$</span>
+<button class="bg-primary text-on-primary px-4 py-2 font-label-md neo-border uppercase text-sm">View</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Logbook & Community -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="neo-border bg-surface p-6 neo-shadow">
+<h2 class="font-headline-md text-2xl font-bold uppercase border-b-4 border-on-surface pb-2 mb-6">Logbook</h2>
+<ul class="flex flex-col gap-4">
+<li class="flex items-center gap-4 hover:bg-surface-variant p-2 transition-colors cursor-pointer neo-border border-transparent hover:border-on-surface">
+<div class="w-12 h-12 bg-primary-container neo-border flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">flight_takeoff</span>
+</div>
+<div>
+<div class="font-bold text-lg">Swiss Alps Hike</div>
+<div class="font-caption text-on-surface-variant">Completed: Aug 2023</div>
+</div>
+</li>
+<li class="flex items-center gap-4 hover:bg-surface-variant p-2 transition-colors cursor-pointer neo-border border-transparent hover:border-on-surface">
+<div class="w-12 h-12 bg-secondary-container neo-border flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">train</span>
+</div>
+<div>
+<div class="font-bold text-lg">Kyoto Temples</div>
+<div class="font-caption text-on-surface-variant">Completed: Apr 2023</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="neo-border bg-primary p-6 neo-shadow text-on-primary flex flex-col justify-center items-center text-center">
+<h2 class="font-headline-md text-3xl font-bold uppercase mb-4">Community</h2>
+<p class="font-body-md mb-6 max-w-sm">Join 4.2k travellers sharing itineraries, budget tips, and hidden gems.</p>
+<button class="bg-surface text-on-surface px-8 py-4 font-label-md font-bold uppercase neo-border neo-shadow-hover transition-neo">
+            Explore Trending Trips
+        </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low w-full py-section-gap px-margin-mobile md:px-margin-desktop mt-section-gap flex flex-col md:flex-row justify-between items-center gap-gutter neo-border border-l-0 border-r-0 border-b-0">
+<div class="font-headline-sm text-headline-sm text-primary font-bold">
+            Globe Trotter
+        </div>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-tertiary transition-colors font-bold uppercase" href="#">Support</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-tertiary transition-colors font-bold uppercase" href="#">Privacy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-tertiary transition-colors font-bold uppercase" href="#">Terms</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-tertiary transition-colors font-bold uppercase" href="#">Destinations</a>
+</nav>
+<div class="font-caption text-caption text-secondary">
+            © 2024 Globe Trotter. Mindful Exploration.
+        </div>
+</footer>
+
+
+</body></html>

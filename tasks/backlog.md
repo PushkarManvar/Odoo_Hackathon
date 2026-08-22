@@ -5,6 +5,7 @@ Claim a task by moving it to `in-progress.md` with `[OWNER: <name/ai-id>]`.
 ## Ideas / tasks
 - [ ] Add real CI steps matching the chosen stack
 - [ ] Frontend screens (from Stitch designs) — owner C/D
+- [ ] Design system from Stitch reference — extract tokens, build ThemeProvider, component primitives — owner Pushkar (see docs/stitch_remix_of_globe_trotter_travel_planner/serene_journeys/DESIGN.md)
 - [ ] (add more as brainstormed)
 
 ## Frontend tasks — Preet (Person C) / Bhagya (Person D)

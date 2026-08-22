@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Globe Trotter - User Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#3e4c16",
+                        "surface-container-high": "#efe7d9",
+                        "primary-fixed-dim": "#ffb4a5",
+                        "surface-container-low": "#fbf3e4",
+                        "primary-fixed": "#ffdad3",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e9e2d3",
+                        "surface-tint": "#9f402d",
+                        "tertiary-container": "#6497ca",
+                        "inverse-primary": "#ffb4a5",
+                        "secondary": "#56642b",
+                        "on-background": "#1e1b13",
+                        "surface-bright": "#fff8ef",
+                        "on-surface-variant": "#56423e",
+                        "tertiary-fixed-dim": "#9acbff",
+                        "outline": "#89726d",
+                        "surface": "#fff8ef",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#bdce89",
+                        "surface-container-highest": "#e9e2d3",
+                        "inverse-on-surface": "#f8f0e1",
+                        "on-primary-fixed": "#3e0500",
+                        "on-secondary-fixed": "#161f00",
+                        "primary": "#9f402d",
+                        "tertiary": "#2a6292",
+                        "on-primary-fixed-variant": "#802918",
+                        "on-secondary-container": "#5a682f",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fff8ef",
+                        "tertiary-fixed": "#cfe5ff",
+                        "on-tertiary-container": "#002e4e",
+                        "primary-container": "#e2725b",
+                        "secondary-container": "#d6e7a1",
+                        "on-tertiary-fixed": "#001d34",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1e1b13",
+                        "secondary-fixed": "#d9eaa3",
+                        "on-tertiary-fixed-variant": "#024a78",
+                        "surface-dim": "#e1d9cb",
+                        "on-primary-container": "#5a0d02",
+                        "inverse-surface": "#343026",
+                        "outline-variant": "#ddc0ba",
+                        "surface-container": "#f5edde",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max-width": "1200px",
+                        "section-gap": "80px",
+                        "base": "8px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Montserrat"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "headline-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neo-brutalism-border {
+            border: 3px solid #1e1b13;
+        }
+        .neo-brutalism-shadow {
+            box-shadow: 6px 6px 0px 0px #1e1b13;
+            transition: all 0.2s ease-in-out;
+        }
+        .neo-brutalism-shadow:hover {
+            box-shadow: 2px 2px 0px 0px #1e1b13;
+            transform: translate(4px, 4px);
+        }
+        .neo-brutalism-shadow-sm {
+            box-shadow: 4px 4px 0px 0px #1e1b13;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface/40 backdrop-blur-xl docked full-width top-0 sticky shadow-sm z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max-width mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">Globe Trotter</div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md hover:scale-105 duration-200" href="#">Dashboard</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md hover:scale-105 transition-transform duration-200" href="#">My Trips</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md hover:scale-105 duration-200" href="#">Discovery</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block bg-primary text-on-primary px-6 py-3 neo-brutalism-border neo-brutalism-shadow font-label-md text-label-md">Plan New Trip</button>
+<button class="md:hidden">
+<span class="material-symbols-outlined text-primary text-3xl">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col gap-section-gap">
+<!-- Profile Header -->
+<section class="flex flex-col md:flex-row gap-gutter items-center md:items-start bg-surface-container-low p-8 neo-brutalism-border neo-brutalism-shadow-sm">
+<div class="shrink-0">
+<img class="w-48 h-48 rounded-full neo-brutalism-border object-cover" data-alt="A close-up portrait of a traveler with a warm, genuine smile. They have shoulder-length wavy dark hair and are wearing a casual olive green jacket. The background is slightly blurred showing a sunlit European street scene. The lighting is soft, warm, natural afternoon light creating a mindful exploration aesthetic." src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCYklu0cALXTDFqniPvdp0ddEyrFzUb6VzWBeb-LL-WT1c6bGeBEZ8e9M&amp;s=10">
+</div>
+<div class="flex flex-col gap-4 w-full justify-center md:pt-4">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-primary">Nithish S.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Mindful Explorer | Minimalist Backpacker</p>
+</div>
+<button class="bg-surface-bright text-primary px-6 py-3 neo-brutalism-border neo-brutalism-shadow flex items-center gap-2 font-label-md text-label-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">edit</span>
+                        Edit Profile
+                    </button>
+</div>
+<div class="font-body-md text-body-md text-on-surface max-w-2xl mt-4">
+                    Passionate about slow travel and sustainable exploration. I prefer train journeys over flights, and local homestays over grand hotels. Always looking for the next quiet corner of the world to sit and observe.
+                </div>
+</div>
+</section>
+<!-- Preplanned Trips -->
+<section class="flex flex-col gap-8">
+<h2 class="font-headline-lg text-headline-lg md:text-headline-lg text-on-background border-b-[3px] border-on-background pb-2 inline-block self-start">Preplanned Trips</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-surface-container-high neo-brutalism-border neo-brutalism-shadow flex flex-col h-[400px]">
+<div class="h-48 border-b-[3px] border-on-background bg-secondary-container relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full absolute inset-0" data-alt="A serene landscape of rolling hills covered in lush green tea plantations at sunrise. Soft mist hangs in the valleys. The light is warm and golden, casting long shadows. A minimalist, earthy aesthetic with a calm, unhurried mood." style="background-image: url(&quot;https://kaivalayam-retreat.allkeralahotels.net/data/Pics/OriginalPhoto/17175/1717578/1717578181/sitaram-mountain-retreat-munnar-pic-1.JPEG&quot;);"></div>
+<div class="absolute top-4 left-4 bg-surface text-primary px-3 py-1 neo-brutalism-border font-label-md text-label-md">Oct 2024</div>
+</div>
+<div class="p-6 flex flex-col flex-grow justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Munnar Retreat</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">A quiet week exploring the tea gardens and misty hills.</p>
+</div>
+<button class="w-full bg-surface-bright text-primary py-3 neo-brutalism-border hover:bg-primary hover:text-on-primary transition-colors font-label-md text-label-md mt-4">View Itinerary</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-high neo-brutalism-border neo-brutalism-shadow flex flex-col h-[400px]">
+<div class="h-48 border-b-[3px] border-on-background bg-tertiary-container relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full absolute inset-0" data-alt="A minimalist architectural shot of a modern Scandinavian cabin in a snowy pine forest. Clean geometric lines, large glass windows reflecting a pale blue winter sky. Cool, calm tones of blue, white, and natural wood." style="background-image: url(&quot;https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSalXL8yejgv4QrUydWEi5NwaHRT3CxLM8Y5ycstJjLg&amp;s=10&quot;);"></div>
+<div class="absolute top-4 left-4 bg-surface text-primary px-3 py-1 neo-brutalism-border font-label-md text-label-md">Dec 2024</div>
+</div>
+<div class="p-6 flex flex-col flex-grow justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Tromsø Lights</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Chasing the aurora borealis and experiencing polar night.</p>
+</div>
+<button class="w-full bg-surface-bright text-primary py-3 neo-brutalism-border hover:bg-primary hover:text-on-primary transition-colors font-label-md text-label-md mt-4">View Itinerary</button>
+</div>
+</div>
+<!-- Card 3 -->
+
+</div>
+</section>
+<!-- Previous Trips -->
+<section class="flex flex-col gap-8">
+<h2 class="font-headline-lg text-headline-lg md:text-headline-lg text-on-background border-b-[3px] border-on-background pb-2 inline-block self-start">Previous Trips</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-surface-variant neo-brutalism-border neo-brutalism-shadow flex flex-col h-[400px]">
+<div class="h-48 border-b-[3px] border-on-background bg-secondary-container relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+<div class="bg-cover bg-center w-full h-full absolute inset-0" data-alt="A warm, sun-drenched cobblestone street in a small Italian village. Terracotta rooftops, potted plants, and laundry hanging from balconies. The atmosphere is relaxed, rustic, and inviting, capturing the essence of slow European travel." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCs08xWqcUP8DkH1IXqySnwWvUHEDmf9whVf1CII7gVzGjiFNvOobzzwNhMOqllGDtKxrBD6kJZKuGnU5oBEt-X2FqKAcqbiJDL2UakQRGbeAXz2HWnOvQ2-GXON30wrt_-qsQ-Xxh0lqpNNB1TWbr6YR_hRbQtPteSaRSu_CGwnZqDly5stntKVxzX6wagX0G5THY1nk1qVKh-Dcbzbyv1ZPCrL6mQ0lKwVlMTTDSTjyiZWb9fvjzM')"></div>
+<div class="absolute top-4 left-4 bg-surface/90 text-on-surface px-3 py-1 neo-brutalism-border font-label-md text-label-md">May 2023</div>
+</div>
+<div class="p-6 flex flex-col flex-grow justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Tuscan Wander</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Two weeks of slow travel through rural Italy.</p>
+</div>
+<button class="w-full bg-surface-bright text-on-background py-3 neo-brutalism-border hover:bg-secondary hover:text-on-secondary transition-colors font-label-md text-label-md mt-4">View Journal</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-variant neo-brutalism-border neo-brutalism-shadow flex flex-col h-[400px]">
+<div class="h-48 border-b-[3px] border-on-background bg-secondary-container relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-500">
+<div class="bg-cover bg-center w-full h-full absolute inset-0" data-alt="A vast, stark desert landscape with towering red rock formations under a clear blue sky. Deep shadows and high contrast emphasize the arid, rugged environment. The scene is empty and contemplative, embodying a minimalist, earthy aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAwkmmPc28BzYgc1b7rzpJzqyb223PB6ScrzcFvOraRMIZX2FjHkMQ7SMO4npCgnxdiWmrs1_n_zJuUz6j4NrxvyUehSDtRtBJFYqYdzaZvHDQPxAmaXXLZMFALzsKgxHjMomZl-zukbkazgAUNK7bhIRZKUIJAmqbE1rZeIHmviaYja7s_ZPAngsrctg1ixXvqVzSTE58NaRsSwRrfze0XBMj0XKCyeWx1s1GwivXnvaiJ9XOVAWf0')"></div>
+<div class="absolute top-4 left-4 bg-surface/90 text-on-surface px-3 py-1 neo-brutalism-border font-label-md text-label-md">Sep 2022</div>
+</div>
+<div class="p-6 flex flex-col flex-grow justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Canyonlands</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">A stark, beautiful journey through the high desert.</p>
+</div>
+<button class="w-full bg-surface-bright text-on-background py-3 neo-brutalism-border hover:bg-secondary hover:text-on-secondary transition-colors font-label-md text-label-md mt-4">View Journal</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-variant neo-brutalism-border flex items-center justify-center h-[400px] border-dashed border-[3px]">
+<div class="text-center p-6">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-2">photo_library</span>
+<h3 class="font-headline-md text-headline-md text-on-surface-variant mb-4">More Memories</h3>
+<button class="bg-surface-bright text-on-background px-6 py-3 neo-brutalism-border neo-brutalism-shadow hover:bg-surface-container-highest transition-colors font-label-md text-label-md">View All Past Trips</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low w-full py-section-gap px-margin-mobile md:px-margin-desktop mt-section-gap flex flex-col md:flex-row justify-between items-center gap-gutter border-t-[3px] border-on-background">
+<div class="font-headline-sm text-headline-sm text-primary">Globe Trotter</div>
+<div class="flex flex-wrap justify-center gap-gutter">
+<a class="text-on-surface-variant hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Support</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-tertiary transition-colors font-body-md text-body-md" href="#">Destinations</a>
+</div>
+<div class="font-caption text-caption text-secondary">© 2024 Globe Trotter. Mindful Exploration.</div>
+</footer>
+
+
+
+
+
+
+</body></html>
