@@ -1,10 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { ItineraryPage } from "../pages/itinerary/ItineraryPage";
+import { DashboardPage } from "../pages/DashboardPage";
 import { ItineraryBuilderPage } from "../pages/itinerary/ItineraryBuilderPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { SignupPage } from "../pages/auth/SignupPage";
 import { MyTripsPage } from "../pages/trips/MyTripsPage";
+import { ActivitySearchPage } from "../pages/activities/ActivitySearchPage";
+import { CalendarPage } from "../pages/calendar/CalendarPage";
+import { ProfilePage } from "../pages/profile/ProfilePage";
 
 function Placeholder({ title }: { title: string }) {
   return <div>{title}</div>;
@@ -17,6 +21,7 @@ export function AppRoutes() {
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
+      <Route path="/discover" element={<ActivitySearchPage />} />
       <Route
         path="/public/:slug"
         element={<Placeholder title="Public trip" />}
@@ -26,7 +31,7 @@ export function AppRoutes() {
         path="/dashboard"
         element={
           <ProtectedRoute>
-            <Placeholder title="Dashboard" />
+            <DashboardPage />
           </ProtectedRoute>
         }
       />
@@ -90,7 +95,7 @@ export function AppRoutes() {
         path="/trips/:tripId/calendar"
         element={
           <ProtectedRoute>
-            <Placeholder title="Calendar" />
+            <CalendarPage />
           </ProtectedRoute>
         }
       />
@@ -98,7 +103,7 @@ export function AppRoutes() {
         path="/profile"
         element={
           <ProtectedRoute>
-            <Placeholder title="Profile" />
+            <ProfilePage />
           </ProtectedRoute>
         }
       />
