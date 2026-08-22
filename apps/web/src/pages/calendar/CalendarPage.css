@@ -1,0 +1,241 @@
+/* CalendarPage — layout only; colors/typography come from tokens.css. */
+
+.cal-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--margin-mobile);
+  gap: 32px;
+  background: var(--surface);
+  color: var(--on-surface);
+}
+
+@media (min-width: 768px) {
+  .cal-page {
+    padding: var(--margin-desktop);
+  }
+}
+
+.cal-header {
+  border: 3px solid var(--on-surface);
+  border-radius: var(--rounded-xl);
+  box-shadow: 4px 4px 0 0 var(--on-surface);
+  background: var(--surface-container-lowest);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .cal-header {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.cal-header-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .cal-header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.cal-brand {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--on-surface);
+}
+
+.cal-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .cal-tools {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    width: auto;
+  }
+}
+
+.cal-search {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .cal-search {
+    width: 256px;
+  }
+}
+
+.cal-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.cal-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1152px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cal-title {
+  margin: 0 0 24px;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--on-surface);
+}
+
+.cal-container {
+  width: 100%;
+  background: var(--surface-container-lowest);
+  padding: 24px;
+}
+
+@media (min-width: 768px) {
+  .cal-container {
+    padding: 32px;
+  }
+}
+
+.cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.cal-nav-btn {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--on-surface);
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: var(--rounded);
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+}
+
+.cal-nav-btn:hover {
+  border-color: var(--on-surface);
+  background: var(--surface-container-low);
+}
+
+.cal-month {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border: 3px solid var(--on-surface);
+  border-radius: var(--rounded);
+  overflow: hidden;
+  background: var(--surface-container-lowest);
+}
+
+.cal-header-cell {
+  border-right: 2px solid var(--on-surface);
+  border-bottom: 3px solid var(--on-surface);
+  padding: 8px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  background: var(--surface-container-high);
+  color: var(--on-surface);
+}
+
+.cal-header-cell:last-child {
+  border-right: none;
+}
+
+.cal-cell {
+  position: relative;
+  min-height: 100px;
+  padding: 8px;
+  border-right: 2px solid var(--on-surface);
+  border-bottom: 2px solid var(--on-surface);
+  background: var(--surface-container-lowest);
+  display: flex;
+  flex-direction: column;
+}
+
+.cal-cell:nth-child(7n) {
+  border-right: none;
+}
+
+.cal-cell:nth-last-child(-n + 7) {
+  border-bottom: none;
+}
+
+.cal-cell--muted {
+  background: var(--surface-dim);
+  opacity: 0.5;
+}
+
+.cal-cell--in-range {
+  background: var(--surface-container);
+}
+
+.cal-cell--event-start {
+  background: var(--surface-container);
+}
+
+.cal-cell-day {
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.cal-event {
+  margin-top: auto;
+  padding: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--on-primary);
+  background: var(--primary);
+  border: 2px solid var(--on-surface);
+  border-radius: var(--rounded);
+  box-shadow: 2px 2px 0 0 var(--on-surface);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

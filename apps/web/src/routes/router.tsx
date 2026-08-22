@@ -6,6 +6,7 @@ import { ItineraryBuilderPage } from "../pages/itinerary/ItineraryBuilderPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { SignupPage } from "../pages/auth/SignupPage";
 import { ActivitySearchPage } from "../pages/activities/ActivitySearchPage";
+import { CalendarPage } from "../pages/calendar/CalendarPage";
 import { ProfilePage } from "../pages/profile/ProfilePage";
 
 function Placeholder({ title }: { title: string }) {
@@ -93,7 +94,7 @@ export function AppRoutes() {
         path="/trips/:tripId/calendar"
         element={
           <ProtectedRoute>
-            <Placeholder title="Calendar" />
+            <CalendarPage />
           </ProtectedRoute>
         }
       />
