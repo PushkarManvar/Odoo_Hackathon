@@ -15,7 +15,8 @@ Use these exact IDs in the Owner column. Full roster: `docs/team.md`.
 | Task | Owner | Branch | Status | Notes |
 |------|-------|--------|--------|-------|
 | Monorepo scaffold (root + apps/api + apps/web + Prisma) | Pushkar | feat/scaffold | merged | Per SKELETON_TEMPLATE.md |
-| Auth module (signup/login/me) | Pushkar | feat/auth | in progress | Person A — Trip Core |
+| Auth module (signup/login/me) | Pushkar | feat/auth | merged | Person A — Trip Core |
+| Trips CRUD | Pushkar | feat/trips | in progress | Person A — Trip Core |
 | Onboarding setup (C-0) | preetgohilofficial | feat/onboarding-preetgohilofficial | done | Setup checklist §51 verified: npm install, lint, typecheck, build, prisma generate all green |
 
 *Move completed tasks to `completed.md`.*
