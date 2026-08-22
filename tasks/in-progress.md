@@ -28,7 +28,9 @@ Use these exact IDs in the Owner column. Full roster: `docs/team.md`.
 | DS-2 UI primitives (Button/Input/Card/Modal/Badge) | preetgohilofficial | feat/ds-2-ui-primitives | merged | Depends on DS-1 |
 | C-2 LoginPage + SignupPage | preetgohilofficial | feat/task-c2-auth | merged | From login_sign_up + registration references |
 | C-3 DashboardPage | preetgohilofficial | feat/task-c3-dashboard | in progress | [OWNER: preetgohilofficial] From admin_dashboard_refined_style |
-| C-4 MyTrips, C-5 NewTrip, C-6 TripPage | preetgohilofficial | (claim) | allotted | Depends on DS-2. See backlog for Stitch screen mapping |
+| C-4 MyTripsPage | preetgohilofficial | feat/task-c4-mytrips | PR #36 open | From my_trips_neo_brutalist_style |
+| C-5 NewTripPage | preetgohilofficial | feat/task-c5-newtrip | PR #37 open | From plan_new_trip_neo_brutalist_style |
+| C-6 TripPage detail | preetgohilofficial | feat/task-c6-tripdetail | in progress | [OWNER: preetgohilofficial] From globetrotter_complete_travel_dashboard |
 | D-1 ItineraryPage | khatikbhagya-cmd | feat/task-d1 | merged | PR #25, approved, matches Stitch itinerary_view design |
 | D-2 ItineraryBuilder | khatikbhagya-cmd | feat/task-d2 | merged | PR #28, approved, uses DS-2 primitives + DS-1 tokens |
 | D-3 CalendarPage | khatikbhagya-cmd | feat/task-d3 | in review | PR #30 — uses DS-2 primitives + DS-1 tokens |
