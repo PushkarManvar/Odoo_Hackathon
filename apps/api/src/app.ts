@@ -2,6 +2,7 @@ import cors from "cors";
 import express from "express";
 import { errorMiddleware } from "./middleware/error.middleware.js";
 import authRoutes from "./modules/auth/auth.routes.js";
+import tripRoutes from "./modules/trips/trip.routes.js";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.get("/health", (_req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/trips", tripRoutes);
 
 // feature routes registered here
 
