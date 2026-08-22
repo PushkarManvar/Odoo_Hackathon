@@ -23,6 +23,7 @@ Use these exact IDs in the Owner column. Full roster: `docs/team.md`.
 | City + activity discovery (B-1) | Nishant3634 | feat/city-discovery | merged | Cities + Activities modules, seed data |
 | Itinerary module (B-3) | Nishant3634 | feat/itinerary | merged | Person B — item CRUD + validation |
 | Budget module (B-4) | Nishant3634 | feat/budget | merged | Person B — derived budget calculation |
+| Sharing module (B-5) | Nishant3634 | feat/sharing | in progress | Person B — publish, public view, copy trip |
 | DS-1 Apply design tokens (tokens.css + fonts) | preetgohilofficial | feat/ds-1-design-tokens | merged | Per DESIGN.md — must merge before any screen task |
 | DS-2 UI primitives (Button/Input/Card/Modal/Badge) | preetgohilofficial | feat/ds-2-ui-primitives | merged | Depends on DS-1 |
 | C-2 Login/Signup, C-3 Dashboard, C-4 MyTrips, C-5 NewTrip, C-6 TripPage | preetgohilofficial | (claim) | allotted | Depends on DS-2. See backlog for Stitch screen mapping |
