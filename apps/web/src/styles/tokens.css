@@ -1,0 +1,131 @@
+/*
+ * GlobeTrotter Design Tokens — "Serene Journeys" / Organic Minimalism
+ * Source of truth: docs/stitch_remix_of_globe_trotter_travel_planner/serene_journeys/DESIGN.md
+ */
+:root {
+  /* Color — Material 3 palette */
+  --surface: #fff8ef;
+  --surface-dim: #e1d9cb;
+  --surface-bright: #fff8ef;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #fbf3e4;
+  --surface-container: #f5edde;
+  --surface-container-high: #efe7d9;
+  --surface-container-highest: #e9e2d3;
+  --on-surface: #1e1b13;
+  --on-surface-variant: #56423e;
+  --inverse-surface: #343026;
+  --inverse-on-surface: #f8f0e1;
+  --outline: #89726d;
+  --outline-variant: #ddc0ba;
+  --surface-tint: #9f402d;
+  --primary: #9f402d;
+  --on-primary: #ffffff;
+  --primary-container: #e2725b;
+  --on-primary-container: #5a0d02;
+  --inverse-primary: #ffb4a5;
+  --secondary: #56642b;
+  --on-secondary: #ffffff;
+  --secondary-container: #d6e7a1;
+  --on-secondary-container: #5a682f;
+  --tertiary: #2a6292;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #6497ca;
+  --on-tertiary-container: #002e4e;
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  --primary-fixed: #ffdad3;
+  --primary-fixed-dim: #ffb4a5;
+  --on-primary-fixed: #3e0500;
+  --on-primary-fixed-variant: #802918;
+  --secondary-fixed: #d9eaa3;
+  --secondary-fixed-dim: #bdce89;
+  --on-secondary-fixed: #161f00;
+  --on-secondary-fixed-variant: #3e4c16;
+  --tertiary-fixed: #cfe5ff;
+  --tertiary-fixed-dim: #9acbff;
+  --on-tertiary-fixed: #001d34;
+  --on-tertiary-fixed-variant: #024a78;
+  --background: #fff8ef;
+  --on-background: #1e1b13;
+  --surface-variant: #e9e2d3;
+
+  /* Semantic aliases */
+  --bg: var(--background);
+  --text: var(--on-background);
+  --text-variant: var(--on-surface-variant);
+  --border: var(--outline-variant);
+  --accent: var(--primary);
+
+  /* Typography — font families */
+  --font-heading: "Montserrat", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Typography — text styles */
+  --display-lg: 48px/56px var(--font-heading);
+  --headline-lg: 32px/40px var(--font-heading);
+  --headline-lg-mobile: 28px/36px var(--font-heading);
+  --headline-md: 24px/32px var(--font-heading);
+  --body-lg: 18px/28px var(--font-body);
+  --body-md: 16px/24px var(--font-body);
+  --label-md: 14px/20px var(--font-body);
+  --caption: 12px/16px var(--font-body);
+
+  --font-weight-display: 700;
+  --font-weight-headline: 600;
+  --font-weight-label: 500;
+  --font-weight-body: 400;
+
+  /* Rounded */
+  --rounded-sm: 0.25rem;
+  --rounded: 0.5rem;
+  --rounded-md: 0.75rem;
+  --rounded-lg: 1rem;
+  --rounded-xl: 1.5rem;
+  --rounded-full: 9999px;
+
+  /* Spacing / layout */
+  --spacing-base: 8px;
+  --container-max-width: 1200px;
+  --gutter: 24px;
+  --margin-mobile: 16px;
+  --margin-desktop: 40px;
+  --section-gap: 80px;
+
+  /* Elevation — soft ambient shadows */
+  --shadow-card: 0 1px 3px rgba(60, 56, 54, 0.05),
+    0 6px 16px rgba(60, 56, 54, 0.05);
+  --shadow-raised: 0 2px 6px rgba(60, 56, 54, 0.06),
+    0 12px 28px rgba(60, 56, 54, 0.08);
+
+  /* Component presets */
+  --button-height: 48px;
+  --radius-button: var(--rounded);
+  --radius-card: var(--rounded-xl);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--text);
+}
