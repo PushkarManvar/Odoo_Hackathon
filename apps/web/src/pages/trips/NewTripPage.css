@@ -1,0 +1,536 @@
+/* New Trip page — from Stitch plan_new_trip_neo_brutalist_style reference
+ * docs/stitch_remix_of_globe_trotter_travel_planner
+ * /plan_new_trip_neo_brutalist_style/code.html
+ */
+
+.gt-newtrip {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+}
+
+.gt-newtrip-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 248, 239, 0.6);
+  backdrop-filter: blur(20px);
+  border-bottom: 3px solid var(--on-surface);
+}
+
+.gt-newtrip-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 16px var(--margin-mobile);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .gt-newtrip-header-inner {
+    padding-left: var(--margin-desktop);
+    padding-right: var(--margin-desktop);
+  }
+}
+
+.gt-newtrip-brand {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.gt-newtrip-nav {
+  display: none;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .gt-newtrip-nav {
+    display: flex;
+  }
+}
+
+.gt-newtrip-nav a {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--on-surface-variant);
+  text-decoration: none;
+}
+
+.gt-newtrip-nav a:hover {
+  color: var(--primary);
+  transform: scale(1.05);
+}
+
+.gt-newtrip-main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--section-gap) var(--margin-mobile);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+@media (min-width: 768px) {
+  .gt-newtrip-main {
+    padding-left: var(--margin-desktop);
+    padding-right: var(--margin-desktop);
+  }
+}
+
+/* Header section */
+.gt-newtrip-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.gt-newtrip-title {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+  border: 3px solid var(--on-surface);
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--surface-container);
+  margin: 0;
+}
+
+.gt-newtrip-subtitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--on-surface-variant);
+  max-width: 640px;
+  margin: 0;
+}
+
+/* Bento grid */
+.gt-newtrip-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter);
+}
+
+@media (min-width: 768px) {
+  .gt-newtrip-grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+.gt-newtrip-form-card {
+  background: var(--surface-container-lowest);
+  padding: 32px;
+  border-radius: var(--rounded-md);
+  border: 3px solid var(--on-surface);
+  box-shadow: 6px 6px 0 0 var(--on-surface);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gutter);
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .gt-newtrip-form-card {
+    grid-column: span 8;
+  }
+}
+
+.gt-newtrip-form-title {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+  color: var(--on-surface);
+  border-bottom: 3px solid var(--on-surface);
+  padding-bottom: 16px;
+  margin: 0 0 16px;
+}
+
+.gt-newtrip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.gt-newtrip-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gt-newtrip-label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--on-surface);
+}
+
+.gt-newtrip-input-wrap {
+  position: relative;
+}
+
+.gt-newtrip-input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--on-surface-variant);
+  font-size: 18px;
+}
+
+.gt-newtrip-input {
+  width: 100%;
+  padding: 16px 16px 16px 48px;
+  background: var(--surface);
+  border-radius: var(--rounded);
+  border: 3px solid var(--on-surface);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--on-surface);
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.gt-newtrip-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.gt-newtrip-input--error {
+  border-color: var(--error);
+}
+
+.gt-newtrip-error {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--error);
+}
+
+.gt-newtrip-input-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .gt-newtrip-input-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.gt-newtrip-form-actions {
+  padding-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Mood card */
+.gt-newtrip-mood {
+  background: var(--primary-container);
+  padding: 16px;
+  border-radius: var(--rounded-md);
+  border: 3px solid var(--on-surface);
+  box-shadow: 6px 6px 0 0 var(--on-surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .gt-newtrip-mood {
+    grid-column: span 4;
+  }
+}
+
+.gt-newtrip-mood-top {
+  position: relative;
+  z-index: 1;
+}
+
+.gt-newtrip-mood-chip {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border-radius: var(--rounded-full);
+  border: 3px solid var(--on-surface);
+  margin-bottom: 16px;
+}
+
+.gt-newtrip-mood-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  color: var(--on-primary-container);
+  margin: 0;
+}
+
+.gt-newtrip-mood-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.gt-newtrip-mood-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+/* Suggestions */
+.gt-newtrip-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gutter);
+}
+
+.gt-newtrip-suggestions-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--on-surface);
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.gt-newtrip-suggestions-title {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+  color: var(--on-surface);
+  margin: 0;
+}
+
+.gt-newtrip-carousel-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.gt-newtrip-carousel-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-container);
+  border: 3px solid var(--on-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.gt-newtrip-carousel-btn:hover {
+  box-shadow: 2px 2px 0 0 var(--on-surface);
+  transform: translate(2px, 2px);
+}
+
+.gt-newtrip-suggestions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter);
+}
+
+@media (min-width: 768px) {
+  .gt-newtrip-suggestions-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gt-newtrip-suggestion {
+  background: var(--surface-container-lowest);
+  border-radius: var(--rounded-md);
+  border: 3px solid var(--on-surface);
+  box-shadow: 6px 6px 0 0 var(--on-surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gt-newtrip-suggestion:hover {
+  box-shadow: 2px 2px 0 0 var(--on-surface);
+  transform: translate(4px, 4px);
+}
+
+.gt-newtrip-suggestion-media {
+  height: 192px;
+  position: relative;
+  border-bottom: 3px solid var(--on-surface);
+  overflow: hidden;
+}
+
+.gt-newtrip-suggestion-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gt-newtrip-suggestion-tag {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--surface-container-lowest);
+  padding: 4px 8px;
+  border-radius: var(--rounded-sm);
+  border: 3px solid var(--on-surface);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--on-surface);
+}
+
+.gt-newtrip-suggestion-tag--culinary {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.gt-newtrip-suggestion-tag--nature {
+  background: var(--tertiary-container);
+  color: var(--on-tertiary-container);
+}
+
+.gt-newtrip-suggestion-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.gt-newtrip-suggestion-name {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  color: var(--on-surface);
+  margin: 0 0 4px;
+}
+
+.gt-newtrip-suggestion-desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--on-surface-variant);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.gt-newtrip-suggestion-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.gt-newtrip-suggestion-meta span {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--on-surface-variant);
+}
+
+/* Footer */
+.gt-newtrip-footer {
+  background: var(--surface-container-low);
+  width: 100%;
+  padding: var(--section-gap) var(--margin-mobile);
+  box-sizing: border-box;
+  margin-top: var(--section-gap);
+  border-top: 3px solid var(--on-surface);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gutter);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .gt-newtrip-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: var(--margin-desktop);
+    padding-right: var(--margin-desktop);
+  }
+}
+
+.gt-newtrip-footer-brand {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.gt-newtrip-footer-nav {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gt-newtrip-footer-nav a {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--on-surface-variant);
+  text-decoration: none;
+}
+
+.gt-newtrip-footer-nav a:hover {
+  color: var(--tertiary);
+}
+
+.gt-newtrip-footer-copy {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--secondary);
+}

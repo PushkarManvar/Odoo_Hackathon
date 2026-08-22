@@ -5,6 +5,7 @@ import { DashboardPage } from "../pages/DashboardPage";
 import { ItineraryBuilderPage } from "../pages/itinerary/ItineraryBuilderPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { SignupPage } from "../pages/auth/SignupPage";
+import { NewTripPage } from "../pages/trips/NewTripPage";
 
 function Placeholder({ title }: { title: string }) {
   return <div>{title}</div>;
@@ -42,7 +43,7 @@ export function AppRoutes() {
         path="/trips/new"
         element={
           <ProtectedRoute>
-            <Placeholder title="New Trip" />
+            <NewTripPage />
           </ProtectedRoute>
         }
       />
