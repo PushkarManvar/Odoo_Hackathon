@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { ItineraryPage } from "../pages/itinerary/ItineraryPage";
 
 function Placeholder({ title }: { title: string }) {
   return <div>{title}</div>;
@@ -54,6 +55,14 @@ export function AppRoutes() {
         element={
           <ProtectedRoute>
             <Placeholder title="Edit trip" />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/trips/:tripId/itinerary"
+        element={
+          <ProtectedRoute>
+            <ItineraryPage />
           </ProtectedRoute>
         }
       />
