@@ -1182,25 +1182,62 @@ This makes debugging easier because frontend and backend logs remain visible sep
 
 ---
 
-# 51. Initial Setup Checklist
+# 51. Initial Setup Checklist (per member, one time)
+
+Every team member runs this once on their machine. Copy-paste each command.
+
+```bash
+# 1. Clone + enter
+git clone https://github.com/PushkarManvar/Odoo_Hackathon.git
+cd Odoo_Hackathon
+
+# 2. Install Docker Desktop first (https://docs.docker.com/get-docker/)
+#    then start PostgreSQL
+docker compose up -d
+
+# 3. Install dependencies (hoisted to root node_modules)
+npm install
+
+# 4. Create env files (never commit these)
+#    root .env -> copy from .env.example
+#    apps/api/.env -> copy from apps/api/.env.example, set DATABASE_URL + JWT_SECRET
+#    apps/web/.env -> copy from apps/web/.env.example
+#    (or use native Postgres instead of Docker — see section 7)
+
+# 5. Generate Prisma client + apply migrations + seed
+cd apps/api
+npx prisma generate
+npx prisma migrate dev
+npx prisma db seed
+cd ..
+
+# 6. Verify all checks green
+npm run build
+npm run lint
+npm run typecheck
+npm run test
+
+# 7. Start apps
+cd apps/api && npm run dev      # backend on :4000
+cd apps/web && npm run dev      # frontend on :5173
+
+# 8. Verify backend
+curl http://localhost:4000/health
+```
+
+Checklist form:
 
 - [ ] Clone repository
-- [ ] Check Node version
-- [ ] Check npm
-- [ ] Check Git
-- [ ] Install/start Docker
-- [ ] Copy `.env.example`
-- [ ] Configure backend `.env`
-- [ ] Configure frontend `.env`
+- [ ] Install Docker Desktop
+- [ ] Start PostgreSQL (`docker compose up -d`)
 - [ ] Run `npm install`
-- [ ] Start PostgreSQL
-- [ ] Run `prisma generate`
-- [ ] Run migrations
-- [ ] Run seed
-- [ ] Start backend
-- [ ] Start frontend
-- [ ] Open frontend
-- [ ] Verify backend connection
+- [ ] Copy + configure all three `.env` files
+- [ ] Run `npx prisma generate`
+- [ ] Run `npx prisma migrate dev`
+- [ ] Run `npx prisma db seed`
+- [ ] Run build/lint/typecheck/test (all green)
+- [ ] Start backend + frontend
+- [ ] Verify `curl http://localhost:4000/health`
 - [ ] Test authentication
 - [ ] Test trip creation
 
