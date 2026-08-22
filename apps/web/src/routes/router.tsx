@@ -5,6 +5,7 @@ import { DashboardPage } from "../pages/DashboardPage";
 import { ItineraryBuilderPage } from "../pages/itinerary/ItineraryBuilderPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { SignupPage } from "../pages/auth/SignupPage";
+import { MyTripsPage } from "../pages/trips/MyTripsPage";
 import { ActivitySearchPage } from "../pages/activities/ActivitySearchPage";
 import { CalendarPage } from "../pages/calendar/CalendarPage";
 import { ProfilePage } from "../pages/profile/ProfilePage";
@@ -40,7 +41,7 @@ export function AppRoutes() {
         path="/trips"
         element={
           <ProtectedRoute>
-            <Placeholder title="My Trips" />
+            <MyTripsPage />
           </ProtectedRoute>
         }
       />
