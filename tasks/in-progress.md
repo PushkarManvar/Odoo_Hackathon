@@ -27,6 +27,10 @@ Use these exact IDs in the Owner column. Full roster: `docs/team.md`.
 | DS-2 UI primitives (Button/Input/Card/Modal/Badge) | preetgohilofficial | feat/ds-2-ui-primitives | merged | Depends on DS-1 |
 | C-2 Login/Signup, C-3 Dashboard, C-4 MyTrips, C-5 NewTrip, C-6 TripPage | preetgohilofficial | (claim) | allotted | Depends on DS-2. See backlog for Stitch screen mapping |
 | D-1 ItineraryPage | khatikbhagya-cmd | feat/task-d1 | merged | PR #25, approved, matches Stitch itinerary_view design |
-| D-2 ItineraryBuilder | khatikbhagya-cmd | feat/task-d2 | in progress | Mock data per API contract, Stitch itinerary_builder_neo_brutalist_style |
+| D-2 ItineraryBuilder | khatikbhagya-cmd | feat/task-d2 | merged | PR #28, approved, uses DS-2 primitives + DS-1 tokens |
+| D-3 CalendarPage | khatikbhagya-cmd | feat/task-d3 | in review | PR #30 — uses DS-2 primitives + DS-1 tokens |
+| D-4 PublicTripPage | khatikbhagya-cmd | feat/task-d4 | in review | PR #31 — community layout, contract-shaped mock |
+| D-5 ActivitySearchPage | khatikbhagya-cmd | feat/task-d5 | in review | PR #33 — live search, contract-shaped mock |
+| D-6 ProfilePage | khatikbhagya-cmd | feat/task-d6 | in progress | Mock data per API contract, Stitch user_profile_neo_brutalist_style |
 
 *Move completed tasks to `completed.md`.*
