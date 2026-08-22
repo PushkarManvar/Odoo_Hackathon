@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TripVisibility {
+  PRIVATE
+  PUBLIC
+}
+
+enum ActivityCategory {
+  SIGHTSEEING
+  FOOD
+  ADVENTURE
+  CULTURE
+  SHOPPING
+  RELAXATION
+  OTHER
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  trips        Trip[]
+}
+
+model Trip {
+  id            String         @id @default(uuid())
+  userId        String
+  name          String
+  description   String?
+  startDate     DateTime       @db.Date
+  endDate       DateTime       @db.Date
+  coverImageUrl String?
+
+  plannedBudget Int?
+  transportCost Int            @default(0)
+  stayCost      Int            @default(0)
+  mealCost      Int            @default(0)
+
+  visibility    TripVisibility @default(PRIVATE)
+  shareSlug     String?        @unique
+  currency      String         @default("INR")
+
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stops         TripStop[]
+
+  @@index([userId])
+  @@index([startDate])
+  @@index([visibility])
+}
+
+model City {
+  id              String       @id @default(uuid())
+  name            String
+  country         String
+  region          String?
+  costIndex       Int?
+  popularityScore Int?
+  imageUrl        String?
+
+  stops           TripStop[]
+  activities      Activity[]
+
+  @@index([name])
+  @@index([country])
+  @@index([popularityScore])
+}
+
+model TripStop {
+  id            String          @id @default(uuid())
+  tripId        String
+  cityId        String
+
+  sequenceOrder Int
+  arrivalDate   DateTime        @db.Date
+  departureDate DateTime        @db.Date
+  notes         String?
+
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  trip          Trip            @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  city          City            @relation(fields: [cityId], references: [id])
+  items         ItineraryItem[]
+
+  @@index([tripId])
+  @@index([cityId])
+  @@index([arrivalDate])
+  @@unique([tripId, sequenceOrder])
+}
+
+model Activity {
+  id            String             @id @default(uuid())
+  cityId        String
+
+  name          String
+  description   String?
+  category      ActivityCategory
+  estimatedCost Int
+  durationMins  Int
+  imageUrl      String?
+
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  city          City               @relation(fields: [cityId], references: [id])
+  items         ItineraryItem[]
+
+  @@index([cityId])
+  @@index([name])
+  @@index([category])
+  @@index([estimatedCost])
+}
+
+model ItineraryItem {
+  id            String          @id @default(uuid())
+  tripStopId    String
+  activityId    String?
+
+  customName    String?
+  customCost    Int?
+
+  date          DateTime        @db.Date
+  startTime     String?
+  durationMins  Int?
+  sequenceOrder Int
+  notes         String?
+
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  tripStop      TripStop        @relation(fields: [tripStopId], references: [id], onDelete: Cascade)
+  activity      Activity?       @relation(fields: [activityId], references: [id])
+
+  @@index([tripStopId])
+  @@index([activityId])
+  @@index([date])
+  @@index([tripStopId, date])
+}

@@ -14,6 +14,6 @@ Use these exact IDs in the Owner column. Full roster: `docs/team.md`.
 
 | Task | Owner | Branch | Status | Notes |
 |------|-------|--------|--------|-------|
-| *none* | | | | |
+| Monorepo scaffold (root + apps/api + apps/web + Prisma) | Pushkar | feat/scaffold | in progress | Per SKELETON_TEMPLATE.md |
 
 *Move completed tasks to `completed.md`.*
