@@ -1,7 +1,8 @@
-# Odoo_Hackathon
+# Globe_Trotter
 
-Hackathon project — built by a multi-developer / multi-AI team. This repo enforces
-a PR + merge workflow so every contributor (human or AI) follows the same rules.
+Travel / globetrotting hackathon project — built by a multi-developer / multi-AI
+team. This repo enforces a PR + merge workflow so every contributor (human or AI)
+follows the same rules.
 
 **New to the team?** Read `AGENTS.md` first, then `docs/team-onboarding.md`.
 
@@ -9,7 +10,7 @@ a PR + merge workflow so every contributor (human or AI) follows the same rules.
 *TODO: fill in after kickoff.*
 - Frontend: *TBD*
 - Backend: *TBD*
-- Database: *TBD*
+- Database: PostgreSQL 17 (local — see `docs/database.md`)
 - Deployment: *TBD*
 
 ## Team workflow (short version)
