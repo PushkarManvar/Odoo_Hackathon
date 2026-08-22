@@ -2,7 +2,7 @@
 
 ## 1. Purpose
 
-This document defines exactly how development work is divided between the two developers working on GlobeTrotter.
+This document defines exactly how development work is divided between the four members of GlobeTrotter.
 
 The goal is to:
 
@@ -10,7 +10,7 @@ The goal is to:
 - Avoid duplicate implementation
 - Make ownership clear
 - Allow parallel development
-- Prevent both developers from editing the same modules unnecessarily
+- Prevent two members from editing the same modules unnecessarily
 - Make debugging responsibility obvious
 - Keep the hackathon development process fast
 
@@ -46,10 +46,10 @@ Feature ownership keeps related code together and reduces coordination overhead.
 
 # 2. Team Structure
 
-The project is divided into two major development areas.
+Four members, split into **two backend developers** and **two frontend developers**.
 
 ```text
-Person A
+Person A — Pushkar          (backend)
 │
 └── Trip Core
     ├── Authentication
@@ -59,7 +59,7 @@ Person A
     └── Date Validation
 
 
-Person B
+Person B — Nishant          (backend)
 │
 └── Itinerary Core
     ├── Cities
@@ -67,15 +67,56 @@ Person B
     ├── Itinerary
     ├── Budget
     └── Sharing
+
+
+Person C — Preet            (frontend)
+│
+└── Screens (Stitch designs → React)
+    ├── Auth screens
+    ├── Trip screens
+    └── Dashboard
+
+
+Person D — Bhagya           (frontend)
+│
+└── Screens (Stitch designs → React)
+    ├── Itinerary screens
+    ├── Budget screens
+    └── Public/share screens
 ```
 
-Both developers work against the same:
+Backend (A + B) owns: backend code + database + Prisma schema + migrations.
+Frontend (C + D) owns: React screens built from the Stitch designs, wired to the
+documented API contract.
+
+All four work against the same:
 
 - Database schema
 - API contract
 - Business rules
 - Error standard
 - Git workflow
+
+---
+
+# 2b. Frontend / Backend Boundary
+
+Frontend and backend are **separate folders** in the repo, so they rarely
+conflict:
+
+```text
+apps/api/src/   → backend (Person A + B)
+apps/web/src/   → frontend (Person C + D)
+```
+
+Rules:
+
+- Frontend members (C + D) never edit `apps/api/**` or `prisma/**`.
+- Backend members (A + B) never edit `apps/web/**`.
+- Shared coordination files (`package.json`, `apps/web/src/lib/api.ts`,
+  `apps/web/src/lib/auth-storage.ts`) need a heads-up before edits.
+- Frontend builds against the documented API contract — it does not wait for
+  backend code to exist.
 
 ---
 
@@ -359,6 +400,93 @@ itinerary/
 budget/
 sharing/
 ```
+
+---
+
+# 10a. Person C — Frontend Screens (Preet)
+
+Person C owns the user-facing screens built from the Stitch designs.
+
+Scope:
+
+```text
+apps/web/src/pages/auth/
+apps/web/src/pages/dashboard/
+apps/web/src/pages/trips/
+apps/web/src/components/
+apps/web/src/context/AuthContext.tsx
+apps/web/src/lib/api.ts
+```
+
+Screen responsibilities:
+
+- Convert Stitch designs to React + Vite + TypeScript pages
+- Route setup (`router.tsx`)
+- Auth state / protected routes
+- Login / Signup / Dashboard screens
+- Trip list + Trip builder screens
+- API client wiring for the screens owned by Person C
+
+Rules:
+
+- Do not edit `apps/api/**` or `prisma/**` — backend is Person A + B.
+- Follow the Frontend Architecture + API Contract docs exactly.
+- Use mock data shaped like the API contract until the backend is ready.
+
+---
+
+# 10b. Person D — Frontend Screens (Bhagya)
+
+Person D owns the in-trip experience screens built from the Stitch designs.
+
+Scope:
+
+```text
+apps/web/src/pages/itinerary/
+apps/web/src/pages/budget/
+apps/web/src/pages/calendar/
+apps/web/src/pages/public/
+apps/web/src/features/
+```
+
+Screen responsibilities:
+
+- Convert Stitch designs to React + Vite + TypeScript pages
+- Itinerary screens
+- Budget screens
+- Calendar screens
+- Public / shared-trip screens
+- Feature components for the screens owned by Person D
+
+Rules:
+
+- Do not edit `apps/api/**` or `prisma/**` — backend is Person A + B.
+- Follow the Frontend Architecture + API Contract docs exactly.
+- Use mock data shaped like the API contract until the backend is ready.
+
+---
+
+# 10c. Frontend Screen Ownership
+
+Person C and Person D never edit the same files.
+
+```text
+Person C:
+  pages/auth/*
+  pages/dashboard/*
+  pages/trips/*
+  components/ (shared UI kit — coordinate before edits)
+
+Person D:
+  pages/itinerary/*
+  pages/budget/*
+  pages/calendar/*
+  pages/public/*
+  features/*
+```
+
+Shared files (router, api client, auth context) — one person edits at a time,
+coordinate first, then the other pulls.
 
 ---
 
@@ -740,12 +868,12 @@ This is a common source of migration conflicts.
 
 # 22. Shared Frontend Work
 
-Frontend pages may depend on both developers' backend APIs.
+Frontend screens (owned by Person C + D) consume both backend developers' APIs.
 
 Example:
 
 ```text
-Trip Builder
+Trip Builder screen
 ```
 
 may use:
@@ -759,7 +887,16 @@ Itinerary API   → Person B
 Budget API      → Person B
 ```
 
-Frontend integration should therefore happen against the documented API contract.
+Frontend screens are built **first from the Stitch designs**, then wired to the
+backend via the documented API contract.
+
+Rules for C + D:
+
+- Convert Stitch screens to React pages/components per the Frontend Architecture doc.
+- Never invent endpoints or response shapes — follow the API contract exactly.
+- If an API is not implemented yet, use mock data shaped like the contract and
+  swap later — do not wait for the backend.
+- Ask Person A + B which endpoints exist before wiring if unsure.
 
 Do not depend on undocumented response shapes.
 
@@ -832,6 +969,8 @@ Do not create module-specific response formats.
 
 # 25. Module Responsibility Table
 
+Person A = Pushkar · Person B = Nishant · Person C = Preet · Person D = Bhagya
+
 | Feature | Owner |
 |---|---|
 | Signup | Person A |
@@ -853,6 +992,12 @@ Do not create module-specific response formats.
 | Publish Trip | Person B |
 | Public Trip | Person B |
 | Copy Trip | Person B |
+| Auth screens (Login/Signup) | Person C |
+| Dashboard screen | Person C |
+| Trip list / Trip builder screens | Person C |
+| Itinerary screens | Person D |
+| Budget screens | Person D |
+| Public / share screens | Person D |
 
 ---
 
