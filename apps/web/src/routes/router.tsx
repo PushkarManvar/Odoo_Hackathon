@@ -5,6 +5,7 @@ import { DashboardPage } from "../pages/DashboardPage";
 import { ItineraryBuilderPage } from "../pages/itinerary/ItineraryBuilderPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { SignupPage } from "../pages/auth/SignupPage";
+import { PublicTripPage } from "../pages/public/PublicTripPage";
 
 function Placeholder({ title }: { title: string }) {
   return <div>{title}</div>;
@@ -19,7 +20,7 @@ export function AppRoutes() {
       <Route path="/signup" element={<SignupPage />} />
       <Route
         path="/public/:slug"
-        element={<Placeholder title="Public trip" />}
+        element={<PublicTripPage />}
       />
 
       <Route
