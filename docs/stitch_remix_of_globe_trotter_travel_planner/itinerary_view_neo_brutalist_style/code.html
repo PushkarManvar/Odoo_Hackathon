@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Globe Trotter - Itinerary View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#9f402d",
+                        "outline": "#89726d",
+                        "tertiary-fixed": "#cfe5ff",
+                        "primary-container": "#e2725b",
+                        "surface-container": "#f5edde",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#e1d9cb",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#e9e2d3",
+                        "tertiary-fixed-dim": "#9acbff",
+                        "on-tertiary-fixed-variant": "#024a78",
+                        "on-background": "#1e1b13",
+                        "on-primary-fixed": "#3e0500",
+                        "on-tertiary-container": "#002e4e",
+                        "secondary-fixed-dim": "#bdce89",
+                        "primary-fixed-dim": "#ffb4a5",
+                        "on-primary-fixed-variant": "#802918",
+                        "surface-container-low": "#fbf3e4",
+                        "surface-container-highest": "#e9e2d3",
+                        "tertiary": "#2a6292",
+                        "surface-tint": "#9f402d",
+                        "surface-container-high": "#efe7d9",
+                        "on-surface": "#1e1b13",
+                        "on-secondary-fixed": "#161f00",
+                        "secondary-container": "#d6e7a1",
+                        "tertiary-container": "#6497ca",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fff8ef",
+                        "on-surface-variant": "#56423e",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#ffb4a5",
+                        "background": "#fff8ef",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#56642b",
+                        "error-container": "#ffdad6",
+                        "surface": "#fff8ef",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#3e4c16",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#5a682f",
+                        "secondary-fixed": "#d9eaa3",
+                        "primary-fixed": "#ffdad3",
+                        "on-tertiary-fixed": "#001d34",
+                        "on-primary-container": "#5a0d02",
+                        "inverse-surface": "#343026",
+                        "inverse-on-surface": "#f8f0e1",
+                        "outline-variant": "#ddc0ba"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "16px",
+                        "section-gap": "80px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "container-max-width": "1200px",
+                        "margin-desktop": "40px"
+                    },
+                    fontFamily: {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"]
+                    },
+                    fontSize: {
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "600" }],
+                        "caption": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neo-brutal-border {
+            border: 3px solid #1e1b13;
+        }
+        .neo-brutal-shadow {
+            box-shadow: 4px 4px 0px 0px #1e1b13;
+        }
+        .neo-brutal-shadow-hover:hover {
+            box-shadow: 2px 2px 0px 0px #1e1b13;
+            transform: translate(2px, 2px);
+        }
+        .flow-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background-color: #1e1b13;
+        }
+        .flow-arrow::before {
+            content: '';
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid #1e1b13;
+            border-bottom: 2px solid #1e1b13;
+        }
+        .flow-arrow:last-child::after,
+        .flow-arrow:last-child::before {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
+<!-- Top Navigation (Shared Component mapped) -->
+<header class="bg-background dark:bg-background docked full-width top-0 border-b-2 border-on-background shadow-[4px_4px_0px_0px_rgba(30,27,19,1)] z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max-width mx-auto hidden md:flex">
+<div class="font-display-lg text-headline-md tracking-tighter text-on-background dark:text-on-background">Globe Trotter</div>
+<nav class="flex gap-8 items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="#">Itineraries</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">Discover</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">Budget</a>
+</nav>
+<div class="flex gap-4 items-center">
+<button class="hover:text-primary transition-colors duration-200 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:text-primary transition-colors duration-200 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12 flex flex-col gap-section-gap">
+<!-- Top Toolbar -->
+<section class="w-full flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
+<div class="relative w-full md:w-1/2 lg:w-1/3 neo-brutal-border rounded-lg bg-surface-container-lowest focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-transparent border-none focus:ring-0 font-body-md text-on-background placeholder:text-on-surface-variant rounded-lg" placeholder="Search places, activities..." type="text">
+</div>
+<div class="flex flex-wrap gap-3 w-full md:w-auto">
+<button class="flex items-center gap-2 px-4 py-2 bg-secondary-container text-on-secondary-container neo-brutal-border neo-brutal-shadow rounded-lg font-label-md text-label-md neo-brutal-shadow-hover transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="view_list">view_list</span> Group by
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high text-on-surface neo-brutal-border neo-brutal-shadow rounded-lg font-label-md text-label-md neo-brutal-shadow-hover transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_alt">filter_alt</span> Filter
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-high text-on-surface neo-brutal-border neo-brutal-shadow rounded-lg font-label-md text-label-md neo-brutal-shadow-hover transition-all">
+<span class="material-symbols-outlined text-[18px]" data-icon="sort">sort</span> Sort by...
+                </button>
+</div>
+</section>
+<!-- Header Section -->
+<section class="text-center md:text-left flex flex-col gap-2">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Itinerary for Kyoto, Japan</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">A mindful journey through ancient temples and vibrant culture.</p>
+</section>
+<!-- Itinerary Grid -->
+<section class="w-full flex flex-col gap-12 relative">
+<!-- Column Headers (Desktop only) -->
+<div class="hidden md:grid grid-cols-12 gap-gutter font-headline-md text-headline-md text-on-background border-b-[3px] border-on-background pb-4 sticky top-[72px] bg-background z-40">
+<div class="col-span-2">Day</div>
+<div class="col-span-7">Physical Activity</div>
+<div class="col-span-3 text-right">Expense</div>
+</div>
+<!-- Day 1 Block -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-gutter relative">
+<!-- Day Marker -->
+<div class="col-span-1 md:col-span-2">
+<div class="inline-block px-6 py-3 bg-tertiary-fixed text-on-tertiary-fixed neo-brutal-border neo-brutal-shadow rounded-lg font-headline-md text-headline-md sticky top-[140px]">
+                        Day 1
+                    </div>
+</div>
+<!-- Activities Flow -->
+<div class="col-span-1 md:col-span-7 flex flex-col gap-8 relative">
+<!-- Activity 1 -->
+<div class="w-full bg-surface-container-lowest neo-brutal-border neo-brutal-shadow rounded-xl p-6 flex flex-col gap-4 relative flow-arrow neo-brutal-shadow-hover transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Fushimi Inari Shrine</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 08:00 AM - 11:00 AM
+                                </p>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-caption font-caption rounded-full border border-on-background">Cultural</span>
+</div>
+<p class="font-body-md text-body-md text-on-background line-clamp-2">Hike through thousands of vermilion torii gates winding up the sacred Mount Inari. Go early to beat the crowds.</p>
+</div>
+<!-- Activity 2 -->
+<div class="w-full bg-surface-container-lowest neo-brutal-border neo-brutal-shadow rounded-xl p-6 flex flex-col gap-4 relative flow-arrow neo-brutal-shadow-hover transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Lunch at Nishiki Market</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 12:00 PM - 01:30 PM
+                                </p>
+</div>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-caption font-caption rounded-full border border-on-background">Food</span>
+</div>
+<p class="font-body-md text-body-md text-on-background line-clamp-2">Explore "Kyoto's Kitchen" and sample various local street foods, matcha sweets, and fresh seafood.</p>
+</div>
+<!-- Activity 3 -->
+<div class="w-full bg-surface-container-lowest neo-brutal-border neo-brutal-shadow rounded-xl p-6 flex flex-col gap-4 relative flow-arrow neo-brutal-shadow-hover transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Kiyomizu-dera Temple</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 02:30 PM - 05:00 PM
+                                </p>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-caption font-caption rounded-full border border-on-background">Cultural</span>
+</div>
+<p class="font-body-md text-body-md text-on-background line-clamp-2">Visit this historic wooden temple offering stunning views of the city. Walk up through the atmospheric Higashiyama district.</p>
+</div>
+</div>
+<!-- Expenses Column -->
+<div class="col-span-1 md:col-span-3 flex flex-col gap-8 mt-6 md:mt-0">
+<!-- Expense 1 -->
+<div class="w-full h-full bg-surface-container-low neo-brutal-border neo-brutal-shadow rounded-xl p-4 flex flex-col justify-center items-end">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider mb-1">Train fare</span>
+<span class="font-headline-md text-headline-md text-on-background">¥ 240</span>
+</div>
+<!-- Expense 2 -->
+<div class="w-full h-full bg-surface-container-low neo-brutal-border neo-brutal-shadow rounded-xl p-4 flex flex-col justify-center items-end">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider mb-1">Street Food</span>
+<span class="font-headline-md text-headline-md text-on-background">¥ 3,500</span>
+</div>
+<!-- Expense 3 -->
+<div class="w-full h-full bg-surface-container-low neo-brutal-border neo-brutal-shadow rounded-xl p-4 flex flex-col justify-center items-end">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider mb-1">Entrance Fee</span>
+<span class="font-headline-md text-headline-md text-on-background">¥ 400</span>
+</div>
+</div>
+</div>
+<!-- Day 2 Block -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-gutter relative pt-8 border-t-[3px] border-on-background border-dashed">
+<!-- Day Marker -->
+<div class="col-span-1 md:col-span-2">
+<div class="inline-block px-6 py-3 bg-tertiary-fixed text-on-tertiary-fixed neo-brutal-border neo-brutal-shadow rounded-lg font-headline-md text-headline-md sticky top-[140px]">
+                        Day 2
+                    </div>
+</div>
+<!-- Activities Flow -->
+<div class="col-span-1 md:col-span-7 flex flex-col gap-8 relative">
+<!-- Activity 1 -->
+<div class="w-full bg-surface-container-lowest neo-brutal-border neo-brutal-shadow rounded-xl p-6 flex flex-col gap-4 relative flow-arrow neo-brutal-shadow-hover transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Arashiyama Bamboo Grove</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 07:00 AM - 09:30 AM
+                                </p>
+</div>
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed text-caption font-caption rounded-full border border-on-background">Nature</span>
+</div>
+<p class="font-body-md text-body-md text-on-background line-clamp-2">Walk through the towering bamboo stalks. A peaceful experience if you arrive before the tour buses.</p>
+</div>
+<!-- Activity 2 -->
+<div class="w-full bg-surface-container-lowest neo-brutal-border neo-brutal-shadow rounded-xl p-6 flex flex-col gap-4 relative flow-arrow neo-brutal-shadow-hover transition-all cursor-pointer">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-1">Kinkaku-ji (Golden Pavilion)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 10:30 AM - 12:30 PM
+                                </p>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-caption font-caption rounded-full border border-on-background">Cultural</span>
+</div>
+<p class="font-body-md text-body-md text-on-background line-clamp-2">Marvel at the Zen Buddhist temple completely covered in gold leaf, reflecting beautifully in the pond.</p>
+</div>
+</div>
+<!-- Expenses Column -->
+<div class="col-span-1 md:col-span-3 flex flex-col gap-8 mt-6 md:mt-0">
+<!-- Expense 1 -->
+<div class="w-full h-full bg-surface-container-low neo-brutal-border neo-brutal-shadow rounded-xl p-4 flex flex-col justify-center items-end">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider mb-1">Bus fare</span>
+<span class="font-headline-md text-headline-md text-on-background">¥ 500</span>
+</div>
+<!-- Expense 2 -->
+<div class="w-full h-full bg-surface-container-low neo-brutal-border neo-brutal-shadow rounded-xl p-4 flex flex-col justify-center items-end">
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider mb-1">Entrance Fee</span>
+<span class="font-headline-md text-headline-md text-on-background">¥ 500</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mobile Only - Shared Component Mapped) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 border-t-[3px] border-on-background bg-surface dark:bg-surface-dim shadow-[0_-4px_0px_0px_rgba(30,27,19,1)]">
+<div class="flex justify-around items-center px-4 pb-4 pt-2">
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-lg p-2 border-[3px] border-on-background shadow-[2px_2px_0px_0px_rgba(30,27,19,1)] active:scale-95 transition-transform w-[72px]" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-label-md text-label-md mt-1">Plan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim transition-all rounded-lg active:scale-95 w-[72px]" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md text-label-md mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim transition-all rounded-lg active:scale-95 w-[72px]" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-md text-label-md mt-1">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim transition-all rounded-lg active:scale-95 w-[72px]" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md mt-1">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

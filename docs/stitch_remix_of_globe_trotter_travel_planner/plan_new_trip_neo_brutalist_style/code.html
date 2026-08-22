@@ -1,0 +1,354 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Plan New Trip - Globe Trotter</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#d9eaa3",
+                    "tertiary-container": "#6497ca",
+                    "on-primary-container": "#5a0d02",
+                    "primary-fixed-dim": "#ffb4a5",
+                    "tertiary-fixed-dim": "#9acbff",
+                    "outline": "#89726d",
+                    "background": "#fff8ef",
+                    "on-surface-variant": "#56423e",
+                    "on-surface": "#1e1b13",
+                    "primary": "#9f402d",
+                    "inverse-surface": "#343026",
+                    "tertiary-fixed": "#cfe5ff",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#1e1b13",
+                    "on-tertiary-fixed-variant": "#024a78",
+                    "on-secondary-fixed-variant": "#3e4c16",
+                    "surface-container-highest": "#e9e2d3",
+                    "primary-container": "#e2725b",
+                    "on-primary-fixed-variant": "#802918",
+                    "tertiary": "#2a6292",
+                    "surface-bright": "#fff8ef",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#9f402d",
+                    "on-secondary-fixed": "#161f00",
+                    "secondary-container": "#d6e7a1",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f8f0e1",
+                    "on-secondary-container": "#5a682f",
+                    "error": "#ba1a1a",
+                    "secondary": "#56642b",
+                    "on-tertiary-fixed": "#001d34",
+                    "surface-container-high": "#efe7d9",
+                    "surface-dim": "#e1d9cb",
+                    "surface-container-low": "#fbf3e4",
+                    "surface-container": "#f5edde",
+                    "outline-variant": "#ddc0ba",
+                    "surface": "#fff8ef",
+                    "surface-variant": "#e9e2d3",
+                    "inverse-primary": "#ffb4a5",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed": "#3e0500",
+                    "secondary-fixed-dim": "#bdce89",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#002e4e",
+                    "primary-fixed": "#ffdad3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "container-max-width": "1200px",
+                    "section-gap": "80px"
+            },
+            "fontFamily": {
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Montserrat"
+                    ],
+                    "headline-lg-mobile": [
+                            "Montserrat"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Montserrat"
+                    ],
+                    "display-lg": [
+                            "Montserrat"
+                    ],
+                    "caption": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "36px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "caption": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Neo-brutalism utility classes */
+        .neo-brutalist-border {
+            border: 3px solid #1e1b13;
+        }
+        .neo-brutalist-shadow {
+            box-shadow: 6px 6px 0px #1e1b13;
+        }
+        .neo-brutalist-shadow-hover:hover {
+            box-shadow: 2px 2px 0px #1e1b13;
+            transform: translate(4px, 4px);
+        }
+        .neo-brutalist-shadow-hover {
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface/40 dark:bg-surface-dim/40 backdrop-blur-xl docked full-width top-0 sticky z-50 shadow-sm dark:shadow-none border-b-3 border-on-background neo-brutalist-border">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max-width mx-auto">
+<!-- Brand Logo -->
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight" href="#">
+                Globe Trotter
+            </a>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">My Trips</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:scale-105 transition-transform duration-200" href="#">Discovery</a>
+</nav>
+<!-- Trailing Action -->
+<div class="flex items-center gap-4">
+<button class="hidden md:flex font-label-md text-label-md bg-primary text-on-primary px-6 py-3 rounded-DEFAULT neo-brutalist-border neo-brutalist-shadow neo-brutalist-shadow-hover hover:scale-105 transition-transform duration-200 active:scale-95 transition-all">
+                    Plan New Trip
+                </button>
+<button class="md:hidden">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-section-gap flex flex-col gap-section-gap">
+<!-- Header Section -->
+<section class="flex flex-col gap-base items-center text-center">
+<h1 class="font-display-lg text-display-lg text-primary neo-brutalist-border inline-block px-4 py-2 bg-surface-container">Design Your Journey</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Curate your perfect escape with mindful precision. Every detail considered, every moment savored.</p>
+</section>
+<!-- Planning Form Section (Bento Grid Style) -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Main Planning Card -->
+<div class="md:col-span-8 bg-surface-container-lowest p-8 rounded-lg neo-brutalist-border neo-brutalist-shadow flex flex-col gap-gutter">
+<h2 class="font-headline-lg text-headline-lg text-on-surface border-b-3 border-on-background pb-4 mb-4 neo-brutalist-border border-l-0 border-r-0 border-t-0">Trip Details</h2>
+<form class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="destination">Where to?</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">location_on</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface rounded-DEFAULT neo-brutalist-border font-body-md text-body-md focus:outline-none focus:ring-0 focus:border-primary transition-colors" id="destination" placeholder="Select a Place (e.g., Kyoto, Japan)" type="text">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="start-date">Start Date</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">calendar_today</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface rounded-DEFAULT neo-brutalist-border font-body-md text-body-md focus:outline-none focus:ring-0 focus:border-primary transition-colors" id="start-date" type="date">
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="end-date">End Date</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">event</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface rounded-DEFAULT neo-brutalist-border font-body-md text-body-md focus:outline-none focus:ring-0 focus:border-primary transition-colors" id="end-date" type="date">
+</div>
+</div>
+</div>
+<div class="pt-4 flex justify-end">
+<button class="font-label-md text-label-md bg-secondary text-on-secondary px-8 py-4 rounded-DEFAULT neo-brutalist-border neo-brutalist-shadow neo-brutalist-shadow-hover hover:scale-105 transition-transform duration-200" type="button">
+                            Explore Options
+                        </button>
+</div>
+</form>
+</div>
+<!-- Image/Mood Card -->
+<div class="md:col-span-4 bg-primary-container p-4 rounded-lg neo-brutalist-border neo-brutalist-shadow flex flex-col justify-between overflow-hidden relative min-h-[300px]">
+<div class="z-10 relative">
+<span class="inline-block px-3 py-1 bg-surface-container-lowest text-on-surface font-label-md text-label-md rounded-full neo-brutalist-border mb-4">Inspiration</span>
+<h3 class="font-headline-md text-headline-md text-on-primary-container mb-2">Find your quiet place.</h3>
+</div>
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-80 mix-blend-overlay" data-alt="A serene, minimalist landscape featuring a solitary, beautifully structured geometric pavilion overlooking a still, reflective lake at sunrise. The lighting is soft and warm, casting long shadows. The color palette is composed of dusty terracotta, muted beige, and soft sage green, evoking a calming, high-end editorial travel aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAfaVPLxHXtKSApIOZD0Dhd3MZxuVmtZ1XXzZC_mkOTkZ02sC8fzZtFKN2qODbT-9ezEYs0dJidiuDEFxDd3k4kZI-nnUeV8iY69fVffoJBdJUScwyXiCcSAHrh5AmjkjpP2XVXCBbxJrJcOWOQ1t6i5gCc3hzWGhyCHliQ-t5cGpzgNoChSahMLqk8zrZpWqw3Asl3BVnRVy8YD1AcX79DrR8B-7YXx6K5FynwJ7sctS4_gjd3Lay">
+</div>
+</div>
+</section>
+<!-- Suggestions Section -->
+<section class="flex flex-col gap-gutter">
+<div class="flex items-center justify-between border-b-3 border-on-background pb-4 neo-brutalist-border border-l-0 border-r-0 border-t-0">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Curated Suggestions</h2>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center neo-brutalist-border neo-brutalist-shadow-hover"><span class="material-symbols-outlined text-on-surface">arrow_back</span></button>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center neo-brutalist-border neo-brutalist-shadow-hover"><span class="material-symbols-outlined text-on-surface">arrow_forward</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Suggestion Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg neo-brutalist-border neo-brutalist-shadow overflow-hidden flex flex-col neo-brutalist-shadow-hover cursor-pointer group">
+<div class="h-48 relative border-b-3 border-on-background neo-brutalist-border border-l-0 border-r-0 border-t-0 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist architectural shot of a modern museum interior with smooth curved walls and a central open-air courtyard. The lighting is bright and diffuse, creating a clean, light-mode aesthetic with soft shadows. Warm beige tones dominate, accented by small spots of terracotta from seating areas." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpF5OvREYWYxjAY5EBCt7s8eCGiap2INaPVd0EjY2ZJ-gSgC4nTRS-SVHRMZiCHpsD9oo4hgOj5AcKFdTVKG-tJFXc1Z8NIbDIdnxbDwrJja2meo4n0NeRVV4UZlLonOWy5vC454kPO6yVujlWsFy1tcQaJDcBuNSI5Joq_RbS2G12NBQGu4mHXTyGgVuWcyXVqrxG_391Qm93HCy8XmDHBzLpSn2OEyF0mtBHXJ-dPSWMiiKS63bg">
+<div class="absolute top-4 right-4 bg-surface-container-lowest px-2 py-1 rounded-sm neo-brutalist-border font-label-md text-label-md text-on-surface">
+                            Culture
+                        </div>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1 group-hover:text-primary transition-colors">Tate Modern Annex</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Immerse yourself in contemporary installations housed in brutalist architecture.</p>
+</div>
+<div class="flex items-center gap-2 mt-auto pt-4">
+<span class="material-symbols-outlined text-secondary text-sm">schedule</span>
+<span class="font-label-md text-label-md text-on-surface-variant">2-3 Hours</span>
+</div>
+</div>
+</div>
+<!-- Suggestion Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg neo-brutalist-border neo-brutalist-shadow overflow-hidden flex flex-col neo-brutalist-shadow-hover cursor-pointer group">
+<div class="h-48 relative border-b-3 border-on-background neo-brutalist-border border-l-0 border-r-0 border-t-0 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautifully plated dish in a minimalist, high-end restaurant setting. The table is a smooth, light beige stone. The food is vibrant, featuring earthy reds and greens against a stark white ceramic plate. The lighting is highly controlled, casting sharp, intentional shadows that highlight the textures of the food." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwJr71YdKo7z4-g7bqK98BY-ksKDutbSoYo9KxuxnAqieReMiJZ63WnCaKVKS5s-GullCJXmmR-ElLuTNtICgqtfxkEdPkkIhJYonWvy7nJoruFSMb9rp9qsyIiJyZ2quHJy6UMSINwdiACQ5jC2rxOxVBbIS21RUItlYbwjfuJp262GZ7_QLf7FqbXkcjl5RhMIAq-YGwFq-OHVima6-4hxefc6hBc_CRBoozyDKrnVy66hL-zFiV">
+<div class="absolute top-4 right-4 bg-secondary-container px-2 py-1 rounded-sm neo-brutalist-border font-label-md text-label-md text-on-secondary-container">
+                            Culinary
+                        </div>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1 group-hover:text-primary transition-colors">Atelier Omakase</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">A mindful dining experience focusing on seasonal, locally sourced ingredients.</p>
+</div>
+<div class="flex items-center gap-2 mt-auto pt-4">
+<span class="material-symbols-outlined text-secondary text-sm">restaurant</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Reservation Required</span>
+</div>
+</div>
+</div>
+<!-- Suggestion Card 3 -->
+<div class="bg-surface-container-lowest rounded-lg neo-brutalist-border neo-brutalist-shadow overflow-hidden flex flex-col neo-brutalist-shadow-hover cursor-pointer group">
+<div class="h-48 relative border-b-3 border-on-background neo-brutalist-border border-l-0 border-r-0 border-t-0 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A tranquil botanical garden path lined with perfectly pruned geometric shrubs. The path is made of light beige gravel. In the distance, a minimalist glass greenhouse stands against a clear, pale blue sky. The scene is brightly lit with a soft, warm sunlight, embodying a serene, organized nature aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp_8CSJpP4tYdKTtZBBinfkooFAOBL7yE_hPVz4OK4VeU9SxKgaN38DvdD2jFRndOx_5nxLtc4Ryz059W7TQcP-yPlJ2R1dJaBiJt_TlsJPqkUcHU0J7ps0dAaZ_nAaQDql0Fmgq0rP5GCAQafJB6OPcdT_6CcTnqH0t2PQAyL4ZtncWvVLTfM1Z964IsdJb499lCREXTHAKvCIxCFi8CCnb0MzfeJEUcvikrhXeFqlscxYojf-DgK">
+<div class="absolute top-4 right-4 bg-tertiary-container px-2 py-1 rounded-sm neo-brutalist-border font-label-md text-label-md text-on-tertiary-container">
+                            Nature
+                        </div>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1 group-hover:text-primary transition-colors">Kyoto Botanical Gardens</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Wander through meticulously curated landscapes designed for quiet contemplation.</p>
+</div>
+<div class="flex items-center gap-2 mt-auto pt-4">
+<span class="material-symbols-outlined text-secondary text-sm">park</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Half Day</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-dim full-width w-full py-section-gap px-margin-mobile md:px-margin-desktop mt-section-gap flex flex-col md:flex-row justify-between items-center gap-gutter border-t-3 border-on-background neo-brutalist-border">
+<div class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed font-bold tracking-tight">
+            Globe Trotter
+        </div>
+<nav class="flex gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-tertiary dark:hover:text-tertiary-fixed transition-colors" href="#">Support</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-tertiary dark:hover:text-tertiary-fixed transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-tertiary dark:hover:text-tertiary-fixed transition-colors" href="#">Terms</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-surface-variant hover:text-tertiary dark:hover:text-tertiary-fixed transition-colors" href="#">Destinations</a>
+</nav>
+<div class="font-caption text-caption text-secondary dark:text-secondary-fixed">
+            © 2024 Globe Trotter. Mindful Exploration.
+        </div>
+</footer>
+</body></html>

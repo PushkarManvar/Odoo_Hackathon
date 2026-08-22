@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Globe Trotter - Activity Search</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#fff8ef",
+                        "secondary-fixed": "#d9eaa3",
+                        "outline-variant": "#ddc0ba",
+                        "on-tertiary-container": "#002e4e",
+                        "error": "#ba1a1a",
+                        "outline": "#89726d",
+                        "surface-tint": "#9f402d",
+                        "secondary-container": "#d6e7a1",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e9e2d3",
+                        "primary-container": "#e2725b",
+                        "surface-container-high": "#efe7d9",
+                        "surface-container-highest": "#e9e2d3",
+                        "on-surface-variant": "#56423e",
+                        "on-surface": "#1e1b13",
+                        "on-error": "#ffffff",
+                        "tertiary": "#2a6292",
+                        "inverse-surface": "#343026",
+                        "secondary-fixed-dim": "#bdce89",
+                        "on-tertiary-fixed": "#001d34",
+                        "on-tertiary-fixed-variant": "#024a78",
+                        "on-background": "#1e1b13",
+                        "primary": "#9f402d",
+                        "inverse-on-surface": "#f8f0e1",
+                        "on-primary-container": "#5a0d02",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#3e0500",
+                        "primary-fixed-dim": "#ffb4a5",
+                        "on-error-container": "#93000a",
+                        "surface": "#fff8ef",
+                        "on-secondary-fixed-variant": "#3e4c16",
+                        "background": "#fff8ef",
+                        "on-secondary-container": "#5a682f",
+                        "on-secondary-fixed": "#161f00",
+                        "secondary": "#56642b",
+                        "tertiary-fixed-dim": "#9acbff",
+                        "tertiary-container": "#6497ca",
+                        "inverse-primary": "#ffb4a5",
+                        "surface-dim": "#e1d9cb",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdad3",
+                        "on-primary-fixed-variant": "#802918",
+                        "surface-container-low": "#fbf3e4",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#cfe5ff",
+                        "surface-container": "#f5edde"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max-width": "1200px",
+                        "section-gap": "80px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "display-lg": ["Montserrat"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neo-brutalism-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(30, 27, 19, 1);
+        }
+        .neo-brutalism-shadow-sm {
+            box-shadow: 2px 2px 0px 0px rgba(30, 27, 19, 1);
+        }
+    </style>
+</head>
+<body class="bg-surface-bright text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<nav class="sticky top-0 z-50 flex justify-between items-center px-margin-desktop py-4 bg-surface-bright w-full border-b-2 border-on-surface neo-brutalism-shadow">
+<div class="flex items-center gap-6">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tight" href="#">Globe Trotter</a>
+<div class="hidden md:flex gap-4">
+<a class="font-headline-md text-headline-md font-semibold text-primary font-bold border-b-2 border-primary pb-1" href="#">Discover</a>
+<a class="font-headline-md text-headline-md font-semibold text-on-surface-variant hover:text-on-surface hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100" href="#">My Trips</a>
+<a class="font-headline-md text-headline-md font-semibold text-on-surface-variant hover:text-on-surface hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100" href="#">Plan</a>
+<a class="font-headline-md text-headline-md font-semibold text-on-surface-variant hover:text-on-surface hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-100" href="#">Community</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-primary hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-primary hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<img alt="User profile photo" class="w-10 h-10 rounded-full border-2 border-on-surface object-cover neo-brutalism-shadow-sm" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg">
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-[1200px] mx-auto px-margin-desktop py-section-gap flex flex-col md:flex-row gap-gutter">
+<!-- Search and Filter Header (Mobile mostly, acts as sidebar on desktop if needed, but per sketch it's top) -->
+<div class="w-full">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div class="relative w-full md:max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container pl-10 pr-4 py-3 border-2 border-on-surface rounded-lg font-body-md focus:outline-none focus:ring-0 focus:border-primary neo-brutalism-shadow-sm transition-shadow" type="text" value="Paragliding">
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="px-4 py-2 bg-surface-container border-2 border-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-variant neo-brutalism-shadow-sm active:scale-95 transition-transform flex items-center gap-2">
+                        Group by
+                        <span class="material-symbols-outlined text-[18px]" data-icon="expand_more">expand_more</span>
+</button>
+<button class="px-4 py-2 bg-surface-container border-2 border-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-variant neo-brutalism-shadow-sm active:scale-95 transition-transform flex items-center gap-2">
+                        Filter
+                        <span class="material-symbols-outlined text-[18px]" data-icon="tune">tune</span>
+</button>
+<button class="px-4 py-2 bg-surface-container border-2 border-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-variant neo-brutalism-shadow-sm active:scale-95 transition-transform flex items-center gap-2">
+                        Sort by...
+                        <span class="material-symbols-outlined text-[18px]" data-icon="swap_vert">swap_vert</span>
+</button>
+</div>
+</div>
+<h1 class="font-headline-lg text-headline-lg mb-6">Results</h1>
+<!-- Results Section -->
+<div class="flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container border-2 border-on-surface rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center neo-brutalism-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-200 cursor-pointer">
+<div class="w-full md:w-48 h-32 bg-surface-variant border-2 border-on-surface rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A dynamic shot of a paraglider soaring through a clear blue sky over a lush, green mountain range. The lighting is bright and sunny, highlighting the vibrant colors of the paraglider wing against the minimalist natural backdrop. The overall mood is exhilarating and free, perfectly capturing the spirit of mindful exploration and adventure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCINoB9VhVbJc7QNM3rugrGqPHuuvklOrSAzsUGLYqRZVfaC0NHYB6JAZZWkhZ5NyrYi9KYEupoXNT0AVpCuaDPtODoFaGO5UPS08wFSyHihW8bkbZ-oKkk1yMwvfzQ5gvjaHM8Gj2kKJy7g3nXzh_Xa20oNARCtwl7_10AT-XnnBzJF0MUSTLdqC_5Ux3gWRyGRxN8y8aXv0KwuhFJRbqx8jYrh-rfwDgyhvHYv7lE1bultoPE-j81">
+</div>
+<div class="flex-grow">
+<h2 class="font-headline-md text-headline-md mb-2">Option and its details</h2>
+<p class="font-body-md text-on-surface-variant mb-4">Experience the thrill of soaring high above the stunning landscapes. Perfect for beginners and seasoned adventurers alike.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container border border-on-surface rounded-full font-caption text-caption">Adventure</span>
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container border border-on-surface rounded-full font-caption text-caption">Nature</span>
+</div>
+</div>
+<div class="flex flex-col items-end md:items-center gap-2 md:ml-auto">
+<span class="font-headline-md text-headline-md text-primary">$150</span>
+<button class="px-6 py-2 bg-primary text-on-primary border-2 border-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-tint neo-brutalism-shadow-sm active:scale-95 transition-transform">Book Now</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container border-2 border-on-surface rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center neo-brutalism-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-200 cursor-pointer">
+<div class="w-full md:w-48 h-32 bg-surface-variant border-2 border-on-surface rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A scenic view of a coastal paragliding launch site. The sun is setting, casting a warm, golden hour light over the rugged cliffs and the calm ocean below. The minimalist aesthetic is maintained with clean lines of the landscape and the simple, geometric shapes of the cliffs. The mood is serene and breathtaking." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB6PpY1zmuD1pdr435GF9ZPnbQhfbzxPzZL0-QkD9QqOwwnk1BvRYtMP7F8sj1GxIII42LFz9jNdNjAwzVc6xIBD6FWG7io1zmoDOE6iyxj2Xw-B_wRhpo6uD2a2gS0jKNXZ5yciWpu1NpJuGaJPwqaj9s-JqUxJONBwnLOfzYM8jiw2DimawtuITufCBg0adbGqSP4yxBLuPUtC4h6LO4HCOjyBdMFh_N8UTB1yYnkf2k7BVqV8gQ">
+</div>
+<div class="flex-grow">
+<h2 class="font-headline-md text-headline-md mb-2">Option and its details</h2>
+<p class="font-body-md text-on-surface-variant mb-4">A scenic tandem flight along the coast, offering unparalleled views of the ocean and dramatic cliffs at sunset.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container border border-on-surface rounded-full font-caption text-caption">Scenic</span>
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container border border-on-surface rounded-full font-caption text-caption">Sunset</span>
+</div>
+</div>
+<div class="flex flex-col items-end md:items-center gap-2 md:ml-auto">
+<span class="font-headline-md text-headline-md text-primary">$180</span>
+<button class="px-6 py-2 bg-primary text-on-primary border-2 border-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-tint neo-brutalism-shadow-sm active:scale-95 transition-transform">Book Now</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container border-2 border-on-surface rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center neo-brutalism-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-200 cursor-pointer">
+<div class="w-full md:w-48 h-32 bg-surface-variant border-2 border-on-surface rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="An abstract, stylized illustration of a mountain peak with a small paraglider silhouette. The design uses flat, earthy colors like sage green and terracotta, adhering to a minimalist and organic brutalist style. The imagery evokes a sense of curated inspiration and calm exploration, fitting the winter village aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtXsNHx236SPhnNjwwjEMhUYH_Zk-VH7azh9RBD8OxpmVhXEEJZJ-WdfxU1sO7Ddpy6y_HUCublMIPlZR0tMm9U-Z-NKAoSXKcC5LDG4rgfaxmM-NI05vz8T3iyjHLosyfyKHXZRVsrtFWNWaBPsdNiOWqSNRl_uRlNAYILmHDHutDucWBkJO6_N1ETvMKwgtS_NkVGpmDQYd1_cUPiTK5G_Pmk-9jCsEwDImjE4g1S7748bkiK1aA">
+</div>
+<div class="flex-grow">
+<h2 class="font-headline-md text-headline-md mb-2">Option and its details</h2>
+<p class="font-body-md text-on-surface-variant mb-4">An intensive weekend course for those looking to get certified. Learn the ropes from experienced instructors in a safe environment.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container border border-on-surface rounded-full font-caption text-caption">Course</span>
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container border border-on-surface rounded-full font-caption text-caption">Certification</span>
+</div>
+</div>
+<div class="flex flex-col items-end md:items-center gap-2 md:ml-auto">
+<span class="font-headline-md text-headline-md text-primary">$450</span>
+<button class="px-6 py-2 bg-primary text-on-primary border-2 border-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-tint neo-brutalism-shadow-sm active:scale-95 transition-transform">Book Now</button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container border-2 border-on-surface rounded-xl p-6 flex flex-col md:flex-row gap-6 items-start md:items-center neo-brutalism-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all duration-200 cursor-pointer">
+<div class="w-full md:w-48 h-32 bg-surface-variant border-2 border-on-surface rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of paragliding gear—harness, carabiners, and colorful lines—laid out on a grassy field. The lighting is soft and diffused, highlighting the textures of the equipment. The composition is neat and geometric, reflecting a premium, journal-like approach to capturing the details of an adventure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb_UcpN6ay-gQdFjo8bsy2Q43Ltjc9mE7yVA18QnB4Njul-72mfuAcj42rUiOP3NNEpQAU8MikZUFPfZBOqoBuVF-944nUo7ZqjXYH-ZpoD0n0AQsOq-mZTb71RUabHT2IxQel1EixISo91PO1XST9u1vKkC1e4F3Yo_-9ojoLV5_If9p1tqKe_YXmwFxlJnB82XOUKDryM0RrZOrBWcK_e0xPkLT4fBIczwaGug7slsBlGRAhwK-d">
+</div>
+<div class="flex-grow">
+<h2 class="font-headline-md text-headline-md mb-2">Option and its details</h2>
+<p class="font-body-md text-on-surface-variant mb-4">A gentle, introductory flight perfect for families or those wanting a calm, floating experience over rolling hills.</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container border border-on-surface rounded-full font-caption text-caption">Relaxing</span>
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container border border-on-surface rounded-full font-caption text-caption">Family</span>
+</div>
+</div>
+<div class="flex flex-col items-end md:items-center gap-2 md:ml-auto">
+<span class="font-headline-md text-headline-md text-primary">$120</span>
+<button class="px-6 py-2 bg-primary text-on-primary border-2 border-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-tint neo-brutalism-shadow-sm active:scale-95 transition-transform">Book Now</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface-bright border-t-2 border-on-surface shadow-[0px_-4px_0px_0px_rgba(30,27,19,1)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-caption text-caption mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container border-2 border-on-surface rounded-xl px-4 py-1 shadow-[2px_2px_0px_0px_rgba(30,27,19,1)] active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-caption text-caption mt-1 font-bold">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="travel_explore">travel_explore</span>
+<span class="font-caption text-caption mt-1">Trips</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant transition-all rounded-xl px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-caption text-caption mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

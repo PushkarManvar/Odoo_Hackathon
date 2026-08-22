@@ -18,5 +18,6 @@ Use these exact IDs in the Owner column. Full roster: `docs/team.md`.
 | Auth module (signup/login/me) | Pushkar | feat/auth | merged | Person A — Trip Core |
 | Trips CRUD | Pushkar | feat/trips | in progress | Person A — Trip Core |
 | Onboarding setup (C-0) | preetgohilofficial | feat/onboarding-preetgohilofficial | done | Setup checklist §51 verified: npm install, lint, typecheck, build, prisma generate all green |
+| C-1 Router route table | preetgohilofficial | feat/task-c1 | in progress | [OWNER: preetgohilofficial] router.tsx with all locked routes as placeholders |
 
 *Move completed tasks to `completed.md`.*

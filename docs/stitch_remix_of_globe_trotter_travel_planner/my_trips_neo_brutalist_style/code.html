@@ -1,0 +1,251 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>My Trips - Globe Trotter</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#d9eaa3",
+                        "on-surface": "#1e1b13",
+                        "tertiary-fixed-dim": "#9acbff",
+                        "surface-container": "#f5edde",
+                        "primary-fixed-dim": "#ffb4a5",
+                        "tertiary-container": "#6497ca",
+                        "surface-container-high": "#efe7d9",
+                        "tertiary": "#2a6292",
+                        "outline": "#89726d",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#161f00",
+                        "on-secondary-fixed-variant": "#3e4c16",
+                        "surface-variant": "#e9e2d3",
+                        "on-primary-fixed": "#3e0500",
+                        "secondary": "#56642b",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#e2725b",
+                        "inverse-primary": "#ffb4a5",
+                        "outline-variant": "#ddc0ba",
+                        "background": "#fff8ef",
+                        "tertiary-fixed": "#cfe5ff",
+                        "inverse-surface": "#343026",
+                        "on-secondary-container": "#5a682f",
+                        "surface-tint": "#9f402d",
+                        "inverse-on-surface": "#f8f0e1",
+                        "on-primary-fixed-variant": "#802918",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#56423e",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ffdad3",
+                        "on-primary-container": "#5a0d02",
+                        "primary": "#9f402d",
+                        "surface-container-low": "#fbf3e4",
+                        "on-tertiary-fixed-variant": "#024a78",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e9e2d3",
+                        "surface-bright": "#fff8ef",
+                        "secondary-container": "#d6e7a1",
+                        "on-tertiary-container": "#002e4e",
+                        "surface-dim": "#e1d9cb",
+                        "on-error-container": "#93000a",
+                        "surface": "#fff8ef",
+                        "on-background": "#1e1b13",
+                        "on-tertiary-fixed": "#001d34",
+                        "secondary-fixed-dim": "#bdce89",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "margin-desktop": "40px",
+                        "container-max-width": "1200px",
+                        "section-gap": "80px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "caption": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "display-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neo-brutalist-shadow {
+            box-shadow: 4px 4px 0px 0px #1e1b13;
+        }
+        .neo-brutalist-shadow-hover:hover {
+            box-shadow: 6px 6px 0px 0px #1e1b13;
+            transform: translate(-2px, -2px);
+        }
+        .neo-brutalist-border {
+            border: 4px solid #1e1b13;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md">
+<!-- TopNavBar Shared Component -->
+<header class="w-full top-0 sticky bg-background dark:bg-on-surface border-b-4 border-on-surface dark:border-outline shadow-[4px_4px_0px_0px_rgba(30,27,19,1)] z-50">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max-width mx-auto">
+<div class="flex items-center gap-8">
+<a class="font-display-lg text-display-lg text-primary dark:text-primary-fixed-dim uppercase tracking-tighter" href="#">Globe Trotter</a>
+<nav class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200 px-3 py-2" href="#">Dashboard</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 px-3 py-2" href="#">My Trips</a>
+<a class="text-on-surface-variant font-medium hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200 px-3 py-2" href="#">Discovery</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary font-label-md px-6 py-3 border-2 border-on-surface neo-brutalist-shadow neo-brutalist-shadow-hover transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hidden md:block">
+                    Create Trip
+                </button>
+<button class="p-2 hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200 rounded-full">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 bg-secondary-container border-2 border-on-surface overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A stylized geometric vector illustration of a user avatar in warm earthy tones on a cream background, minimalist design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYJPh6TXLQg_BFVhb6TbLbciAg08IBlde-plbLmxpsf7hMf5BmT3NG5NkTpYVGkOkQiTjvrtVh68Fb4S0Eb3K8pPp00W9t9Ol_P8FwnvxQfqbAEK3eG_chd1C1ZarDzogUhvKW9yhCysoweB6KbHwhovK93_ZpoRqo1meXO3VpkwmJPSkZqR-TrDxOpYXtDkRjUW0mp2CEy9_WgMdYV-pdC7aY1xjprOqazqZ_D032a4EadgGocxYI">
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow max-w-container-max-width mx-auto w-full px-margin-mobile md:px-margin-desktop py-12">
+<!-- Toolbar -->
+<section class="flex flex-col md:flex-row justify-between items-center gap-6 mb-16">
+<div class="relative w-full md:w-1/2">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container neo-brutalist-border font-body-md text-on-surface focus:outline-none focus:border-primary transition-colors neo-brutalist-shadow" placeholder="Search bar ......" type="text">
+</div>
+<div class="flex flex-wrap gap-4 w-full md:w-auto">
+<button class="px-6 py-3 bg-surface-container neo-brutalist-border font-label-md text-on-surface flex items-center gap-2 hover:bg-surface-container-high transition-colors neo-brutalist-shadow">
+                    Group by <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="px-6 py-3 bg-surface-container neo-brutalist-border font-label-md text-on-surface flex items-center gap-2 hover:bg-surface-container-high transition-colors neo-brutalist-shadow">
+                    Filter <span class="material-symbols-outlined text-sm">filter_list</span>
+</button>
+<button class="px-6 py-3 bg-surface-container neo-brutalist-border font-label-md text-on-surface flex items-center gap-2 hover:bg-surface-container-high transition-colors neo-brutalist-shadow">
+                    Sort by... <span class="material-symbols-outlined text-sm">sort</span>
+</button>
+</div>
+</section>
+<!-- Ongoing Section -->
+<section class="mb-section-gap">
+<h2 class="font-headline-lg text-headline-lg mb-8 text-on-surface border-b-4 border-on-surface inline-block pb-2">Ongoing</h2>
+<div class="grid grid-cols-1 gap-8">
+<!-- Trip Card 1 -->
+<article class="bg-surface-container-low neo-brutalist-border p-6 flex flex-col md:flex-row gap-6 relative group neo-brutalist-shadow transition-transform duration-300 hover:-translate-y-1">
+<div class="w-full md:w-1/3 h-48 bg-surface-variant border-2 border-on-surface overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist architectural illustration of a desert villa bathed in warm sunset light, sharp geometric shadows, terracotta and beige palette, highly stylized." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBehWKEptSzPfFllTEPeAySG9Khlh97dQQnEBOJ4jBf4hajt5E-qlT95epfIr6XjeXucFvLm1i7h0R1ac3X1Fp2hMF5ire0sOJO4tLOO6YEZ8W9x3kzPWp15KZySUoHtN2om8N2ZbiDezS3Z72pYw0CkOtDpo1-8JZV3BfzFEZYTkzc0AoFIUqCViB1UwmVbbHEyZbld66tZvtUNwvILI8x_Ku7W-g-VM9NnUkD92SFHm9R_wAioaTZ">
+<div class="absolute top-2 right-2 bg-primary text-on-primary px-3 py-1 font-label-md border-2 border-on-surface text-xs uppercase tracking-wider">Active</div>
+</div>
+<div class="flex flex-col justify-between w-full md:w-2/3">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Desert Retreat in Sedona</h3>
+<p class="font-label-md text-primary mb-4">Oct 12 - Oct 20, 2024</p>
+<p class="font-body-md text-on-surface-variant mb-4">A curated journey through the red rock formations. Includes daily guided hikes and mindful meditation sessions at vortex sites.</p>
+</div>
+<div class="flex gap-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 text-xs border border-on-surface font-label-md">Nature</span>
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 text-xs border border-on-surface font-label-md">Relaxing</span>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Up-coming Section -->
+<section class="mb-section-gap">
+<h2 class="font-headline-lg text-headline-lg mb-8 text-on-surface border-b-4 border-on-surface inline-block pb-2">Up-coming</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Trip Card 2 -->
+<article class="bg-surface-container-low neo-brutalist-border p-6 flex flex-col gap-6 relative group neo-brutalist-shadow transition-transform duration-300 hover:-translate-y-1">
+<div class="w-full h-48 bg-surface-variant border-2 border-on-surface overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A minimalist illustration of a snowy mountain village nestled in pine trees, soft diffused light, cool sage and dusty blue palette with cream background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeDh8cHSrTW127YsHJpc2rEC_nCQnXIFMPy3HO-wYJvJiEPHieESRQvLwRN1053Ea5BArVyl-cnqL7-19ZVbb7mHfVLAc1rQsm0pFxTMK3TbUcCFmcwtT5CS6bTo7Kx4hWylN5P6fygXOso7fBAC871f64eUWvmyky05YcpL3_ZPSD2z5bFAsFUMV5hRczj213OMuQuUzCo1j1pe3na9w3whGKdisA73eY479jlIaL3joQ-VBeyY37">
+</div>
+<div class="flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Winter Village Escape</h3>
+<p class="font-label-md text-primary mb-4">Dec 05 - Dec 15, 2024</p>
+<p class="font-body-md text-on-surface-variant mb-4">A tranquil stay in a secluded alpine cabin. Focus on digital detox, reading, and enjoying the crisp mountain air.</p>
+</div>
+<button class="w-full py-3 bg-surface text-on-surface neo-brutalist-border font-label-md hover:bg-surface-variant transition-colors mt-4">View Details</button>
+</div>
+</article>
+</div>
+</section>
+<!-- Completed Section -->
+<section>
+<h2 class="font-headline-lg text-headline-lg mb-8 text-on-surface border-b-4 border-on-surface inline-block pb-2">Completed</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 opacity-75">
+<!-- Trip Card 3 -->
+<article class="bg-surface-container-low neo-brutalist-border p-6 flex flex-col gap-6 relative">
+<div class="w-full h-48 bg-surface-variant border-2 border-on-surface overflow-hidden grayscale">
+<img class="w-full h-full object-cover" data-alt="A simple line art illustration of a coastal cityscape with minimalist geometric buildings, calm ocean waves, muted neutral beige palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDICFW9wJUOYk34HV_maQhNBeFhglIm-3d16yfznn0DZhmY7Z6Ys9yVZCyqq9hTqGEfxt_3odPdlx3rAKn-Od3M7nkfVueBQnYuw2zoaxoWpAbFMQtQ450BWxNRpKGuRU1gCAewkYe80N-AYFdrq01x1NhgA0oiDWBSKjEeyNSJMoMzlt59qJsbLlHoakUBrZWo5AHurSeJVJR3faeL5Rk0lZlcYLR-7Rg2BLKRod3JK9TuzOlndNBX">
+</div>
+<div class="flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Coastal Slow Living</h3>
+<p class="font-label-md text-on-surface-variant mb-4">Aug 10 - Aug 24, 2024</p>
+<p class="font-body-md text-on-surface-variant mb-4">Two weeks exploring rugged coastlines and small fishing towns. A deep dive into local culinary traditions and coastal walks.</p>
+</div>
+<button class="w-full py-3 bg-transparent text-primary border-2 border-primary font-label-md hover:bg-primary-container transition-colors mt-4">View Itinerary</button>
+</div>
+</article>
+<!-- Trip Card 4 -->
+<article class="bg-surface-container-low neo-brutalist-border p-6 flex flex-col gap-6 relative">
+<div class="w-full h-48 bg-surface-variant border-2 border-on-surface overflow-hidden grayscale">
+<img class="w-full h-full object-cover" data-alt="Abstract geometric landscape illustration with soft arches and circles representing a historical city, warm earthy tones shifted to sepia for a completed look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh2efE1tI1Rx6JSuqcQaFgDv2jbSBmh6wch16uNrd4Bfsr-woFLz84jvVCLHfh5EVcN4PMHzGfUVRLIaNAkad7t29yQcWwB2f6syoSFcQZ5KH5F9GahNBHEi11qElZPN92LCNC1i_EOL1_LncIiIjp3sZRCLIusTnjHLg236tAnXPxfKjbufwTEZ23QptSJeoCHv8AWb44_WX_7iQ2rYh_9S6C735-YqaKvjKQY75a8xatvyJcHh7L">
+</div>
+<div class="flex flex-col justify-between flex-grow">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Ancient City Exploration</h3>
+<p class="font-label-md text-on-surface-variant mb-4">May 01 - May 10, 2024</p>
+<p class="font-body-md text-on-surface-variant mb-4">A structured journey through historical ruins and modern architecture in the heart of the old continent.</p>
+</div>
+<button class="w-full py-3 bg-transparent text-primary border-2 border-primary font-label-md hover:bg-primary-container transition-colors mt-4">View Itinerary</button>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- Footer Shared Component -->
+<footer class="w-full mt-section-gap bg-surface-container dark:bg-surface-dim border-t-4 border-on-surface dark:border-outline">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-8 gap-4 max-w-container-max-width mx-auto w-full">
+<div class="font-headline-md text-headline-md text-on-surface">Globe Trotter</div>
+<nav class="flex flex-wrap gap-4 justify-center">
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all duration-300" href="#">Support</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all duration-300" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all duration-300" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-on-surface-variant hover:text-primary hover:underline transition-all duration-300" href="#">Contact Us</a>
+</nav>
+<div class="font-caption text-caption text-on-surface-variant">© 2024 Globe Trotter. All rights reserved.</div>
+</div>
+</footer>
+</body></html>
