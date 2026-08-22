@@ -9,6 +9,7 @@ import { MyTripsPage } from "../pages/trips/MyTripsPage";
 import { ActivitySearchPage } from "../pages/activities/ActivitySearchPage";
 import { CalendarPage } from "../pages/calendar/CalendarPage";
 import { ProfilePage } from "../pages/profile/ProfilePage";
+import { TripPage } from "../pages/trips/TripPage";
 
 function Placeholder({ title }: { title: string }) {
   return <div>{title}</div>;
@@ -55,7 +56,7 @@ export function AppRoutes() {
         path="/trips/:tripId"
         element={
           <ProtectedRoute>
-            <Placeholder title="Trip detail" />
+            <TripPage />
           </ProtectedRoute>
         }
       />
