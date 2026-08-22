@@ -1,0 +1,267 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Globe Trotter - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-primary": "#ffb4a5",
+                      "on-tertiary": "#ffffff",
+                      "surface-variant": "#e9e2d3",
+                      "tertiary-fixed-dim": "#9acbff",
+                      "secondary-container": "#d6e7a1",
+                      "surface-bright": "#fff8ef",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#f5edde",
+                      "on-secondary-container": "#5a682f",
+                      "primary-fixed": "#ffdad3",
+                      "surface-container-highest": "#e9e2d3",
+                      "on-secondary": "#ffffff",
+                      "inverse-surface": "#343026",
+                      "secondary": "#56642b",
+                      "on-background": "#1e1b13",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-container": "#e2725b",
+                      "on-secondary-fixed-variant": "#3e4c16",
+                      "secondary-fixed-dim": "#bdce89",
+                      "inverse-on-surface": "#f8f0e1",
+                      "background": "#fff8ef",
+                      "tertiary-container": "#6497ca",
+                      "primary": "#9f402d",
+                      "surface-container-low": "#fbf3e4",
+                      "on-primary-fixed-variant": "#802918",
+                      "secondary-fixed": "#d9eaa3",
+                      "outline-variant": "#ddc0ba",
+                      "error-container": "#ffdad6",
+                      "tertiary": "#2a6292",
+                      "on-tertiary-fixed": "#001d34",
+                      "on-error": "#ffffff",
+                      "on-primary-fixed": "#3e0500",
+                      "outline": "#89726d",
+                      "on-tertiary-fixed-variant": "#024a78",
+                      "surface-tint": "#9f402d",
+                      "on-surface": "#1e1b13",
+                      "on-surface-variant": "#56423e",
+                      "on-primary-container": "#5a0d02",
+                      "surface": "#fff8ef",
+                      "tertiary-fixed": "#cfe5ff",
+                      "on-secondary-fixed": "#161f00",
+                      "primary-fixed-dim": "#ffb4a5",
+                      "on-tertiary-container": "#002e4e",
+                      "surface-dim": "#e1d9cb",
+                      "surface-container-high": "#efe7d9",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "container-max-width": "1200px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "gutter": "24px",
+                      "section-gap": "80px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Montserrat"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Montserrat"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Montserrat"
+                      ],
+                      "display-lg": [
+                              "Montserrat"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        /* Floating Label Styles */
+        .floating-input:focus ~ .floating-label,
+        .floating-input:not(:placeholder-shown) ~ .floating-label {
+            transform: translateY(-50%) scale(0.85);
+            top: 0;
+            background-color: white;
+            padding: 0 4px;
+            color: #000; /* Neo-brutalist focus */
+        }
+        
+        .floating-input:focus {
+            border-color: #000;
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex items-center justify-center font-body-md text-body-md p-margin-mobile md:p-margin-desktop">
+<!-- Split Screen Container -->
+<div class="w-full max-w-container-max-width bg-surface-container-lowest rounded-[32px] overflow-hidden flex flex-col md:flex-row h-[800px] relative border-[3px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+<!-- Left Side: Illustration (Hidden on Mobile) -->
+<div class="hidden md:flex md:w-1/2 relative bg-surface-container overflow-hidden items-center justify-center p-section-gap border-r-[3px] border-black">
+<!-- Geometric Frame -->
+<div class="absolute inset-0 bg-secondary/10 rounded-tr-[120px] rounded-bl-[120px] m-margin-desktop z-0 border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"></div>
+<div class="relative z-10 w-full h-full max-w-md max-h-[600px] rounded-t-[200px] rounded-b-xl overflow-hidden border-[3px] border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="A minimalist vector illustration of a cozy winter village nestled in a snowy valley, viewed through an arched geometric frame. The scene uses an organic minimalist style with a soft pastel palette of warm cream, dusty blue, sage green, and earthy terracotta. Gentle, diffused light bathes small stylized cabins with smoke rising from chimneys, surrounded by simple pine trees. The aesthetic is clean, calming, and premium, resembling a modern travel journal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIAsTeYuuXtUk-kXt59t7s7yIuyIPREas3HtD9wlPlIOirwlwLAwWrK551sUIHpRBUgU4GR2t8pUBBSACHQ8kmK3BNtaaEd8lJMr9cK-hH4z9w8FMumYXVOcug7_q4wuGQlay-GATYRmbs_yp2Miso46JeEvcS3OFINti615OfLAIy_DyjtySPDpGSq4SF-qvhfysq3Er_SH1E-1pkZY-qjnq8P_jlENBjTwg4hJVDnHu6-rYI50OBCkPvNxS7rh8Wzkq_KeqjPQ9RrLg">
+</div>
+<!-- Floating Decorative Elements -->
+<div class="absolute top-24 left-24 w-12 h-12 rounded-full bg-primary border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-0"></div>
+<div class="absolute bottom-32 right-32 w-20 h-20 rounded-full bg-tertiary-container border-[3px] border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-0"></div>
+</div>
+<!-- Right Side: Authentication Form -->
+<div class="w-full md:w-1/2 p-margin-mobile md:p-16 flex flex-col justify-center relative bg-surface-container-lowest">
+<!-- Brand -->
+<div class="absolute top-8 left-8 md:top-12 md:left-16">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">Globe Trotter</h1>
+</div>
+<div class="max-w-md w-full mx-auto mt-16 md:mt-0">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Welcome back</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-12">Continue your journey of mindful exploration.</p>
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="relative">
+<input class="floating-input w-full h-[56px] px-4 pt-2 border-2 border-black rounded-lg bg-surface-container-lowest text-on-surface font-body-md transition-colors duration-200" id="email" placeholder=" " required="" type="email">
+<label class="floating-label absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-body-md transition-all duration-200 pointer-events-none bg-surface-container-lowest" for="email">Email address</label>
+</div>
+<!-- Password Field -->
+<div class="relative">
+<input class="floating-input w-full h-[56px] px-4 pt-2 border-2 border-black rounded-lg bg-surface-container-lowest text-on-surface font-body-md transition-colors duration-200" id="password" placeholder=" " required="" type="password">
+<label class="floating-label absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-body-md transition-all duration-200 pointer-events-none bg-surface-container-lowest" for="password">Password</label>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">visibility</span>
+</button>
+</div>
+<!-- Forgot Password -->
+<div class="flex justify-end">
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">Forgot Password?</a>
+</div>
+<!-- Login Button -->
+<button class="w-full h-[48px] bg-primary text-on-primary font-label-md text-label-md rounded-full border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-200" type="submit">
+                        Login
+                    </button>
+</form>
+<!-- Divider -->
+<div class="relative my-10">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t-2 border-black"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-4 bg-surface-container-lowest text-on-surface-variant font-caption text-caption border-2 border-black rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Or continue with</span>
+</div>
+</div>
+<!-- Social Login (Optional addition for realism, styled subtly) -->
+<div class="grid grid-cols-2 gap-4 mb-10">
+<button class="flex items-center justify-center gap-2 h-[48px] border-2 border-black rounded-full text-on-surface font-label-md hover:bg-surface-container-low shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all" type="button">
+<span class="material-symbols-outlined text-on-surface-variant">language</span>
+                        Google
+                    </button>
+<button class="flex items-center justify-center gap-2 h-[48px] border-2 border-black rounded-full text-on-surface font-label-md hover:bg-surface-container-low shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all" type="button">
+<span class="material-symbols-outlined text-on-surface-variant">file_download</span>
+                        Apple
+                    </button>
+</div>
+<!-- Sign Up Link -->
+<p class="text-center font-body-md text-body-md text-on-surface-variant mt-auto">
+                    Don't have an account? 
+                    <a class="font-label-md text-label-md text-primary hover:text-primary-container transition-colors ml-1 border-b-2 border-black" href="#">Sign Up</a>
+</p>
+</div>
+</div>
+</div>
+
+
+</body></html>

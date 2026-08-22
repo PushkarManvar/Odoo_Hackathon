@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Build Itinerary - Globe Trotter</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Montserrat:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#802918",
+                      "on-error": "#ffffff",
+                      "secondary": "#56642b",
+                      "primary": "#9f402d",
+                      "surface-container-highest": "#e9e2d3",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-container": "#5a0d02",
+                      "outline": "#89726d",
+                      "error": "#ba1a1a",
+                      "surface-container": "#f5edde",
+                      "inverse-surface": "#343026",
+                      "surface-bright": "#fff8ef",
+                      "on-tertiary-fixed": "#001d34",
+                      "secondary-fixed-dim": "#bdce89",
+                      "surface-tint": "#9f402d",
+                      "surface": "#fff8ef",
+                      "secondary-container": "#d6e7a1",
+                      "background": "#fff8ef",
+                      "surface-container-low": "#fbf3e4",
+                      "tertiary-container": "#6497ca",
+                      "on-surface": "#1e1b13",
+                      "surface-dim": "#e1d9cb",
+                      "on-secondary-fixed-variant": "#3e4c16",
+                      "surface-variant": "#e9e2d3",
+                      "on-secondary-fixed": "#161f00",
+                      "on-tertiary": "#ffffff",
+                      "on-surface-variant": "#56423e",
+                      "on-background": "#1e1b13",
+                      "on-tertiary-container": "#002e4e",
+                      "primary-fixed-dim": "#ffb4a5",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#5a682f",
+                      "on-tertiary-fixed-variant": "#024a78",
+                      "inverse-on-surface": "#f8f0e1",
+                      "secondary-fixed": "#d9eaa3",
+                      "tertiary-fixed-dim": "#9acbff",
+                      "tertiary-fixed": "#cfe5ff",
+                      "on-primary-fixed": "#3e0500",
+                      "outline-variant": "#ddc0ba",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#e2725b",
+                      "surface-container-high": "#efe7d9",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#ffb4a5",
+                      "tertiary": "#2a6292",
+                      "primary-fixed": "#ffdad3",
+                      "on-error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "gutter": "24px",
+                      "section-gap": "80px",
+                      "container-max-width": "1200px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Montserrat"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Montserrat"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Montserrat"
+                      ],
+                      "display-lg": [
+                              "Montserrat"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .neo-brutal-shadow {
+            box-shadow: 8px 8px 0px 0px rgba(30,27,19,1);
+        }
+        .neo-brutal-border {
+            border: 4px solid #1e1b13;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-background docked full-width top-0 border-b-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(30,27,19,1)] z-50">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop w-full h-20 max-w-container-max-width mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary">Globe Trotter</div>
+<nav class="hidden md:flex gap-gutter">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-headline-md text-headline-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-headline-md text-headline-md" href="#">My Trips</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-headline-md text-headline-md" href="#">Create Trip</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-headline-md text-headline-md" href="#">Discovery</a>
+</nav>
+<div class="flex items-center gap-base">
+<button class="p-2 hover:bg-surface-container-high transition-all rounded-full active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+<span class="material-symbols-outlined text-on-surface" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high transition-all rounded-full active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+<span class="material-symbols-outlined text-on-surface" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max-width mx-auto w-full">
+<!-- Header -->
+<div class="w-full mb-12">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-2">Build Itinerary</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant"><br></p>
+</div>
+<!-- Sections Container -->
+<div class="w-full flex flex-col gap-10">
+<!-- Section 1 -->
+<div class="bg-surface-container-lowest neo-brutal-border neo-brutal-shadow p-8 rounded-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Section 1: Flight &amp; Arrival</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">All the necessary info in this section. This can be anything like travel details, hotel check-in, or initial activities upon arrival.</p>
+<div class="flex flex-col md:flex-row gap-6">
+<div class="flex-1 bg-surface neo-brutal-border p-4 rounded flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">Date Range</span>
+<span class="font-body-md text-body-md text-on-surface">Oct 12 - Oct 14</span>
+</div>
+</div>
+<div class="flex-1 bg-surface neo-brutal-border p-4 rounded flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="payments">payments</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">Budget of this section</span>
+<span class="font-body-md text-body-md text-on-surface">$450.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2 -->
+<div class="bg-surface-container-lowest neo-brutal-border neo-brutal-shadow p-8 rounded-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Section 2: City Exploration</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">All the necessary information about this section. Details regarding guided tours, museum visits, and local dining experiences.</p>
+<div class="flex flex-col md:flex-row gap-6">
+<div class="flex-1 bg-surface neo-brutal-border p-4 rounded flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">Date Range</span>
+<span class="font-body-md text-body-md text-on-surface">Oct 15 - Oct 18</span>
+</div>
+</div>
+<div class="flex-1 bg-surface neo-brutal-border p-4 rounded flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="payments">payments</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">Budget of this section</span>
+<span class="font-body-md text-body-md text-on-surface">$600.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3 -->
+<div class="bg-surface-container-lowest neo-brutal-border neo-brutal-shadow p-8 rounded-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Section 3: Nature Retreat</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">All the necessary information about this section. Activities related to hiking, wildlife spotting, and relaxation.</p>
+<div class="flex flex-col md:flex-row gap-6">
+<div class="flex-1 bg-surface neo-brutal-border p-4 rounded flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">Date Range</span>
+<span class="font-body-md text-body-md text-on-surface">Oct 19 - Oct 22</span>
+</div>
+</div>
+<div class="flex-1 bg-surface neo-brutal-border p-4 rounded flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="payments">payments</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface-variant block">Budget of this section</span>
+<span class="font-body-md text-body-md text-on-surface">$350.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Add Button -->
+<button class="mt-8 self-center bg-primary text-on-primary font-headline-md text-headline-md py-4 px-8 rounded-full neo-brutal-border neo-brutal-shadow flex items-center gap-2 hover:bg-on-primary-fixed-variant transition-colors active:translate-x-[2px] active:translate-y-[2px] active:shadow-none">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                Add another Section
+            </button>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container full-width border-t-4 border-on-surface flat mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center py-10 px-margin-mobile md:px-margin-desktop w-full max-w-container-max-width mx-auto gap-base">
+<div class="font-headline-md text-headline-md text-on-surface mb-4 md:mb-0">
+                Globe Trotter
+            </div>
+<div class="flex flex-wrap justify-center gap-6 font-label-md text-label-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Cookie Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Support</a>
+</div>
+<div class="font-label-md text-label-md text-secondary mt-4 md:mt-0 text-center md:text-right">
+                © 2024 Globe Trotter. All rights reserved.
+            </div>
+</div>
+</footer>
+
+
+</body></html>
