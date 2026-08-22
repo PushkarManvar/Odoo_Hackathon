@@ -5,6 +5,7 @@ import { DashboardPage } from "../pages/DashboardPage";
 import { ItineraryBuilderPage } from "../pages/itinerary/ItineraryBuilderPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { SignupPage } from "../pages/auth/SignupPage";
+import { NewTripPage } from "../pages/trips/NewTripPage";
 import { MyTripsPage } from "../pages/trips/MyTripsPage";
 import { ActivitySearchPage } from "../pages/activities/ActivitySearchPage";
 import { CalendarPage } from "../pages/calendar/CalendarPage";
@@ -49,7 +50,7 @@ export function AppRoutes() {
         path="/trips/new"
         element={
           <ProtectedRoute>
-            <Placeholder title="New Trip" />
+            <NewTripPage />
           </ProtectedRoute>
         }
       />
