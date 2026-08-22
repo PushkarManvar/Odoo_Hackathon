@@ -11,6 +11,7 @@ Read in order. New contributors must read this before writing any code.
 ## Tools you need
 - Git + a GitHub account (with write access to this repo)
 - Node.js 20+ (if JS/TS stack)
+- PostgreSQL 17 (local database — see `docs/database.md`)
 - Your preferred AI coding agent (all follow `AGENTS.md`)
 
 ## Getting started
