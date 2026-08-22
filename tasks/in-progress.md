@@ -25,7 +25,9 @@ Use these exact IDs in the Owner column. Full roster: `docs/team.md`.
 | Budget module (B-4) | Nishant3634 | feat/budget | merged | Person B — derived budget calculation |
 | DS-1 Apply design tokens (tokens.css + fonts) | preetgohilofficial | feat/ds-1-design-tokens | merged | Per DESIGN.md — must merge before any screen task |
 | DS-2 UI primitives (Button/Input/Card/Modal/Badge) | preetgohilofficial | feat/ds-2-ui-primitives | merged | Depends on DS-1 |
-| C-2 Login/Signup, C-3 Dashboard, C-4 MyTrips, C-5 NewTrip, C-6 TripPage | preetgohilofficial | (claim) | allotted | Depends on DS-2. See backlog for Stitch screen mapping |
+| C-2 LoginPage + SignupPage | preetgohilofficial | feat/task-c2-auth | PR #29 open | From login_sign_up + registration references |
+| C-3 DashboardPage | preetgohilofficial | feat/task-c3-dashboard | PR #34 open | From admin_dashboard_refined_style |
+| C-4 MyTripsPage | preetgohilofficial | feat/task-c4-mytrips | in progress | [OWNER: preetgohilofficial] From my_trips_neo_brutalist_style |
 | D-1 ItineraryPage | khatikbhagya-cmd | feat/task-d1 | merged | PR #25, approved, matches Stitch itinerary_view design |
 | D-2 ItineraryBuilder | khatikbhagya-cmd | feat/task-d2 | in progress | Mock data per API contract, Stitch itinerary_builder_neo_brutalist_style |
 
