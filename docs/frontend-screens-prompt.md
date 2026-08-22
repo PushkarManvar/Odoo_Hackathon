@@ -27,15 +27,18 @@ READ THESE FILES IN ORDER, in full:
 10. `tasks/in-progress.md`
 
 YOUR SCOPE — FRONTEND SCREENS ONLY:
-- Framework: React + Vite + TypeScript (per locked stack doc).
+- Framework: React + Vite + TypeScript (per locked stack doc). The monorepo
+  scaffold already exists (`apps/web`) — do NOT recreate it.
 - You build UI screens + components per the architecture doc. Pages, components,
   auth state, API client wiring, routing. NO business logic decisions — backend
   is the authority.
-- Before writing any code, ask: which screen(s) should I build? Check
-  `tasks/backlog.md` / `tasks/in-progress.md` for the screen list, or the person
-  who invited you will assign you specific screens.
-- Do NOT create the app scaffold if someone else already owns it — check
-  `tasks/in-progress.md` first.
+- Your tasks are pre-assigned in `tasks/backlog.md` (C-1..C-8 for Preet,
+  D-1..D-8 for Bhagya). Claim the next unclaimed one with your owner ID, build
+  it, commit, push, open a PR. One task = one small commit.
+- TEAM RULE: every member must make at least one commit every hour. If your
+  current task is done, claim the next one — small tasks are small commits.
+- Do NOT touch the app scaffold or backend — check `tasks/in-progress.md`
+  before starting anything.
 
 RULES YOU MUST FOLLOW (full detail in AGENTS.md):
 - Never work directly on `main`. Always a feature branch + PR.
