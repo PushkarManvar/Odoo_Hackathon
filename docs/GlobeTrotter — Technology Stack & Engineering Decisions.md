@@ -73,7 +73,7 @@ Deployment      Local demo only
 ┌───────────────────────────┐
 │         DATABASE          │
 │                           │
-│ PostgreSQL 16             │
+│ PostgreSQL 17             │
 │ Docker Compose            │
 └───────────────────────────┘
 ```
@@ -561,7 +561,7 @@ PostgreSQL
 Recommended version:
 
 ```text
-PostgreSQL 16
+PostgreSQL 17
 ```
 
 PostgreSQL is especially appropriate because GlobeTrotter is relational.
@@ -629,7 +629,7 @@ Expected database service:
 ```yaml
 services:
   db:
-    image: postgres:16
+    image: postgres:17
 ```
 
 Local port:
@@ -1780,7 +1780,7 @@ Node.js + Express + TypeScript
           │
           │ Prisma
           ▼
-PostgreSQL 16
+PostgreSQL 17
           │
           └── Docker Compose
 
