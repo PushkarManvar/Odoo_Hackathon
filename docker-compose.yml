@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: globe-trotter-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: globe_trotter
+    ports:
+      - "5432:5432"
+    volumes:
+      - globe-trotter-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d globe_trotter"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  globe-trotter-pgdata:
