@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { ItineraryPage } from "../pages/itinerary/ItineraryPage";
+import { DashboardPage } from "../pages/DashboardPage";
 import { ItineraryBuilderPage } from "../pages/itinerary/ItineraryBuilderPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { SignupPage } from "../pages/auth/SignupPage";
@@ -26,7 +27,7 @@ export function AppRoutes() {
         path="/dashboard"
         element={
           <ProtectedRoute>
-            <Placeholder title="Dashboard" />
+            <DashboardPage />
           </ProtectedRoute>
         }
       />
