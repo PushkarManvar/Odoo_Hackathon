@@ -6,6 +6,7 @@ import authRoutes from "./modules/auth/auth.routes.js";
 import budgetRoutes from "./modules/budget/budget.routes.js";
 import cityRoutes from "./modules/cities/city.routes.js";
 import itineraryRoutes from "./modules/itinerary/itinerary.routes.js";
+import stopRoutes from "./modules/stops/stop.routes.js";
 import tripRoutes from "./modules/trips/trip.routes.js";
 
 const app = express();
@@ -23,6 +24,7 @@ app.use("/api/cities", cityRoutes);
 app.use("/api/cities", activityRoutes);
 app.use("/api", budgetRoutes);
 app.use("/api", itineraryRoutes);
+app.use("/api", stopRoutes);
 
 // feature routes registered here
 
