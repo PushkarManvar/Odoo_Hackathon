@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
@@ -136,9 +137,177 @@ async function main(): Promise<void> {
     });
   }
 
+  await seedDemoUsersAndTrips(cityMap);
+
   console.log(
-    `Seeding complete: ${cities.length} cities, ${activities.length} activities.`
+    `Seeding complete: ${cities.length} cities, ${activities.length} activities, 2 demo users, demo trips.`
   );
+}
+
+const DEMO_PASSWORD = "demo1234";
+
+async function seedDemoUsersAndTrips(cityMap: Map<string, string>) {
+  const demo1 = await upsertDemoUser(
+    "demo1@globetrotter.local",
+    "Demo User A"
+  );
+  const demo2 = await upsertDemoUser(
+    "demo2@globetrotter.local",
+    "Demo User B"
+  );
+
+  await prisma.trip.deleteMany({
+    where: { name: { in: ["Rajasthan Explorer", "Europe Adventure", "Private Getaway"] } },
+  });
+
+  const jaipur = cityMap.get("Jaipur")!;
+  const udaipur = cityMap.get("Udaipur")!;
+  const paris = cityMap.get("Paris")!;
+  const amsterdam = cityMap.get("Amsterdam")!;
+
+  const date = (s: string) => new Date(`${s}T00:00:00.000Z`);
+
+  const rajasthan = await prisma.trip.create({
+    data: {
+      userId: demo1.id,
+      name: "Rajasthan Explorer",
+      description: "A heritage journey through the pink city and the city of lakes.",
+      startDate: date("2026-10-10"),
+      endDate: date("2026-10-18"),
+      plannedBudget: 45000,
+      transportCost: 8000,
+      stayCost: 12000,
+      mealCost: 6000,
+      currency: "INR",
+      visibility: "PUBLIC",
+      shareSlug: "rajasthan-explorer",
+    },
+  });
+
+  const jaipurStop = await prisma.tripStop.create({
+    data: {
+      tripId: rajasthan.id,
+      cityId: jaipur,
+      sequenceOrder: 1,
+      arrivalDate: date("2026-10-10"),
+      departureDate: date("2026-10-13"),
+      notes: "Pink city heritage",
+    },
+  });
+
+  const udaipurStop = await prisma.tripStop.create({
+    data: {
+      tripId: rajasthan.id,
+      cityId: udaipur,
+      sequenceOrder: 2,
+      arrivalDate: date("2026-10-14"),
+      departureDate: date("2026-10-18"),
+      notes: "City of lakes",
+    },
+  });
+
+  await seedItem(jaipurStop.id, "Amber Fort", date("2026-10-10"), "09:00", 1);
+  await seedItem(jaipurStop.id, "City Palace Jaipur", date("2026-10-10"), "14:00", 2);
+  await seedItem(jaipurStop.id, "Hawa Mahal", date("2026-10-11"), "10:00", 1);
+  await seedItem(jaipurStop.id, "Jaipur Food Walk", date("2026-10-11"), "18:00", 2);
+  await seedItem(udaipurStop.id, "City Palace Udaipur", date("2026-10-14"), "10:00", 1);
+  await seedItem(udaipurStop.id, "Lake Pichola", date("2026-10-15"), "15:00", 1);
+  await seedItem(udaipurStop.id, "Sajjangarh Palace", date("2026-10-16"), "09:00", 1);
+  await prisma.itineraryItem.create({
+    data: {
+      tripStopId: udaipurStop.id,
+      customName: "Dinner with local cuisine",
+      customCost: 800,
+      date: date("2026-10-16"),
+      startTime: "20:00",
+      durationMins: 90,
+      sequenceOrder: 2,
+    },
+  });
+
+  const europe = await prisma.trip.create({
+    data: {
+      userId: demo1.id,
+      name: "Europe Adventure",
+      description: "A three-city European tour.",
+      startDate: date("2026-12-01"),
+      endDate: date("2026-12-10"),
+      plannedBudget: 150000,
+      transportCost: 30000,
+      stayCost: 45000,
+      mealCost: 20000,
+      currency: "INR",
+      visibility: "PRIVATE",
+    },
+  });
+
+  await prisma.tripStop.create({
+    data: {
+      tripId: europe.id,
+      cityId: paris,
+      sequenceOrder: 1,
+      arrivalDate: date("2026-12-01"),
+      departureDate: date("2026-12-04"),
+    },
+  });
+  await prisma.tripStop.create({
+    data: {
+      tripId: europe.id,
+      cityId: amsterdam,
+      sequenceOrder: 2,
+      arrivalDate: date("2026-12-05"),
+      departureDate: date("2026-12-08"),
+    },
+  });
+
+  await prisma.trip.create({
+    data: {
+      userId: demo2.id,
+      name: "Private Getaway",
+      description: "A private weekend trip used for ownership testing.",
+      startDate: date("2026-11-20"),
+      endDate: date("2026-11-22"),
+      plannedBudget: 10000,
+      transportCost: 2000,
+      stayCost: 4000,
+      mealCost: 1500,
+      currency: "INR",
+      visibility: "PRIVATE",
+    },
+  });
+
+  console.log("Demo users + trips seeded.");
+}
+
+async function upsertDemoUser(email: string, name: string) {
+  const passwordHash = await bcrypt.hash(DEMO_PASSWORD, 10);
+  return prisma.user.upsert({
+    where: { email },
+    update: { name },
+    create: { email, name, passwordHash },
+  });
+}
+
+async function seedItem(
+  tripStopId: string,
+  activityName: string,
+  date: Date,
+  startTime: string,
+  sequenceOrder: number
+) {
+  const activity = await prisma.activity.findUnique({
+    where: { id: slug(activityName) },
+  });
+  await prisma.itineraryItem.create({
+    data: {
+      tripStopId,
+      activityId: activity?.id,
+      date,
+      startTime,
+      durationMins: activity?.durationMins ?? 90,
+      sequenceOrder,
+    },
+  });
 }
 
 function slug(value: string): string {

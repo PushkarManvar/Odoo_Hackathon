@@ -117,6 +117,27 @@ or the final deployed environment if deployment is used.
 
 The exact environment used during judging should already be tested.
 
+## 5b. Demo Credentials (seeded)
+
+These accounts and trips are created by `npx prisma db seed`.
+
+| User | Email | Password | Role |
+|---|---|---|---|
+| User A | `demo1@globetrotter.local` | `demo1234` | Primary demo owner |
+| User B | `demo2@globetrotter.local` | `demo1234` | Copy Trip / ownership testing |
+
+Seeded demo trips:
+
+```text
+Rajasthan Explorer  → PUBLIC   (shareSlug: rajasthan-explorer)  → User A
+Europe Adventure    → PRIVATE  → User A
+Private Getaway     → PRIVATE  → User B
+```
+
+Rajasthan Explorer has 2 stops (Jaipur, Udaipur) with activities + itinerary
+items, so budget, calendar, itinerary, public share, and copy-trip all demo
+instantly.
+
 ---
 
 # 6. Pre-Demo Preparation
