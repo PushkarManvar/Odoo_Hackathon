@@ -19,3 +19,43 @@ export async function assertTripOwnership(
     throw new AppError(403, ErrorCodes.FORBIDDEN, "You do not own this trip");
   }
 }
+
+export async function assertStopOwnership(
+  userId: string,
+  stopId: string
+): Promise<void> {
+  const stop = await prisma.tripStop.findUnique({
+    where: { id: stopId },
+    select: { trip: { select: { userId: true } } },
+  });
+
+  if (!stop) {
+    throw new AppError(404, ErrorCodes.NOT_FOUND, "Stop not found");
+  }
+
+  if (stop.trip.userId !== userId) {
+    throw new AppError(403, ErrorCodes.FORBIDDEN, "You do not own this trip");
+  }
+}
+
+export async function assertItemOwnership(
+  userId: string,
+  itemId: string
+): Promise<void> {
+  const item = await prisma.itineraryItem.findUnique({
+    where: { id: itemId },
+    select: {
+      tripStop: {
+        select: { trip: { select: { userId: true } } },
+      },
+    },
+  });
+
+  if (!item) {
+    throw new AppError(404, ErrorCodes.NOT_FOUND, "Itinerary item not found");
+  }
+
+  if (item.tripStop.trip.userId !== userId) {
+    throw new AppError(403, ErrorCodes.FORBIDDEN, "You do not own this trip");
+  }
+}

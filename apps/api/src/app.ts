@@ -4,6 +4,7 @@ import { errorMiddleware } from "./middleware/error.middleware.js";
 import activityRoutes from "./modules/activities/activity.routes.js";
 import authRoutes from "./modules/auth/auth.routes.js";
 import cityRoutes from "./modules/cities/city.routes.js";
+import itineraryRoutes from "./modules/itinerary/itinerary.routes.js";
 import tripRoutes from "./modules/trips/trip.routes.js";
 
 const app = express();
@@ -19,6 +20,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/trips", tripRoutes);
 app.use("/api/cities", cityRoutes);
 app.use("/api/cities", activityRoutes);
+app.use("/api", itineraryRoutes);
 
 // feature routes registered here
 
