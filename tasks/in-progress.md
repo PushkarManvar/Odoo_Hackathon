@@ -28,8 +28,8 @@ Use these exact IDs in the Owner column. Full roster: `docs/team.md`.
 | DS-2 UI primitives (Button/Input/Card/Modal/Badge) | preetgohilofficial | feat/ds-2-ui-primitives | merged | Depends on DS-1 |
 | C-2 LoginPage + SignupPage | preetgohilofficial | feat/task-c2-auth | merged | From login_sign_up + registration references |
 | C-3 DashboardPage | preetgohilofficial | feat/task-c3-dashboard | merged | From admin_dashboard_refined_style |
-| C-4 MyTripsPage | preetgohilofficial | feat/task-c4-mytrips | PR #36 open | From my_trips_neo_brutalist_style |
-| C-5 NewTripPage | preetgohilofficial | feat/task-c5-newtrip | in progress | [OWNER: preetgohilofficial] From plan_new_trip_neo_brutalist_style |
+| C-4 MyTripsPage | preetgohilofficial | feat/task-c4-mytrips | merged | PR #36 — From my_trips_neo_brutalist_style |
+| C-5 NewTripPage | preetgohilofficial | feat/task-c5-newtrip | in review | PR #37 — From plan_new_trip_neo_brutalist_style |
 | D-1 ItineraryPage | khatikbhagya-cmd | feat/task-d1 | merged | Mock data per API contract, Stitch itinerary_view_neo_brutalist_style |
 | D-2 ItineraryBuilder | khatikbhagya-cmd | feat/task-d2 | merged | Mock data per API contract, Stitch itinerary_builder_neo_brutalist_style |
 | D-3 CalendarPage | khatikbhagya-cmd | feat/task-d3 | in progress | PR #30 open |
