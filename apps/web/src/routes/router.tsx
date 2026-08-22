@@ -1,6 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { ItineraryPage } from "../pages/itinerary/ItineraryPage";
+import { LoginPage } from "../pages/auth/LoginPage";
+import { SignupPage } from "../pages/auth/SignupPage";
 
 function Placeholder({ title }: { title: string }) {
   return <div>{title}</div>;
@@ -11,8 +13,8 @@ export function AppRoutes() {
     <Routes>
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
-      <Route path="/login" element={<Placeholder title="Login" />} />
-      <Route path="/signup" element={<Placeholder title="Signup" />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
       <Route
         path="/public/:slug"
         element={<Placeholder title="Public trip" />}
