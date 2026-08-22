@@ -157,6 +157,30 @@
   gap: 12px;
 }
 
+.act-city-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.act-city-label {
+  font-size: var(--label-md);
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.act-city-select {
+  font: inherit;
+  color: var(--on-surface);
+  background: var(--surface-container-lowest);
+  border: 3px solid var(--on-surface);
+  border-radius: var(--rounded-sm);
+  padding: 10px 12px;
+  min-width: 220px;
+}
+
 .act-title {
   margin: 0 0 24px;
   font-family: var(--font-heading);

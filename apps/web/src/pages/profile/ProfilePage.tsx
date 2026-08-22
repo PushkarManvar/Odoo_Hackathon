@@ -1,5 +1,10 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "../../components/ui/Button";
 import { Card } from "../../components/ui/Card";
+import { useAuth } from "../../context/AuthContext.js";
+import { tripsApi } from "../../services/client.js";
+import type { TripSummary } from "../../services/types.js";
 import "./ProfilePage.css";
 
 interface TripCard {
@@ -9,48 +14,9 @@ interface TripCard {
   badge: string;
   action: string;
   color: string;
+  to: string;
   grayscale?: boolean;
 }
-
-const plannedTrips: TripCard[] = [
-  {
-    id: "trip-munnar",
-    title: "Munnar Retreat",
-    description: "A quiet week exploring the tea gardens and misty hills.",
-    badge: "Oct 2024",
-    action: "View Itinerary",
-    color: "var(--secondary-container)",
-  },
-  {
-    id: "trip-tromso",
-    title: "Tromsø Lights",
-    description: "Chasing the aurora borealis and experiencing polar night.",
-    badge: "Dec 2024",
-    action: "View Itinerary",
-    color: "var(--tertiary-container)",
-  },
-];
-
-const previousTrips: TripCard[] = [
-  {
-    id: "trip-tuscany",
-    title: "Tuscan Wander",
-    description: "Two weeks of slow travel through rural Italy.",
-    badge: "May 2023",
-    action: "View Journal",
-    color: "var(--secondary-container)",
-    grayscale: true,
-  },
-  {
-    id: "trip-canyon",
-    title: "Canyonlands",
-    description: "A stark, beautiful journey through the high desert.",
-    badge: "Sep 2022",
-    action: "View Journal",
-    color: "var(--secondary-container)",
-    grayscale: true,
-  },
-];
 
 function TripCardView({
   trip,
@@ -74,29 +40,98 @@ function TripCardView({
           </h3>
           <p className="prof-trip-desc">{trip.description}</p>
         </div>
-        <Button variant="outline" full>
-          {trip.action}
-        </Button>
+        <Link to={trip.to}>
+          <Button variant="outline" full>
+            {trip.action}
+          </Button>
+        </Link>
       </div>
     </Card>
   );
 }
 
+function formatBadge(startDate: string): string {
+  const d = new Date(`${startDate}T00:00:00`);
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+  });
+}
+
+function tripCard(trip: TripSummary, grayscale = false): TripCard {
+  return {
+    id: trip.id,
+    title: trip.name,
+    description: trip.description ?? "No description yet.",
+    badge: formatBadge(trip.startDate),
+    action: grayscale ? "View Journal" : "View Itinerary",
+    color: "var(--secondary-container)",
+    to: grayscale
+      ? `/trips/${trip.id}`
+      : `/trips/${trip.id}/itinerary`,
+    grayscale,
+  };
+}
+
 export function ProfilePage() {
+  const { user } = useAuth();
+  const [trips, setTrips] = useState<TripSummary[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    tripsApi
+      .list()
+      .then((data) => {
+        if (!cancelled) {
+          setTrips(data);
+        }
+      })
+      .catch(() => {
+        // keep empty state on failure
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const upcoming = trips
+    .filter((trip) => new Date(`${trip.startDate}T00:00:00`) >= today)
+    .sort((a, b) => a.startDate.localeCompare(b.startDate));
+  const past = trips
+    .filter((trip) => new Date(`${trip.endDate}T00:00:00`) < today)
+    .sort((a, b) => b.startDate.localeCompare(a.startDate));
+
+  const plannedTrips: TripCard[] = upcoming.map((trip) => tripCard(trip));
+  const previousTrips: TripCard[] = past.map((trip) => tripCard(trip, true));
+
+  const initials = user
+    ? user.name
+        .split(" ")
+        .map((part) => part[0])
+        .filter(Boolean)
+        .slice(0, 2)
+        .join("")
+        .toUpperCase()
+    : "GT";
+
   return (
     <div className="prof-page">
       <nav className="prof-nav">
         <div className="prof-nav-inner">
           <span className="prof-brand">Globe Trotter</span>
           <div className="prof-nav-links">
-            <a href="#">Dashboard</a>
-            <a className="is-active" href="#">
+            <Link to="/dashboard">Dashboard</Link>
+            <Link className="is-active" to="/profile">
               My Trips
-            </a>
-            <a href="#">Discovery</a>
+            </Link>
+            <Link to="/discover">Discovery</Link>
           </div>
           <div className="prof-nav-cta">
-            <Button variant="primary">Plan New Trip</Button>
+            <Link to="/trips/new">
+              <Button variant="primary">Plan New Trip</Button>
+            </Link>
           </div>
         </div>
       </nav>
@@ -104,60 +139,60 @@ export function ProfilePage() {
       <main className="prof-main">
         <section className="prof-header">
           <div className="prof-avatar" aria-hidden="true">
-            NS
+            {initials}
           </div>
           <div className="prof-info">
             <div className="prof-info-top">
               <div>
-                <h1 className="prof-name">Nithish S.</h1>
+                <h1 className="prof-name">{user?.name ?? "Traveller"}</h1>
                 <p className="prof-tagline">
-                  Mindful Explorer | Minimalist Backpacker
+                  {user?.email ?? "Mindful exploration"}
                 </p>
               </div>
-              <Button variant="outline">
-                <span aria-hidden="true">&#9998;</span> Edit Profile
-              </Button>
             </div>
             <p className="prof-bio">
-              Passionate about slow travel and sustainable exploration. I
-              prefer train journeys over flights, and local homestays over
-              grand hotels. Always looking for the next quiet corner of the
-              world to sit and observe.
+              {user
+                ? `${user.name}'s travel journal — plan trips, build itineraries, and share them with the community.`
+                : "Plan trips, build itineraries, and share them with the community."}
             </p>
           </div>
         </section>
 
         <section className="prof-section">
-          <h2 className="prof-section-title">Preplanned Trips</h2>
-          <div className="prof-grid">
-            {plannedTrips.map((trip) => (
-              <TripCardView
-                key={trip.id}
-                trip={trip}
-                headingColor="var(--primary)"
-              />
-            ))}
-          </div>
+          <h2 className="prof-section-title">Planned Trips</h2>
+          {plannedTrips.length === 0 ? (
+            <p className="prof-empty">
+              No upcoming trips.{" "}
+              <Link to="/trips/new">Plan your next adventure.</Link>
+            </p>
+          ) : (
+            <div className="prof-grid">
+              {plannedTrips.map((trip) => (
+                <TripCardView
+                  key={trip.id}
+                  trip={trip}
+                  headingColor="var(--primary)"
+                />
+              ))}
+            </div>
+          )}
         </section>
 
         <section className="prof-section">
-          <h2 className="prof-section-title">Previous Trips</h2>
-          <div className="prof-grid">
-            {previousTrips.map((trip) => (
-              <TripCardView
-                key={trip.id}
-                trip={trip}
-                headingColor="var(--on-surface)"
-              />
-            ))}
-            <div className="prof-more">
-              <span className="prof-more-icon" aria-hidden="true">
-                &#128247;
-              </span>
-              <h3 className="prof-more-title">More Memories</h3>
-              <Button variant="outline">View All Past Trips</Button>
+          <h2 className="prof-section-title">Past Trips</h2>
+          {previousTrips.length === 0 ? (
+            <p className="prof-empty">No past trips yet.</p>
+          ) : (
+            <div className="prof-grid">
+              {previousTrips.map((trip) => (
+                <TripCardView
+                  key={trip.id}
+                  trip={trip}
+                  headingColor="var(--on-surface)"
+                />
+              ))}
             </div>
-          </div>
+          )}
         </section>
       </main>
 
@@ -165,10 +200,9 @@ export function ProfilePage() {
         <div className="prof-footer-inner">
           <span className="prof-footer-brand">Globe Trotter</span>
           <div className="prof-footer-links">
-            <a href="#">Support</a>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Destinations</a>
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/trips">My Trips</Link>
+            <Link to="/discover">Destinations</Link>
           </div>
           <span className="prof-footer-copy">
             &copy; 2024 Globe Trotter. Mindful Exploration.

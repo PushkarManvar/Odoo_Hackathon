@@ -12,6 +12,8 @@ import { CalendarPage } from "../pages/calendar/CalendarPage";
 import { ProfilePage } from "../pages/profile/ProfilePage";
 import { PublicTripPage } from "../pages/public/PublicTripPage";
 import { TripPage } from "../pages/trips/TripPage";
+import { BudgetPage } from "../pages/trips/BudgetPage";
+import { EditTripPage } from "../pages/trips/EditTripPage";
 
 function Placeholder({ title }: { title: string }) {
   return <div>{title}</div>;
@@ -25,10 +27,7 @@ export function AppRoutes() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/discover" element={<ActivitySearchPage />} />
-      <Route
-        path="/public/:slug"
-        element={<PublicTripPage />}
-      />
+      <Route path="/public/:slug" element={<PublicTripPage />} />
 
       <Route
         path="/dashboard"
@@ -66,7 +65,7 @@ export function AppRoutes() {
         path="/trips/:tripId/edit"
         element={
           <ProtectedRoute>
-            <Placeholder title="Edit trip" />
+            <EditTripPage />
           </ProtectedRoute>
         }
       />
@@ -90,7 +89,7 @@ export function AppRoutes() {
         path="/trips/:tripId/budget"
         element={
           <ProtectedRoute>
-            <Placeholder title="Budget" />
+            <BudgetPage />
           </ProtectedRoute>
         }
       />

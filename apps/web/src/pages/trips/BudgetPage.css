@@ -1,0 +1,276 @@
+/* BudgetPage — budget summary from /trips/:id/budget. */
+
+.bud-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  color: var(--on-surface);
+}
+
+.bud-header {
+  border-bottom: 4px solid var(--on-surface);
+  box-shadow: 4px 4px 0 0 var(--on-surface);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--surface);
+}
+
+.bud-header-inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 80px;
+  padding: 0 var(--margin-mobile);
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .bud-header-inner {
+    padding: 0 var(--margin-desktop);
+  }
+}
+
+.bud-brand {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.bud-nav {
+  display: none;
+  gap: var(--gutter);
+}
+
+@media (min-width: 768px) {
+  .bud-nav {
+    display: flex;
+  }
+}
+
+.bud-nav a {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  text-decoration: none;
+}
+
+.bud-nav a:hover,
+.bud-nav a.is-active {
+  color: var(--on-surface);
+  border-bottom: 3px solid var(--on-surface);
+  padding-bottom: 4px;
+}
+
+.bud-main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--section-gap) var(--margin-mobile);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .bud-main {
+    padding: var(--section-gap) var(--margin-desktop);
+  }
+}
+
+.bud-title h1 {
+  margin: 0 0 8px;
+  font-family: var(--font-heading);
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--on-surface);
+}
+
+.bud-title p {
+  margin: 0;
+  font-size: var(--body-lg);
+  color: var(--on-surface-variant);
+}
+
+.bud-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  .bud-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.bud-card {
+  background: var(--surface-container-lowest);
+  border: 4px solid var(--on-surface);
+  border-radius: var(--rounded);
+  box-shadow: 6px 6px 0 0 var(--on-surface);
+  padding: 24px;
+}
+
+.bud-card-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  border-bottom: 3px solid var(--on-surface);
+  padding-bottom: 8px;
+  color: var(--on-surface);
+}
+
+.bud-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.bud-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.bud-summary-label {
+  font-size: var(--label-md);
+  color: var(--on-surface-variant);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bud-summary-value {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.bud-summary-value--over {
+  color: var(--error);
+}
+
+.bud-bar-track {
+  height: 24px;
+  border: 3px solid var(--on-surface);
+  background: var(--surface);
+  border-radius: var(--rounded-sm);
+  overflow: hidden;
+}
+
+.bud-bar-fill {
+  height: 100%;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.bud-bar-fill--over {
+  background: var(--error);
+}
+
+.bud-bar-caption {
+  font-size: var(--label-md);
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  margin: 8px 0 0;
+  text-align: right;
+}
+
+.bud-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bud-row-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.bud-row-label {
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.bud-row-value {
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.bud-row-track {
+  height: 16px;
+  border: 2px solid var(--on-surface);
+  border-radius: var(--rounded-sm);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.bud-row-fill {
+  height: 100%;
+  background: var(--secondary);
+}
+
+.bud-bar--transport {
+  background: var(--primary);
+}
+
+.bud-bar--stay {
+  background: var(--secondary);
+}
+
+.bud-bar--meals {
+  background: var(--tertiary);
+}
+
+.bud-bar--activities {
+  background: var(--gt-yellow, #fcd34d);
+}
+
+.bud-stop-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bud-stop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border: 2px solid var(--on-surface);
+  border-radius: var(--rounded-sm);
+  background: var(--surface);
+}
+
+.bud-stop-name {
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.bud-stop-value {
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.bud-state {
+  font-size: var(--body-md);
+  color: var(--on-surface-variant);
+}

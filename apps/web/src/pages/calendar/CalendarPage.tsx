@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "../../components/ui/Button";
 import { Card } from "../../components/ui/Card";
 import { Input } from "../../components/ui/Input";
+import { tripsApi } from "../../services/client.js";
+import type { TripSummary } from "../../services/types.js";
 import "./CalendarPage.css";
 
 const WEEKDAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
@@ -12,12 +15,12 @@ interface Month {
   month: number;
 }
 
-const eventRange: Record<string, { start: number; end: number; label: string }> =
-  {
-    "PARIS TRIP": { start: 5, end: 8, label: "PARIS TRIP" },
-    "JAPAN ADVENTURE": { start: 9, end: 13, label: "JAPAN ADVENTURE" },
-    "NYC GETAWAY": { start: 18, end: 20, label: "NYC GETAWAY" },
-  };
+interface TripRange {
+  start: number;
+  end: number;
+  label: string;
+  tripId: string;
+}
 
 interface CalendarCell {
   day: number;
@@ -61,11 +64,36 @@ function isInRange(
 }
 
 export function CalendarPage() {
-  const [current, setCurrent] = useState<Month>({
-    label: "January 2024",
-    year: 2024,
-    month: 0,
+  const [current, setCurrent] = useState<Month>(() => {
+    const now = new Date();
+    return {
+      label: now.toLocaleString("en-US", { month: "long", year: "numeric" }),
+      year: now.getFullYear(),
+      month: now.getMonth(),
+    };
   });
+  const [trips, setTrips] = useState<TripSummary[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+    tripsApi
+      .list()
+      .then((data) => {
+        if (!cancelled) {
+          setTrips(data);
+        }
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to load trips");
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const changeMonth = (delta: number) => {
     const next = new Date(current.year, current.month + delta, 1);
@@ -81,25 +109,53 @@ export function CalendarPage() {
 
   const cells = buildCalendarCells(current.month, current.year);
 
+  const ranges: TripRange[] = trips.flatMap((trip) => {
+    const start = new Date(`${trip.startDate}T00:00:00`);
+    const end = new Date(`${trip.endDate}T00:00:00`);
+    if (
+      start.getFullYear() !== current.year ||
+      start.getMonth() !== current.month
+    ) {
+      return [];
+    }
+    const startDay = Math.min(start.getDate(), 31);
+    const endDay = Math.min(end.getDate(), 31);
+    return [
+      {
+        start: startDay,
+        end: endDay,
+        label: trip.name.toUpperCase(),
+        tripId: trip.id,
+      },
+    ];
+  });
+
+  const filteredTrips = trips.filter((trip) =>
+    trip.name.toLowerCase().includes(query.trim().toLowerCase())
+  );
+
   return (
     <div className="cal-page">
       <header className="cal-header">
         <div className="cal-header-inner">
-          <span className="cal-brand">GlobeTrotter</span>
+          <Link className="cal-brand" to="/dashboard">
+            GlobeTrotter
+          </Link>
           <div className="cal-tools">
             <div className="cal-search">
-              <Input placeholder="Search trips..." aria-label="Search trips" />
+              <Input
+                placeholder="Search trips..."
+                aria-label="Search trips"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+              />
             </div>
             <div className="cal-actions">
-              <Button variant="outline" size="sm">
-                Group by
-              </Button>
-              <Button variant="outline" size="sm">
-                Filter
-              </Button>
-              <Button variant="outline" size="sm">
-                Sort by...
-              </Button>
+              <Link to="/trips/new">
+                <Button variant="primary" size="sm">
+                  Plan New Trip
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -107,6 +163,8 @@ export function CalendarPage() {
 
       <main className="cal-main">
         <h2 className="cal-title">Calendar View</h2>
+
+        {error ? <p className="cal-empty">{error}</p> : null}
 
         <Card className="cal-container">
           <div className="cal-nav">
@@ -141,10 +199,8 @@ export function CalendarPage() {
               const cellDate = inMonth
                 ? new Date(current.year, current.month, day)
                 : null;
-              const range = Object.values(eventRange).find((r) =>
-                cellDate
-                  ? isInRange(day, current.month, current.year, r)
-                  : false
+              const range = ranges.find((r) =>
+                cellDate ? isInRange(day, current.month, current.year, r) : false
               );
               const isStart =
                 range && cellDate ? cellDate.getDate() === range.start : false;
@@ -158,13 +214,37 @@ export function CalendarPage() {
                 >
                   <span className="cal-cell-day">{day}</span>
                   {isStart && range ? (
-                    <div className="cal-event">{range.label}</div>
+                    <Link className="cal-event" to={`/trips/${range.tripId}`}>
+                      {range.label}
+                    </Link>
                   ) : null}
                 </div>
               );
             })}
           </div>
         </Card>
+
+        <section className="cal-trips">
+          <h3 className="cal-trips-title">My Trips</h3>
+          {filteredTrips.length === 0 ? (
+            <p className="cal-empty">
+              {query ? "No trips match your search." : "No trips yet."}
+            </p>
+          ) : (
+            <ul className="cal-trips-list">
+              {filteredTrips.map((trip) => (
+                <li key={trip.id}>
+                  <Link className="cal-trip-item" to={`/trips/${trip.id}`}>
+                    <span className="cal-trip-name">{trip.name}</span>
+                    <span className="cal-trip-dates">
+                      {trip.startDate} - {trip.endDate}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
       </main>
     </div>
   );
