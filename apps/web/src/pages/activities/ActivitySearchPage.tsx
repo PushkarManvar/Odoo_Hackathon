@@ -1,67 +1,78 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Badge } from "../../components/ui/Badge";
-import { Button } from "../../components/ui/Button";
 import { Card } from "../../components/ui/Card";
 import { Input } from "../../components/ui/Input";
+import { citiesApi } from "../../services/client.js";
+import type { Activity, City } from "../../services/types.js";
 import "./ActivitySearchPage.css";
 
-interface Activity {
-  id: string;
-  cityId: string;
-  name: string;
-  description: string;
-  category: string;
-  estimatedCost: number;
-  durationMins: number;
+function formatDuration(mins: number): string {
+  if (mins >= 60) {
+    const h = Math.floor(mins / 60);
+    const m = mins % 60;
+    return m > 0 ? `${h}h ${m}m` : `${h}h`;
+  }
+  return `${mins}m`;
 }
 
-const mockActivities: Activity[] = [
-  {
-    id: "activity-1",
-    cityId: "city-manali",
-    name: "Sunrise Paragliding Over Solang Valley",
-    description:
-      "Experience the thrill of soaring high above the stunning landscapes. Perfect for beginners and seasoned adventurers alike.",
-    category: "Adventure",
-    estimatedCost: 150,
-    durationMins: 180,
-  },
-  {
-    id: "activity-2",
-    cityId: "city-goa",
-    name: "Coastal Tandem Paragliding at Sunset",
-    description:
-      "A scenic tandem flight along the coast, offering unparalleled views of the ocean and dramatic cliffs at sunset.",
-    category: "Scenic",
-    estimatedCost: 180,
-    durationMins: 120,
-  },
-  {
-    id: "activity-3",
-    cityId: "city-bir",
-    name: "Paragliding Certification Course",
-    description:
-      "An intensive weekend course for those looking to get certified. Learn the ropes from experienced instructors in a safe environment.",
-    category: "Course",
-    estimatedCost: 450,
-    durationMins: 1440,
-  },
-  {
-    id: "activity-4",
-    cityId: "city-rishikesh",
-    name: "Gentle Family Glide over Rolling Hills",
-    description:
-      "A gentle, introductory flight perfect for families or those wanting a calm, floating experience over rolling hills.",
-    category: "Relaxing",
-    estimatedCost: 120,
-    durationMins: 90,
-  },
-];
-
 export function ActivitySearchPage() {
-  const [query, setQuery] = useState("Paragliding");
+  const [cities, setCities] = useState<City[]>([]);
+  const [selectedCityId, setSelectedCityId] = useState("");
+  const [activities, setActivities] = useState<Activity[]>([]);
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const filtered = mockActivities.filter((activity) =>
+  useEffect(() => {
+    let cancelled = false;
+    citiesApi
+      .list()
+      .then((data) => {
+        if (!cancelled) {
+          setCities(data);
+        }
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to load cities");
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!selectedCityId) {
+      return;
+    }
+    let cancelled = false;
+    setLoading(true);
+    setError(null);
+    citiesApi
+      .activities(selectedCityId)
+      .then((data) => {
+        if (!cancelled) {
+          setActivities(data);
+        }
+      })
+      .catch((err) => {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to load activities");
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedCityId]);
+
+  const filtered = activities.filter((activity) =>
     activity.name.toLowerCase().includes(query.trim().toLowerCase())
   );
 
@@ -70,26 +81,21 @@ export function ActivitySearchPage() {
       <nav className="act-nav">
         <div className="act-nav-inner">
           <div className="act-nav-left">
-            <a className="act-brand" href="/">
+            <Link className="act-brand" to="/dashboard">
               Globe Trotter
-            </a>
+            </Link>
             <div className="act-nav-links">
-              <a className="is-active" href="#">
+              <Link className="is-active" to="/discover">
                 Discover
-              </a>
-              <a href="#">My Trips</a>
-              <a href="#">Plan</a>
-              <a href="#">Community</a>
+              </Link>
+              <Link to="/trips">My Trips</Link>
+              <Link to="/trips/new">Plan</Link>
             </div>
           </div>
           <div className="act-nav-actions">
-            <button type="button" aria-label="Notifications">
-              &#128276;
-            </button>
-            <button type="button" aria-label="Favorites">
-              &#9825;
-            </button>
-            <div className="act-avatar" aria-hidden="true" />
+            <Link to="/profile">
+              <div className="act-avatar" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </nav>
@@ -104,61 +110,78 @@ export function ActivitySearchPage() {
               aria-label="Search activities"
             />
           </div>
-          <div className="act-filters">
-            <Button variant="outline" size="sm">
-              Group by &#9662;
-            </Button>
-            <Button variant="outline" size="sm">
-              Filter &#9881;
-            </Button>
-            <Button variant="outline" size="sm">
-              Sort by... &#8645;
-            </Button>
+          <div className="act-city-picker">
+            <label htmlFor="act-city" className="act-city-label">
+              City
+            </label>
+            <select
+              id="act-city"
+              className="act-city-select"
+              value={selectedCityId}
+              onChange={(event) => setSelectedCityId(event.target.value)}
+              aria-label="Select city"
+            >
+              <option value="">Select a city</option>
+              {cities.map((city) => (
+                <option key={city.id} value={city.id}>
+                  {city.name}, {city.country}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
-        <h1 className="act-title">Results</h1>
+        <h1 className="act-title">
+          {selectedCityId ? "Results" : "Discover Activities"}
+        </h1>
 
-        <div className="act-results">
-          {filtered.length === 0 ? (
-            <p className="act-empty">No activities match your search.</p>
-          ) : (
-            filtered.map((activity) => (
-              <Card key={activity.id} className="act-card">
-                <div className="act-card-thumb" aria-hidden="true">
-                  {activity.category}
-                </div>
-                <div className="act-card-body">
-                  <h2 className="act-card-title">{activity.name}</h2>
-                  <p className="act-card-desc">{activity.description}</p>
-                  <div className="act-card-tags">
-                    <Badge variant="secondary">{activity.category}</Badge>
-                    <Badge variant="tertiary">
-                      {activity.durationMins >= 60
-                        ? `${Math.round(activity.durationMins / 60)}h`
-                        : `${activity.durationMins}m`}
-                    </Badge>
+        {error ? <p className="act-empty">{error}</p> : null}
+
+        {!selectedCityId ? (
+          <p className="act-empty">Choose a city to browse its activities.</p>
+        ) : loading ? (
+          <p className="act-empty">Loading activities...</p>
+        ) : (
+          <div className="act-results">
+            {filtered.length === 0 ? (
+              <p className="act-empty">No activities match your search.</p>
+            ) : (
+              filtered.map((activity) => (
+                <Card key={activity.id} className="act-card">
+                  <div className="act-card-thumb" aria-hidden="true">
+                    {activity.category}
                   </div>
-                </div>
-                <div className="act-card-price">
-                  <span className="act-price">${activity.estimatedCost}</span>
-                  <Button variant="primary" size="sm">
-                    Book Now
-                  </Button>
-                </div>
-              </Card>
-            ))
-          )}
-        </div>
+                  <div className="act-card-body">
+                    <h2 className="act-card-title">{activity.name}</h2>
+                    <p className="act-card-desc">
+                      {activity.description ?? "No description available."}
+                    </p>
+                    <div className="act-card-tags">
+                      <Badge variant="secondary">{activity.category}</Badge>
+                      <Badge variant="tertiary">
+                        {formatDuration(activity.durationMins)}
+                      </Badge>
+                    </div>
+                  </div>
+                  <div className="act-card-price">
+                    <span className="act-price">
+                      ${activity.estimatedCost}
+                    </span>
+                  </div>
+                </Card>
+              ))
+            )}
+          </div>
+        )}
       </main>
 
       <nav className="act-mobile-nav">
-        <a href="#">Home</a>
-        <a className="is-active" href="#">
+        <Link to="/dashboard">Home</Link>
+        <Link className="is-active" to="/discover">
           Search
-        </a>
-        <a href="#">Trips</a>
-        <a href="#">Profile</a>
+        </Link>
+        <Link to="/trips">Trips</Link>
+        <Link to="/profile">Profile</Link>
       </nav>
     </div>
   );

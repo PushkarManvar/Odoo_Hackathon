@@ -1,16 +1,13 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
   type ReactNode,
 } from "react";
 import { clearToken, getToken, setToken } from "../services/api.js";
-
-interface AuthUser {
-  id: string;
-  name: string;
-  email: string;
-}
+import { authApi } from "../services/client.js";
+import type { AuthUser } from "../services/types.js";
 
 interface AuthState {
   user: AuthUser | null;
@@ -25,6 +22,30 @@ const AuthContext = createContext<AuthState | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setTokenState] = useState<string | null>(() => getToken());
   const [user, setUser] = useState<AuthUser | null>(null);
+
+  useEffect(() => {
+    const current = getToken();
+    if (!current) {
+      return;
+    }
+    let cancelled = false;
+    authApi
+      .me()
+      .then((me) => {
+        if (!cancelled) {
+          setUser(me);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          clearToken();
+          setTokenState(null);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const login: AuthState["login"] = (newToken, newUser) => {
     setToken(newToken);

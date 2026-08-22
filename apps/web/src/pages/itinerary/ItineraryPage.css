@@ -322,6 +322,31 @@
   grid-column: span 2;
 }
 
+.itinerary-page .it-day-date {
+  font-family: var(--it-font-body);
+  font-size: 13px;
+  color: var(--it-on-surface-variant);
+  margin-top: 8px;
+  text-align: center;
+}
+
+.itinerary-page .it-empty {
+  grid-column: 1 / -1;
+  font-family: var(--it-font-body);
+  font-size: 16px;
+  color: var(--it-on-surface-variant);
+  padding: 48px 24px;
+  text-align: center;
+  background: var(--it-surface-lowest);
+  border: 3px dashed var(--it-outline);
+  border-radius: 12px;
+}
+
+.itinerary-page .it-empty a {
+  color: var(--it-primary);
+  font-weight: 600;
+}
+
 .itinerary-page .it-activities {
   display: flex;
   flex-direction: column;

@@ -238,4 +238,62 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  text-decoration: none;
+}
+
+.cal-empty {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--on-surface-variant);
+  padding: 12px 0;
+}
+
+.cal-trips {
+  margin-top: 32px;
+}
+
+.cal-trips-title {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  border-bottom: 3px solid var(--on-surface);
+  padding-bottom: 8px;
+  color: var(--on-surface);
+}
+
+.cal-trips-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cal-trip-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 16px;
+  border: 3px solid var(--on-surface);
+  border-radius: var(--rounded-sm);
+  background: var(--surface-container-lowest);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cal-trip-item:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--on-surface);
+}
+
+.cal-trip-name {
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+.cal-trip-dates {
+  font-size: 13px;
+  color: var(--on-surface-variant);
 }
