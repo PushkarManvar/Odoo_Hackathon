@@ -28,7 +28,11 @@ export async function apiRequest<T>(
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_URL}${path}`, { ...options, headers });
+  const response = await fetch(`${API_URL}/api${path}`, { ...options, headers });
+
+  if (response.status === 204) {
+    return undefined as T;
+  }
 
   const body = await response.json();
 
