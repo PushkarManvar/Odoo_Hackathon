@@ -1,0 +1,343 @@
+/*
+ * GlobeTrotter UI primitives — "Serene Journeys" / Organic Minimalism
+ * Styling derived from docs/stitch_remix_of_globe_trotter_travel_planner
+ * /globetrotter_complete_travel_dashboard/code.html (neo-brutalist patterns).
+ */
+
+/* Neo-brutalist shared primitives */
+.gt-neo-border {
+  border: 3px solid var(--on-surface);
+}
+
+.gt-neo-shadow {
+  box-shadow: 6px 6px 0 0 var(--on-surface);
+}
+
+.gt-neo-shadow-hover:hover {
+  box-shadow: 8px 8px 0 0 var(--on-surface);
+  transform: translate(-2px, -2px);
+}
+
+.gt-transition-neo {
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Button */
+.gt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--button-height);
+  padding: 12px 32px;
+  border: 3px solid var(--on-surface);
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 6px 6px 0 0 var(--on-surface);
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gt-btn:hover {
+  box-shadow: 8px 8px 0 0 var(--on-surface);
+  transform: translate(-2px, -2px);
+}
+
+.gt-btn:active {
+  box-shadow: 3px 3px 0 0 var(--on-surface);
+  transform: translate(3px, 3px);
+}
+
+.gt-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: 3px 3px 0 0 var(--on-surface);
+  transform: translate(3px, 3px);
+}
+
+.gt-btn:focus-visible {
+  outline: 3px solid var(--tertiary);
+  outline-offset: 2px;
+}
+
+.gt-btn--primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.gt-btn--primary:hover {
+  background: var(--on-primary-container);
+}
+
+.gt-btn--secondary {
+  background: var(--secondary);
+  color: var(--on-secondary);
+}
+
+.gt-btn--secondary:hover {
+  background: var(--on-secondary-container);
+}
+
+.gt-btn--outline {
+  background: var(--surface);
+  color: var(--on-surface);
+}
+
+.gt-btn--outline:hover {
+  background: var(--surface-variant);
+}
+
+.gt-btn--ghost {
+  background: transparent;
+  color: var(--on-surface);
+  box-shadow: none;
+}
+
+.gt-btn--ghost:hover {
+  background: var(--surface-container);
+  box-shadow: none;
+  transform: none;
+}
+
+.gt-btn--sm {
+  min-height: 32px;
+  padding: 4px 14px;
+  font-size: 12px;
+}
+
+.gt-btn--lg {
+  min-height: 56px;
+  padding: 16px 40px;
+}
+
+.gt-btn--full {
+  width: 100%;
+}
+
+/* Input */
+.gt-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gt-label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--on-surface);
+}
+
+.gt-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 3px solid var(--on-surface);
+  border-radius: var(--radius-button);
+  background: var(--surface-container-lowest);
+  color: var(--on-surface);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gt-input::placeholder {
+  color: var(--on-surface-variant);
+}
+
+.gt-input:hover {
+  border-color: var(--outline);
+}
+
+.gt-input:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 4px 4px 0 0 var(--secondary);
+}
+
+.gt-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--surface-container);
+}
+
+.gt-input--error {
+  border-color: var(--error);
+  box-shadow: 4px 4px 0 0 var(--error);
+}
+
+.gt-input--error:focus {
+  border-color: var(--error);
+  box-shadow: 4px 4px 0 0 var(--error);
+}
+
+.gt-error-text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--error);
+}
+
+.gt-hint-text {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--on-surface-variant);
+}
+
+/* Card */
+.gt-card {
+  background: var(--surface);
+  border: 3px solid var(--on-surface);
+  border-radius: var(--radius-card);
+  box-shadow: 6px 6px 0 0 var(--on-surface);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.gt-card--raised {
+  background: var(--surface-container-lowest);
+}
+
+.gt-card--tonal {
+  background: var(--surface-container);
+}
+
+.gt-card--flat {
+  box-shadow: none;
+}
+
+/* Modal */
+.gt-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--margin-mobile);
+  background: rgba(30, 27, 19, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.gt-modal {
+  background: var(--surface-bright);
+  border: 3px solid var(--on-surface);
+  border-radius: var(--radius-card);
+  box-shadow: 8px 8px 0 0 var(--on-surface);
+  width: 100%;
+  max-width: 560px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.gt-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 3px solid var(--on-surface);
+}
+
+.gt-modal__title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  color: var(--on-surface);
+  margin: 0;
+}
+
+.gt-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--on-surface);
+  border-radius: var(--radius-button);
+  background: var(--surface);
+  color: var(--on-surface);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.gt-modal__close:hover {
+  background: var(--surface-variant);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 0 var(--on-surface);
+}
+
+.gt-modal__body {
+  padding: 24px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--on-surface);
+}
+
+.gt-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 3px solid var(--on-surface);
+}
+
+/* Badge */
+.gt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border: 3px solid var(--on-surface);
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.gt-badge--primary {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+.gt-badge--secondary {
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
+}
+
+.gt-badge--tertiary {
+  background: var(--tertiary-container);
+  color: var(--on-tertiary-container);
+}
+
+.gt-badge--neutral {
+  background: var(--surface-variant);
+  color: var(--on-surface);
+}
+
+.gt-badge--outline {
+  background: transparent;
+  color: var(--on-surface);
+}
