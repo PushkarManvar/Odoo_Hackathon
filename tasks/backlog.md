@@ -12,6 +12,7 @@ Claim a task by moving it to `in-progress.md` with `[OWNER: <name/ai-id>]`.
 Small, sequential. Each = one branch + one commit + one PR. Pick, claim, build.
 
 ### Person C — Preet (auth, dashboard, trips)
+- [ ] C-0 Onboarding commit: run setup checklist (§51), confirm env works, add your owner row to `tasks/in-progress.md` → commit — `[OWNER: preetgohilofficial]`
 - [ ] C-1 Setup `router.tsx` route table (all pages, placeholders) — `[OWNER: preetgohilofficial]`
 - [ ] C-2 Build `components/ui/Button.tsx` + `Input.tsx` shared kit
 - [ ] C-3 Build `pages/auth/LoginPage.tsx` UI (mock API)
@@ -22,6 +23,7 @@ Small, sequential. Each = one branch + one commit + one PR. Pick, claim, build.
 - [ ] C-8 Build `pages/trips/TripPage.tsx` trip detail layout
 
 ### Person D — Bhagya (itinerary, budget, calendar, public)
+- [ ] D-0 Onboarding commit: run setup checklist (§51), confirm env works, add your owner row to `tasks/in-progress.md` → commit — `[OWNER: khatikbhagya-cmd]`
 - [ ] D-1 Build `pages/itinerary/ItineraryPage.tsx` layout (mock data)
 - [ ] D-2 Build `pages/budget/BudgetPage.tsx` summary UI (mock data)
 - [ ] D-3 Build `pages/calendar/CalendarPage.tsx` trip calendar (mock data)
