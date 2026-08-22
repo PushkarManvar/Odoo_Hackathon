@@ -15,8 +15,6 @@ Source of truth: `docs/stitch_remix_of_globe_trotter_travel_planner/serene_journ
 tasks depend on DS-2 (shared components). Each task = one branch + one commit
 + one PR. Allotted owner is fixed.
 
-Done so far (old C-list): C-0 onboarding and C-1 router table are merged.
-
 ### DS — Design system foundation (shared)
 - [ ] DS-1 Apply design tokens → `apps/web/src/styles/tokens.css` (colors, typography, rounded, spacing from DESIGN.md) + load Montserrat/Inter in `index.html` — **allotted: preetgohilofficial**
 - [ ] DS-2 Build shared UI primitives from tokens: `Button`, `Input`, `Card`, `Modal`, `Badge` (from `globetrotter_complete_travel_dashboard/code.html`) — **allotted: preetgohilofficial**
