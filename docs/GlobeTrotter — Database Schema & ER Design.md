@@ -3,7 +3,7 @@
 
 **Document:** `04_DATABASE_SCHEMA.md`  
 **Status:** Locked for MVP  
-**Database:** PostgreSQL 16  
+**Database:** PostgreSQL 17  
 **ORM:** Prisma  
 **Purpose:** Final relational data model for GlobeTrotter
 

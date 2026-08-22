@@ -68,7 +68,7 @@ The main architectural goal is:
 ┌─────────────────────────────────────┐
 │              DATABASE               │
 │                                     │
-│ PostgreSQL 16                       │
+│ PostgreSQL 17                       │
 │ Docker Compose                      │
 │                                     │
 │ User                                │
